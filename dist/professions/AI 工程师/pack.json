@@ -1,0 +1,33 @@
+{
+  "profession": "AI 工程师",
+  "generated_at": "2026-05-25T12:10:46.793Z",
+  "skill_count": 2,
+  "skills": [
+    {
+      "id": "anthropics-skills--skills--claude-api",
+      "name": "claude-api",
+      "description_zh": "构建、调试和优化 Claude API / Anthropic SDK 应用。基于此 skill 构建的应用应包含 prompt caching。同时处理在 Claude 模型版本之间迁移已有 Claude API 代码（4.5 → 4.6、4.6 → 4.7、已下线模型替换）。触发条件：代码 import `anthropic`/`@anthropic-ai/sdk`；用户询问 Claude API、Anthropic SDK 或 Managed Agents；用户在文件中新增、修改或调优某个 Claude 功能（caching、thinking、compaction、tool use、batch、files、citations、memory）或模型（Opus/Sonnet/Haiku）；在 Anthropic SDK 项目中关于 prompt caching / 缓存命中率的问题。跳过场景：文件 import `openai`/其他厂商 SDK、文件名形如 `*-openai.py`/`*-generic.py`、与厂商无关的代码、通用编程/ML 问题。",
+      "description_en": "Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements). TRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project. SKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.",
+      "source": {
+        "repo": "anthropics-skills",
+        "path": "skills/claude-api/SKILL.md",
+        "commit": "690f15cac7f7b4c055c5ab109c79ed9259934081"
+      },
+      "content_hash": "617512252b92969fbbe71cb0bc5f18641e1b8ee00a799cd3276a0f28f7a2e017",
+      "translated_at": "2026-05-25T11:53:58.609Z"
+    },
+    {
+      "id": "anthropics-skills--skills--skill-creator",
+      "name": "skill-creator",
+      "description_zh": "创建新的 skills、修改和改进现有 skills，以及衡量 skill 性能。当用户想要从零创建 skill、编辑或优化现有 skill、运行 evals 测试 skill、通过方差分析对 skill 性能进行基准测试，或优化 skill 的 description 以提升触发准确性时使用。",
+      "description_en": "Create new skills, modify and improve existing skills, and measure skill performance. Use when users want to create a skill from scratch, edit, or optimize an existing skill, run evals to test a skill, benchmark skill performance with variance analysis, or optimize a skill's description for better triggering accuracy.",
+      "source": {
+        "repo": "anthropics-skills",
+        "path": "skills/skill-creator/SKILL.md",
+        "commit": "690f15cac7f7b4c055c5ab109c79ed9259934081"
+      },
+      "content_hash": "dcd4803e61e913e6fc27294184cd3a71f09f5e924ff20c8a9a20173e7b3c2bcf",
+      "translated_at": "2026-05-25T12:04:52.035Z"
+    }
+  ]
+}

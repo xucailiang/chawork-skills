@@ -1,0 +1,14 @@
+{
+  "id": "anthropics-skills--skills--xlsx",
+  "name": "xlsx",
+  "description_zh": "当电子表格文件作为主要输入或输出时使用此 skill。这包括用户希望执行以下操作的任何任务：打开、读取、编辑或修复已有的 .xlsx、.xlsm、.csv 或 .tsv 文件（例如添加列、计算公式、格式化、生成图表、清理脏数据）；从零开始或基于其他数据源创建新的电子表格；或在不同表格文件格式之间进行转换。当用户通过名称或路径引用电子表格文件时——哪怕只是随口一提（比如\"我下载目录里那个 xlsx\"）——并希望对其进行处理或基于其产出内容时，尤其需要触发。对于将杂乱的表格数据文件（格式错乱的行、错位的表头、垃圾数据）清理或重构为规范电子表格的场景，同样需要触发。最终交付物必须是电子表格文件。当主要交付物是 Word 文档、HTML 报告、独立 Python 脚本、数据库管道或 Google Sheets API 集成时，不要触发，即使涉及表格数据。",
+  "description_en": "Use this skill any time a spreadsheet file is the primary input or output. This means any task where the user wants to: open, read, edit, or fix an existing .xlsx, .xlsm, .csv, or .tsv file (e.g., adding columns, computing formulas, formatting, charting, cleaning messy data); create a new spreadsheet from scratch or from other data sources; or convert between tabular file formats. Trigger especially when the user references a spreadsheet file by name or path — even casually (like \"the xlsx in my downloads\") — and wants something done to it or produced from it. Also trigger for cleaning or restructuring messy tabular data files (malformed rows, misplaced headers, junk data) into proper spreadsheets. The deliverable must be a spreadsheet file. Do NOT trigger when the primary deliverable is a Word document, HTML report, standalone Python script, database pipeline, or Google Sheets API integration, even if tabular data is involved.",
+  "profession": "财务会计",
+  "source": {
+    "repo": "anthropics-skills",
+    "path": "skills/xlsx/SKILL.md",
+    "commit": "690f15cac7f7b4c055c5ab109c79ed9259934081"
+  },
+  "content_hash": "dd316db7785a6be12966c2a2d848931fbf5f518b3cdb0a66fa62ee835ead1cfc",
+  "translated_at": "2026-05-25T12:08:22.289Z"
+}

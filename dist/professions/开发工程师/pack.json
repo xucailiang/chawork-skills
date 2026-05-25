@@ -1,0 +1,33 @@
+{
+  "profession": "开发工程师",
+  "generated_at": "2026-05-25T12:10:46.793Z",
+  "skill_count": 2,
+  "skills": [
+    {
+      "id": "anthropics-skills--skills--mcp-builder",
+      "name": "mcp-builder",
+      "description_zh": "用于创建高质量 MCP (Model Context Protocol) 服务器的指南，让 LLM 通过精心设计的工具与外部服务交互。在使用 Python (FastMCP) 或 Node/TypeScript (MCP SDK) 构建 MCP 服务器以集成外部 API 或服务时使用。",
+      "description_en": "Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Use when building MCP servers to integrate external APIs or services, whether in Python (FastMCP) or Node/TypeScript (MCP SDK).",
+      "source": {
+        "repo": "anthropics-skills",
+        "path": "skills/mcp-builder/SKILL.md",
+        "commit": "690f15cac7f7b4c055c5ab109c79ed9259934081"
+      },
+      "content_hash": "0f4592dcb53cf2b5d6b7febee6b4152018b565551a1c29e3c612f57b218ab295",
+      "translated_at": "2026-05-25T11:59:27.304Z"
+    },
+    {
+      "id": "anthropics-skills--skills--web-artifacts-builder",
+      "name": "web-artifacts-builder",
+      "description_zh": "用于创建复杂多组件 claude.ai HTML artifacts 的工具套件，基于现代前端 Web 技术（React、Tailwind CSS、shadcn/ui）。适用于需要状态管理、路由或 shadcn/ui 组件的复杂 artifacts，不适用于简单的单文件 HTML/JSX artifacts。",
+      "description_en": "Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern frontend web technologies (React, Tailwind CSS, shadcn/ui). Use for complex artifacts requiring state management, routing, or shadcn/ui components - not for simple single-file HTML/JSX artifacts.",
+      "source": {
+        "repo": "anthropics-skills",
+        "path": "skills/web-artifacts-builder/SKILL.md",
+        "commit": "690f15cac7f7b4c055c5ab109c79ed9259934081"
+      },
+      "content_hash": "81c5002c6643b0de7b8710b00e7a9038daa6fb9b68d59870ee6adb12da8d10f8",
+      "translated_at": "2026-05-25T12:06:44.269Z"
+    }
+  ]
+}

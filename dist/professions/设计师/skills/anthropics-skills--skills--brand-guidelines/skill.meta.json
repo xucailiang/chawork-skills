@@ -1,0 +1,14 @@
+{
+  "id": "anthropics-skills--skills--brand-guidelines",
+  "name": "brand-guidelines",
+  "description_zh": "为任何可能受益于 Anthropic 品牌风格的制品应用 Anthropic 官方品牌色与字体规范。当涉及品牌色或样式指南、视觉格式化或公司设计标准时使用。",
+  "description_en": "Applies Anthropic's official brand colors and typography to any sort of artifact that may benefit from having Anthropic's look-and-feel. Use it when brand colors or style guidelines, visual formatting, or company design standards apply.",
+  "profession": "设计师",
+  "source": {
+    "repo": "anthropics-skills",
+    "path": "skills/brand-guidelines/SKILL.md",
+    "commit": "690f15cac7f7b4c055c5ab109c79ed9259934081"
+  },
+  "content_hash": "1120b3769e2985cefb3d25be981b1f914abeba57ae079b83c20c666c164fa9fe",
+  "translated_at": "2026-05-25T11:48:49.788Z"
+}

@@ -1,0 +1,20 @@
+{
+  "profession": "测试工程师",
+  "generated_at": "2026-05-25T12:10:46.793Z",
+  "skill_count": 1,
+  "skills": [
+    {
+      "id": "anthropics-skills--skills--webapp-testing",
+      "name": "webapp-testing",
+      "description_zh": "用于通过 Playwright 与本地 Web 应用交互和测试的工具包。支持验证前端功能、调试 UI 行为、捕获浏览器截图和查看浏览器日志。",
+      "description_en": "Toolkit for interacting with and testing local web applications using Playwright. Supports verifying frontend functionality, debugging UI behavior, capturing browser screenshots, and viewing browser logs.",
+      "source": {
+        "repo": "anthropics-skills",
+        "path": "skills/webapp-testing/SKILL.md",
+        "commit": "690f15cac7f7b4c055c5ab109c79ed9259934081"
+      },
+      "content_hash": "51b7349e77ec63b7744a6f63647e7566a0b4d2e301121cc10e8c2113af6556a2",
+      "translated_at": "2026-05-25T12:07:09.311Z"
+    }
+  ]
+}

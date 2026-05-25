@@ -1,0 +1,14 @@
+{
+  "id": "anthropics-skills--skills--frontend-design",
+  "name": "frontend-design",
+  "description_zh": "创建独具特色、生产级别的前端界面，具备高水准设计品质。当用户需要构建 web 组件、页面、artifacts、海报或应用时使用此 skill（示例包括网站、落地页、仪表盘、React 组件、HTML/CSS 布局，或为任何 web UI 进行样式美化时）。生成富有创意、精致考究的代码与 UI 设计，规避千篇一律的 AI 美学风格。",
+  "description_en": "Create distinctive, production-grade frontend interfaces with high design quality. Use this skill when the user asks to build web components, pages, artifacts, posters, or applications (examples include websites, landing pages, dashboards, React components, HTML/CSS layouts, or when styling/beautifying any web UI). Generates creative, polished code and UI design that avoids generic AI aesthetics.",
+  "profession": "设计师",
+  "source": {
+    "repo": "anthropics-skills",
+    "path": "skills/frontend-design/SKILL.md",
+    "commit": "690f15cac7f7b4c055c5ab109c79ed9259934081"
+  },
+  "content_hash": "b81e2ff87ed8fa4d6c377ccb127a7254c9e6a77e3ae94f21e6b514f7bb2945a0",
+  "translated_at": "2026-05-25T11:58:30.828Z"
+}

@@ -1,0 +1,14 @@
+{
+  "id": "anthropics-skills--skills--mcp-builder",
+  "name": "mcp-builder",
+  "description_zh": "用于创建高质量 MCP (Model Context Protocol) 服务器的指南，让 LLM 通过精心设计的工具与外部服务交互。在使用 Python (FastMCP) 或 Node/TypeScript (MCP SDK) 构建 MCP 服务器以集成外部 API 或服务时使用。",
+  "description_en": "Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Use when building MCP servers to integrate external APIs or services, whether in Python (FastMCP) or Node/TypeScript (MCP SDK).",
+  "profession": "开发工程师",
+  "source": {
+    "repo": "anthropics-skills",
+    "path": "skills/mcp-builder/SKILL.md",
+    "commit": "690f15cac7f7b4c055c5ab109c79ed9259934081"
+  },
+  "content_hash": "0f4592dcb53cf2b5d6b7febee6b4152018b565551a1c29e3c612f57b218ab295",
+  "translated_at": "2026-05-25T11:59:27.304Z"
+}

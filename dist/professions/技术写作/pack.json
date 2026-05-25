@@ -1,0 +1,20 @@
+{
+  "profession": "技术写作",
+  "generated_at": "2026-05-25T12:10:46.793Z",
+  "skill_count": 1,
+  "skills": [
+    {
+      "id": "anthropics-skills--skills--doc-coauthoring",
+      "name": "doc-coauthoring",
+      "description_zh": "引导用户完成结构化的协作文档撰写流程。当用户希望撰写文档、提案、技术规范、决策文档或类似结构化内容时使用。该工作流帮助用户高效传递上下文、通过迭代打磨内容，并验证文档对读者是否有效。当用户提到撰写文档、创建提案、起草规范或类似的文档任务时触发。",
+      "description_en": "Guide users through a structured workflow for co-authoring documentation. Use when user wants to write documentation, proposals, technical specs, decision docs, or similar structured content. This workflow helps users efficiently transfer context, refine content through iteration, and verify the doc works for readers. Trigger when user mentions writing docs, creating proposals, drafting specs, or similar documentation tasks.",
+      "source": {
+        "repo": "anthropics-skills",
+        "path": "skills/doc-coauthoring/SKILL.md",
+        "commit": "690f15cac7f7b4c055c5ab109c79ed9259934081"
+      },
+      "content_hash": "2e47d78846faeea4a56e9809c52700087a15a2155a3f293a3efbaded81398ef4",
+      "translated_at": "2026-05-25T11:55:46.971Z"
+    }
+  ]
+}

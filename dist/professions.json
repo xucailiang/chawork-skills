@@ -1,0 +1,71 @@
+{
+  "generated_at": "2026-05-25T12:10:46.793Z",
+  "professions": [
+    {
+      "name": "财务会计",
+      "skill_count": 1,
+      "skills": [
+        "anthropics-skills--skills--xlsx"
+      ]
+    },
+    {
+      "name": "测试工程师",
+      "skill_count": 1,
+      "skills": [
+        "anthropics-skills--skills--webapp-testing"
+      ]
+    },
+    {
+      "name": "技术写作",
+      "skill_count": 1,
+      "skills": [
+        "anthropics-skills--skills--doc-coauthoring"
+      ]
+    },
+    {
+      "name": "开发工程师",
+      "skill_count": 2,
+      "skills": [
+        "anthropics-skills--skills--mcp-builder",
+        "anthropics-skills--skills--web-artifacts-builder"
+      ]
+    },
+    {
+      "name": "内容运营",
+      "skill_count": 2,
+      "skills": [
+        "anthropics-skills--skills--internal-comms",
+        "anthropics-skills--skills--slack-gif-creator"
+      ]
+    },
+    {
+      "name": "设计师",
+      "skill_count": 5,
+      "skills": [
+        "anthropics-skills--skills--algorithmic-art",
+        "anthropics-skills--skills--brand-guidelines",
+        "anthropics-skills--skills--canvas-design",
+        "anthropics-skills--skills--frontend-design",
+        "anthropics-skills--skills--theme-factory"
+      ]
+    },
+    {
+      "name": "通用技能",
+      "skill_count": 4,
+      "skills": [
+        "anthropics-skills--skills--docx",
+        "anthropics-skills--skills--pdf",
+        "anthropics-skills--skills--pptx",
+        "anthropics-skills--template"
+      ]
+    },
+    {
+      "name": "AI 工程师",
+      "skill_count": 2,
+      "skills": [
+        "anthropics-skills--skills--claude-api",
+        "anthropics-skills--skills--skill-creator"
+      ]
+    }
+  ]
+}

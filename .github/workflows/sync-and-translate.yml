@@ -1,0 +1,75 @@
+name: sync-and-translate
+
+on:
+  schedule:
+    # 每天 UTC 18:00（北京时间 02:00）跑一次
+    - cron: "0 18 * * *"
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: "Translate/classify at most N skills per run (empty = all)"
+        required: false
+        default: ""
+      skip_sync:
+        description: "Skip git sync step"
+        required: false
+        default: "false"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-and-translate
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      CHAWORK_SKILLS_LOG: info
+      # CI defaults to OpenAI-compatible provider; override config/sources.yaml.llm.provider via env if needed.
+      # To use Anthropic via OpenAI-compatible gateway, set OPENAI_BASE_URL + OPENAI_API_KEY secrets.
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      OPENAI_BASE_URL: ${{ secrets.OPENAI_BASE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Switch LLM provider to openai for CI
+        run: |
+          # CI 不带 claude CLI，临时把 llm.provider 改成 openai
+          sed -i 's/provider: claude-cli/provider: openai/' config/sources.yaml
+          cat config/sources.yaml
+
+      - name: Run pipeline
+        run: |
+          ARGS=""
+          if [ "${{ github.event.inputs.skip_sync }}" = "true" ]; then ARGS="$ARGS --skip-sync"; fi
+          if [ -n "${{ github.event.inputs.limit }}" ]; then ARGS="$ARGS --limit ${{ github.event.inputs.limit }}"; fi
+          pnpm dev run $ARGS
+
+      - name: Commit dist/ updates
+        run: |
+          git config user.name "chawork-skills-bot"
+          git config user.email "chawork-skills-bot@users.noreply.github.com"
+          git checkout -- config/sources.yaml || true
+          git add dist/
+          if git diff --cached --quiet; then
+            echo "no dist changes"
+          else
+            git commit -m "chore(dist): refresh translated skills $(date -u +%Y-%m-%d)"
+            git push
+          fi

@@ -1,0 +1,14 @@
+{
+  "id": "anthropics-skills--skills--theme-factory",
+  "name": "theme-factory",
+  "description_zh": "用于通过主题为各类产物（artifacts）应用样式的工具包。这些产物可以是幻灯片、文档、报告、HTML 落地页等。内置 10 套预设主题（包含配色与字体）可应用于任何已创建的 artifact，也支持即时生成新主题。",
+  "description_en": "Toolkit for styling artifacts with a theme. These artifacts can be slides, docs, reportings, HTML landing pages, etc. There are 10 pre-set themes with colors/fonts that you can apply to any artifact that has been creating, or can generate a new theme on-the-fly.",
+  "profession": "设计师",
+  "source": {
+    "repo": "anthropics-skills",
+    "path": "skills/theme-factory/SKILL.md",
+    "commit": "690f15cac7f7b4c055c5ab109c79ed9259934081"
+  },
+  "content_hash": "c35893e221e28895c52143cc11bf30e41a44817796b39d4b15727dadc9796552",
+  "translated_at": "2026-05-25T12:06:18.017Z"
+}

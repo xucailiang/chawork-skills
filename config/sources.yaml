@@ -1,0 +1,22 @@
+# chawork-skills 配置
+#
+# sources：上游 Skill git 仓库列表，可以配置多个。
+# llm：翻译/分类使用的 LLM 通道。默认 claude-cli（复用本机 Claude Code 登录态）。
+#      切到 openai 时需要设置环境变量 OPENAI_API_KEY（或在 api_key_env 指定的变量名）。
+
+sources:
+  - name: anthropics-skills
+    type: git
+    url: https://github.com/anthropics/skills
+    ref: main
+    skills_glob: "**/SKILL.md"
+
+llm:
+  provider: claude-cli
+  claude_cli:
+    command: claude
+    args: ["-p"]
+  openai:
+    base_url: https://api.openai.com/v1
+    api_key_env: OPENAI_API_KEY
+    model: gpt-4o-mini

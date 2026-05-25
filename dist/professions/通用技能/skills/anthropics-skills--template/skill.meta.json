@@ -1,0 +1,14 @@
+{
+  "id": "anthropics-skills--template",
+  "name": "template-skill",
+  "description_zh": "替换为该技能的描述以及 Claude 应在何时使用它。",
+  "description_en": "Replace with description of the skill and when Claude should use it.",
+  "profession": "通用技能",
+  "source": {
+    "repo": "anthropics-skills",
+    "path": "template/SKILL.md",
+    "commit": "690f15cac7f7b4c055c5ab109c79ed9259934081"
+  },
+  "content_hash": "eb685d91de039ed864fbd790cddf31684b017fd4a34ee1a55760d8d7cdbadefa",
+  "translated_at": "2026-05-25T10:48:50.495Z"
+}

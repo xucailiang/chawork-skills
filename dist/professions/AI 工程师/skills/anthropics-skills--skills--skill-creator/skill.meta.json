@@ -1,0 +1,14 @@
+{
+  "id": "anthropics-skills--skills--skill-creator",
+  "name": "skill-creator",
+  "description_zh": "创建新的 skills、修改和改进现有 skills，以及衡量 skill 性能。当用户想要从零创建 skill、编辑或优化现有 skill、运行 evals 测试 skill、通过方差分析对 skill 性能进行基准测试，或优化 skill 的 description 以提升触发准确性时使用。",
+  "description_en": "Create new skills, modify and improve existing skills, and measure skill performance. Use when users want to create a skill from scratch, edit, or optimize an existing skill, run evals to test a skill, benchmark skill performance with variance analysis, or optimize a skill's description for better triggering accuracy.",
+  "profession": "AI 工程师",
+  "source": {
+    "repo": "anthropics-skills",
+    "path": "skills/skill-creator/SKILL.md",
+    "commit": "690f15cac7f7b4c055c5ab109c79ed9259934081"
+  },
+  "content_hash": "dcd4803e61e913e6fc27294184cd3a71f09f5e924ff20c8a9a20173e7b3c2bcf",
+  "translated_at": "2026-05-25T12:04:52.035Z"
+}

@@ -1,0 +1,72 @@
+{
+  "profession": "设计师",
+  "generated_at": "2026-05-25T12:10:46.793Z",
+  "skill_count": 5,
+  "skills": [
+    {
+      "id": "anthropics-skills--skills--algorithmic-art",
+      "name": "algorithmic-art",
+      "description_zh": "使用 p5.js 创建算法艺术，支持种子化随机性与交互式参数探索。当用户请求使用代码创作艺术、生成艺术、算法艺术、流场或粒子系统时使用此 skill。请创作原创算法艺术，而非复制现有艺术家的作品，以避免侵犯版权。",
+      "description_en": "Creating algorithmic art using p5.js with seeded randomness and interactive parameter exploration. Use this when users request creating art using code, generative art, algorithmic art, flow fields, or particle systems. Create original algorithmic art rather than copying existing artists' work to avoid copyright violations.",
+      "source": {
+        "repo": "anthropics-skills",
+        "path": "skills/algorithmic-art/SKILL.md",
+        "commit": "690f15cac7f7b4c055c5ab109c79ed9259934081"
+      },
+      "content_hash": "3bc4092c09804853186524c826bc0621b940bb6122c05b84496dff95388e6eef",
+      "translated_at": "2026-05-25T11:48:25.412Z"
+    },
+    {
+      "id": "anthropics-skills--skills--brand-guidelines",
+      "name": "brand-guidelines",
+      "description_zh": "为任何可能受益于 Anthropic 品牌风格的制品应用 Anthropic 官方品牌色与字体规范。当涉及品牌色或样式指南、视觉格式化或公司设计标准时使用。",
+      "description_en": "Applies Anthropic's official brand colors and typography to any sort of artifact that may benefit from having Anthropic's look-and-feel. Use it when brand colors or style guidelines, visual formatting, or company design standards apply.",
+      "source": {
+        "repo": "anthropics-skills",
+        "path": "skills/brand-guidelines/SKILL.md",
+        "commit": "690f15cac7f7b4c055c5ab109c79ed9259934081"
+      },
+      "content_hash": "1120b3769e2985cefb3d25be981b1f914abeba57ae079b83c20c666c164fa9fe",
+      "translated_at": "2026-05-25T11:48:49.788Z"
+    },
+    {
+      "id": "anthropics-skills--skills--canvas-design",
+      "name": "canvas-design",
+      "description_zh": "使用设计哲学创建精美的 .png 和 .pdf 视觉艺术文档。当用户请求创建海报、艺术作品、设计或其他静态作品时，应使用此 skill。创建原创视觉设计，切勿复制现有艺术家的作品，以避免版权侵权。",
+      "description_en": "Create beautiful visual art in .png and .pdf documents using design philosophy. You should use this skill when the user asks to create a poster, piece of art, design, or other static piece. Create original visual designs, never copying existing artists' work to avoid copyright violations.",
+      "source": {
+        "repo": "anthropics-skills",
+        "path": "skills/canvas-design/SKILL.md",
+        "commit": "690f15cac7f7b4c055c5ab109c79ed9259934081"
+      },
+      "content_hash": "a1f288079624402f30682753c1d43920b6664785698d21d3e7aa197450a6448b",
+      "translated_at": "2026-05-25T11:50:42.417Z"
+    },
+    {
+      "id": "anthropics-skills--skills--frontend-design",
+      "name": "frontend-design",
+      "description_zh": "创建独具特色、生产级别的前端界面，具备高水准设计品质。当用户需要构建 web 组件、页面、artifacts、海报或应用时使用此 skill（示例包括网站、落地页、仪表盘、React 组件、HTML/CSS 布局，或为任何 web UI 进行样式美化时）。生成富有创意、精致考究的代码与 UI 设计，规避千篇一律的 AI 美学风格。",
+      "description_en": "Create distinctive, production-grade frontend interfaces with high design quality. Use this skill when the user asks to build web components, pages, artifacts, posters, or applications (examples include websites, landing pages, dashboards, React components, HTML/CSS layouts, or when styling/beautifying any web UI). Generates creative, polished code and UI design that avoids generic AI aesthetics.",
+      "source": {
+        "repo": "anthropics-skills",
+        "path": "skills/frontend-design/SKILL.md",
+        "commit": "690f15cac7f7b4c055c5ab109c79ed9259934081"
+      },
+      "content_hash": "b81e2ff87ed8fa4d6c377ccb127a7254c9e6a77e3ae94f21e6b514f7bb2945a0",
+      "translated_at": "2026-05-25T11:58:30.828Z"
+    },
+    {
+      "id": "anthropics-skills--skills--theme-factory",
+      "name": "theme-factory",
+      "description_zh": "用于通过主题为各类产物（artifacts）应用样式的工具包。这些产物可以是幻灯片、文档、报告、HTML 落地页等。内置 10 套预设主题（包含配色与字体）可应用于任何已创建的 artifact，也支持即时生成新主题。",
+      "description_en": "Toolkit for styling artifacts with a theme. These artifacts can be slides, docs, reportings, HTML landing pages, etc. There are 10 pre-set themes with colors/fonts that you can apply to any artifact that has been creating, or can generate a new theme on-the-fly.",
+      "source": {
+        "repo": "anthropics-skills",
+        "path": "skills/theme-factory/SKILL.md",
+        "commit": "690f15cac7f7b4c055c5ab109c79ed9259934081"
+      },
+      "content_hash": "c35893e221e28895c52143cc11bf30e41a44817796b39d4b15727dadc9796552",
+      "translated_at": "2026-05-25T12:06:18.017Z"
+    }
+  ]
+}
