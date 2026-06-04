@@ -19,7 +19,8 @@ export interface ScannedSkill {
 
 const IGNORE_DIRS = new Set([".git", "node_modules", "dist", "build", "target", ".github", ".vscode", ".idea"])
 
-async function walkForSkillMd(root: string): Promise<string[]> {
+async function walkForSkillMd(root: string, filenames?: string[]): Promise<string[]> {
+  const targetNames = new Set(filenames?.length ? filenames : ["SKILL.md"])
   const found: string[] = []
   async function walk(dir: string) {
     const entries = await readdir(dir, { withFileTypes: true })
@@ -28,7 +29,7 @@ async function walkForSkillMd(root: string): Promise<string[]> {
       const full = resolve(dir, e.name)
       if (e.isDirectory()) {
         await walk(full)
-      } else if (e.isFile() && e.name === "SKILL.md") {
+      } else if (e.isFile() && targetNames.has(e.name)) {
         found.push(full)
       }
     }
@@ -56,7 +57,16 @@ export function makeSkillId(sourceName: string, relSkillMdPath: string): string 
 
 export async function scanSource(source: SourceConfig): Promise<ScannedSkill[]> {
   const root = sourceDir(source)
-  const skillMdFiles = await walkForSkillMd(root)
+  const includePaths = source.include_paths
+  const scanRoots = includePaths?.length
+    ? includePaths.map(p => resolve(root, p))
+    : [root]
+
+  let skillMdFiles: string[] = []
+  for (const sr of scanRoots) {
+    skillMdFiles.push(...await walkForSkillMd(sr, source.skill_filenames))
+  }
+
   const out: ScannedSkill[] = []
   for (const abs of skillMdFiles) {
     const rel = relative(root, abs)

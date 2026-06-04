@@ -36,6 +36,8 @@ function validate(raw: unknown): AppConfig {
       url: o.url,
       ref: typeof o.ref === "string" ? o.ref : "main",
       skills_glob: typeof o.skills_glob === "string" ? o.skills_glob : "**/SKILL.md",
+      include_paths: Array.isArray(o.include_paths) ? (o.include_paths as string[]) : undefined,
+      skill_filenames: Array.isArray(o.skill_filenames) ? (o.skill_filenames as string[]) : undefined,
     }
   })
 

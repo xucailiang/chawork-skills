@@ -4,6 +4,8 @@ export interface SourceConfig {
   url: string
   ref?: string
   skills_glob?: string
+  include_paths?: string[]
+  skill_filenames?: string[]
 }
 
 export interface ClaudeCliConfig {

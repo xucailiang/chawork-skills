@@ -11,6 +11,88 @@ sources:
     ref: main
     skills_glob: "**/SKILL.md"
 
+  # 软件开发者
+  - name: obra-superpowers
+    type: git
+    url: https://github.com/obra/superpowers
+    ref: main
+    skills_glob: "**/SKILL.md"
+
+  - name: multica-karpathy-skills
+    type: git
+    url: https://github.com/multica-ai/andrej-karpathy-skills
+    ref: main
+    skills_glob: "**/SKILL.md"
+
+  # 产品经理
+  - name: phuryn-pm-skills
+    type: git
+    url: https://github.com/phuryn/pm-skills
+    ref: main
+    skills_glob: "**/SKILL.md"
+
+  # GreenSock 动画开发
+  - name: greensock-gsap-skills
+    type: git
+    url: https://github.com/greensock/gsap-skills
+    ref: main
+    skills_glob: "**/SKILL.md"
+
+  # nature 论文学术表达和科研绘图
+  - name: yuan1z-nature-skills
+    type: git
+    url: https://github.com/Yuan1z0825/nature-skills
+    ref: main
+    skills_glob: "**/SKILL.md"
+
+  # CAD 模型设计师
+  - name: earthtojake-text-to-cad
+    type: git
+    url: https://github.com/earthtojake/text-to-cad
+    ref: main
+    skills_glob: "**/SKILL.md"
+
+  # 个人风格写作
+  - name: tanshilong-article-skill
+    type: git
+    url: https://github.com/TanShilongMario/ArticleSkill
+    ref: main
+    skills_glob: "**/SKILL.md"
+    skill_filenames: ["CLAUDE.md"]
+
+  # 科学研究员
+  - name: kdense-scientific-agent
+    type: git
+    url: https://github.com/K-Dense-AI/scientific-agent-skills
+    ref: main
+    skills_glob: "**/SKILL.md"
+
+  # UIUX 设计师
+  - name: bitjaru-styleseed
+    type: git
+    url: https://github.com/bitjaru/styleseed
+    ref: main
+    skills_glob: "**/SKILL.md"
+
+  # 广告创意 / 比尔盖茨商业分析 / Canvas 设计 / 内容营销
+  - name: antigravity-awesome-skills
+    type: git
+    url: https://github.com/sickn33/antigravity-awesome-skills
+    ref: main
+    skills_glob: "**/SKILL.md"
+    include_paths:
+      - skills/ad-creative
+      - skills/bill-gates
+      - skills/canvas-design
+      - skills/content-marketer
+
+  # 张雪峰（内容营销 / 教育）
+  - name: alchaincyf-zhangxuefeng
+    type: git
+    url: https://github.com/alchaincyf/zhangxuefeng-skill
+    ref: main
+    skills_glob: "**/SKILL.md"
+
 llm:
   provider: claude-cli
   claude_cli:
