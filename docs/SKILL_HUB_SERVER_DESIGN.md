@@ -2,24 +2,63 @@
 
 ## 1. 概述
 
-将 chawork-skills 从 CLI 批处理工具升级为 **Skill Hub Web 服务**，对外提供技能和员工的管理、查询、下载能力，并支持从 GitHub 仓库批量导入技能。
+将 chawork-skills 从 CLI 批处理工具升级为 **ChaWork 官网 + 技能市场平台**，包含：
+
+- **官网门户** — 产品介绍、下载入口、文档
+- **技能市场 Web UI** — 在线浏览、搜索技能和员工
+- **REST API** — 供 ChaWork 桌面端和 Web 前端调用
+- **技能/员工管理** — CRUD + GitHub 导入 pipeline
 
 ### 职责边界
 
-- **本项目负责**：技能/员工的存储、CRUD、GitHub 导入 pipeline、搜索索引、REST API、bundle 打包下载
-- **不负责**：桌面端 UI、本地安装逻辑、工作区绑定 — 这些由 ChaWork 桌面端处理
+- **本项目负责**：官网页面、市场 Web UI、REST API、技能/员工存储与管理、GitHub 导入 pipeline
+- **不负责**：桌面端内 UI、本地安装逻辑、工作区绑定 — 这些由 ChaWork 桌面端处理
 
-### 与 ChaWork 桌面端的关系
+### 架构总览
 
 ```
-ChaWork Desktop ──HTTP──▶ Skill Hub (本项目)
-                              │
-                              │ git clone/pull (按需)
-                              ▼
-                    GitHub 开源仓库
+浏览器用户 ────────────┐
+                       │
+ChaWork Desktop ───────┤ HTTP
+                       │
+                       ▼
+┌──────────────────────────────────────────────────────────┐
+│  chawork-skills Hub                                      │
+│                                                          │
+│  ┌────────────────────────────────────────────────────┐  │
+│  │  Web Frontend (Next.js)                            │  │
+│  │                                                    │  │
+│  │  / ........................ 官网首页                 │  │
+│  │  /download ............... 下载页                   │  │
+│  │  /docs ................... 产品文档                 │  │
+│  │  /market/skills .......... 技能市场                 │  │
+│  │  /market/skills/:id ...... 技能详情                 │  │
+│  │  /market/employees ....... 员工市场                 │  │
+│  │  /market/employees/:id ... 员工详情                 │  │
+│  │  /admin .................. 管理后台（技能/员工 CRUD）│  │
+│  │  (预留) /profile ......... 用户中心                 │  │
+│  └───────────────────────┬────────────────────────────┘  │
+│                          │ fetch                          │
+│  ┌───────────────────────▼────────────────────────────┐  │
+│  │  REST API (Hono)                                   │  │
+│  │  /api/v1/skills    /api/v1/employees               │  │
+│  │  /api/v1/manifest  /api/v1/health                  │  │
+│  └───────────────────────┬────────────────────────────┘  │
+│                          │                                │
+│  ┌───────────────────────▼────────────────────────────┐  │
+│  │  Pipeline + Storage                                │  │
+│  │  data/skills/  data/employees/  data/sources/      │  │
+│  └────────────────────────────────────────────────────┘  │
+└──────────────────────────────────────────────────────────┘
+                       ▲
+                       │ git clone/pull (按需)
+                       │
+           GitHub 开源仓库
 ```
 
-桌面端全程不直接访问 GitHub。终端用户可能存在网络限制，Hub 部署在服务器端负责拉取，桌面端只需能连到 Hub。
+两类消费者共用同一套 REST API：
+- **Web 前端**（Next.js SSR/CSR）— 官网和市场页面
+- **ChaWork 桌面端**（Tauri + Rust）— 通过 hub_client.rs 调用
 
 ## 2. 数据模型
 
@@ -27,14 +66,14 @@ ChaWork Desktop ──HTTP──▶ Skill Hub (本项目)
 
 ```ts
 interface HubSkill {
-  id: string                    // 唯一标识，如 "pdf"、"anthropics-skills--skills--pdf"
+  id: string                    // 唯一标识
   name: string                  // 显示名称
   description_zh: string        // 中文描述
   description_en: string        // 英文描述
   profession: string            // 职业分类（35 个之一）
-  content_hash: string          // SKILL.md 内容的 SHA256
-  source: SkillSource           // 来源信息
-  tags: string[]                // 标签
+  content_hash: string          // SKILL.md 内容 SHA256
+  source: SkillSource
+  tags: string[]
   created_at: string
   updated_at: string
 }
@@ -50,12 +89,12 @@ type SkillSource =
 
 ```ts
 interface HubEmployee {
-  id: string                    // 唯一标识，如 "frontend-dev"
-  name: string                  // 显示名称
-  description: string           // 简介
-  kind: "ordinary" | "dream"    // 与 ChaWork 本地模型对齐
-  prompt_preview: string        // 系统提示词前 200 字摘要（列表展示用）
-  skill_ids: string[]           // 引用的技能 ID 列表
+  id: string
+  name: string
+  description: string
+  kind: "ordinary" | "dream"
+  prompt_preview: string        // 提示词前 200 字摘要
+  skill_ids: string[]
   skill_count: number
   tags: string[]
   source: EmployeeSource
@@ -64,11 +103,11 @@ interface HubEmployee {
 }
 
 type EmployeeSource =
-  | { type: "official" }                        // 官方预设
-  | { type: "community"; author_id?: string }   // 社区用户创建（预留）
+  | { type: "official" }
+  | { type: "community"; author_id?: string }   // 预留
 ```
 
-### 2.3 User（用户）— Phase 4 预留
+### 2.3 User（用户）— 预留
 
 ```ts
 interface HubUser {
@@ -91,9 +130,8 @@ Employee ──── N:M ───── Skill
   │                       │
   │ has prompt.md         │ has SKILL.md
   │ has skill_ids[]       │ has profession
-  │                       │ source: github | manual
-  │ source: official |
-  │         community
+  │ source: official |    │ source: github | manual
+  │         community     │
 ```
 
 ## 3. 存储结构
@@ -102,30 +140,188 @@ Employee ──── N:M ───── Skill
 data/
 ├── skills/
 │   ├── {skill-id}/
-│   │   ├── SKILL.md              # 翻译后（或手动创建的）技能内容
-│   │   ├── SKILL.original.md     # 原始版本（GitHub 导入时保留）
-│   │   └── skill.meta.json       # 元数据（HubSkill）
+│   │   ├── SKILL.md              # 技能内容
+│   │   ├── SKILL.original.md     # 原始版本（GitHub 导入时）
+│   │   └── skill.meta.json       # 元数据
 │   └── ...
 ├── employees/
 │   ├── {employee-id}/
-│   │   ├── employee.json         # 元数据（HubEmployee）
-│   │   ├── prompt.md             # 完整系统提示词
-│   │   └── skills.json           # 引用的技能 [{ id, enabled }]
+│   │   ├── employee.json         # 元数据
+│   │   ├── prompt.md             # 系统提示词
+│   │   └── skills.json           # 技能引用
 │   └── ...
-├── sources/                       # (existing) GitHub clone 目录
-├── state.json                     # (existing) pipeline 状态追踪
+├── sources/                       # (existing) GitHub clone
+├── state.json                     # (existing) pipeline 状态
 └── ...
-
-dist/                              # (existing) 兼容导出产物
 ```
 
-Phase 1-3 使用文件系统存储（JSON/MD/YAML），与现有 pipeline 产物兼容。Phase 4 引入用户体系后迁移到 SQLite/PostgreSQL。
+Phase 1-3 文件系统存储，Phase 4 引入用户体系后迁移到数据库。
 
-## 4. REST API 设计
+## 4. Web 前端设计
+
+### 4.1 技术选型
+
+| 模块 | 选型 | 理由 |
+|------|------|------|
+| 框架 | Next.js (App Router) | SSR 保证 SEO（官网需要）、React 生态与 ChaWork 桌面端一致 |
+| 样式 | Tailwind CSS | 与 ChaWork 桌面端风格统一 |
+| 组件库 | shadcn/ui | 与 ChaWork 桌面端共享设计语言 |
+| 部署 | Node.js 服务 / Vercel | SSR 需要 Node runtime |
+
+### 4.2 页面结构
+
+```
+web/                               # Next.js 项目目录
+├── app/
+│   ├── layout.tsx                 # 全局布局（导航栏 + Footer）
+│   ├── page.tsx                   # / 官网首页
+│   ├── download/
+│   │   └── page.tsx               # /download 下载页
+│   ├── docs/
+│   │   ├── page.tsx               # /docs 文档首页
+│   │   └── [...slug]/page.tsx     # /docs/* 文档内页
+│   ├── market/
+│   │   ├── layout.tsx             # 市场公共布局（搜索栏 + 职业侧栏）
+│   │   ├── page.tsx               # /market 市场总览（重定向到 skills）
+│   │   ├── skills/
+│   │   │   ├── page.tsx           # /market/skills 技能列表
+│   │   │   └── [id]/page.tsx      # /market/skills/:id 技能详情
+│   │   └── employees/
+│   │       ├── page.tsx           # /market/employees 员工列表
+│   │       └── [id]/page.tsx      # /market/employees/:id 员工详情
+│   ├── admin/
+│   │   ├── layout.tsx             # 管理后台布局
+│   │   ├── skills/
+│   │   │   ├── page.tsx           # 技能管理列表
+│   │   │   ├── new/page.tsx       # 创建技能
+│   │   │   ├── [id]/edit/page.tsx # 编辑技能
+│   │   │   └── import/page.tsx    # GitHub 导入
+│   │   └── employees/
+│   │       ├── page.tsx           # 员工管理列表
+│   │       ├── new/page.tsx       # 创建员工（选技能 + 写 prompt）
+│   │       └── [id]/edit/page.tsx # 编辑员工
+│   └── (预留) profile/
+│       └── page.tsx               # 用户中心
+├── components/
+│   ├── layout/
+│   │   ├── Navbar.tsx             # 顶部导航
+│   │   └── Footer.tsx             # 底部
+│   ├── market/
+│   │   ├── SkillCard.tsx          # 技能卡片
+│   │   ├── EmployeeCard.tsx       # 员工卡片
+│   │   ├── ProfessionFilter.tsx   # 职业筛选
+│   │   ├── SearchBar.tsx          # 搜索
+│   │   └── SkillBadge.tsx         # 技能标签
+│   ├── admin/
+│   │   ├── SkillForm.tsx          # 技能表单（创建/编辑）
+│   │   ├── EmployeeForm.tsx       # 员工表单
+│   │   ├── PromptEditor.tsx       # 提示词编辑器（Markdown）
+│   │   ├── SkillPicker.tsx        # 技能选择器（员工编辑时用）
+│   │   └── GithubImportForm.tsx   # GitHub 导入表单
+│   └── home/
+│       ├── Hero.tsx               # 首页主视觉
+│       ├── Features.tsx           # 功能特性
+│       └── Stats.tsx              # 统计数据（技能数、员工数）
+└── lib/
+    └── api.ts                     # API 客户端（调 /api/v1/*）
+```
+
+### 4.3 核心页面说明
+
+#### 官网首页 `/`
+
+产品介绍页，包含：
+- Hero 区域：产品标语 + CTA（下载桌面端 / 浏览市场）
+- 功能特性展示
+- 市场统计（技能数、员工数、职业数）
+- 下载入口
+
+SSR 渲染，SEO 友好。
+
+#### 技能市场 `/market/skills`
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│  ChaWork                            [文档] [下载] [管理后台]  │
+│──────────────────────────────────────────────────────────────│
+│                                                              │
+│  技能市场                                                     │
+│                                                              │
+│  ┌──────────────────────────────────────────────────────┐   │
+│  │  🔍 搜索技能...                                       │   │
+│  └──────────────────────────────────────────────────────┘   │
+│                                                              │
+│  [ 技能 ]  [ 员工 ]                                          │
+│                                                              │
+│  ┌──────────────┐  ┌────────────────────────────────────┐   │
+│  │  全部 (16)   │  │  ┌──────┐ ┌──────┐ ┌──────┐       │   │
+│  │  开发工程师(2)│  │  │ PDF  │ │ DOCX │ │ PPTX │       │   │
+│  │  设计师 (5)  │  │  │      │ │      │ │      │       │   │
+│  │  AI工程师(2) │  │  │通用..│ │通用..│ │通用..│       │   │
+│  │  测试工程师(1)│  │  │      │ │      │ │      │       │   │
+│  │  通用技能 (4)│  │  └──────┘ └──────┘ └──────┘       │   │
+│  │  技术写作 (1)│  │                                    │   │
+│  │  内容运营 (2)│  │  ┌──────┐ ┌──────┐                 │   │
+│  │  财务会计 (1)│  │  │MCP   │ │Web   │                 │   │
+│  │              │  │  │Build │ │Artif │                 │   │
+│  │              │  │  │开发..│ │开发..│                 │   │
+│  │              │  │  └──────┘ └──────┘                 │   │
+│  └──────────────┘  └────────────────────────────────────┘   │
+│                                                              │
+│──────────────────────────────────────────────────────────────│
+│  © ChaWork  ·  GitHub  ·  文档                               │
+└──────────────────────────────────────────────────────────────┘
+```
+
+- 左侧职业筛选 + 右侧卡片网格
+- 支持搜索
+- SSR 首屏 + CSR 交互（搜索/翻页）
+
+#### 技能详情 `/market/skills/:id`
+
+- 技能名称、描述、职业分类、来源信息
+- SKILL.md 内容渲染（Markdown → HTML）
+- 「在 ChaWork 中安装」按钮（deep link 或复制安装命令）
+- 引用此技能的员工列表
+
+#### 员工市场 `/market/employees`
+
+与技能市场类似的卡片布局，但卡片内容不同：
+- 员工名称、描述
+- 包含的技能标签列表
+- 提示词摘要预览
+- 「在 ChaWork 中安装」按钮
+
+#### 员工详情 `/market/employees/:id`
+
+- 员工名称、描述、类型
+- 完整提示词展示（可折叠）
+- 引用的技能列表（卡片，点击跳转技能详情）
+- 「在 ChaWork 中安装」按钮
+
+#### 管理后台 `/admin`
+
+供管理员使用的 CRUD 界面：
+
+- **技能管理** — 列表 + 创建 / 编辑 / 删除 + GitHub 批量导入
+- **员工管理** — 列表 + 创建（选技能 + 写 prompt）/ 编辑 / 删除
+
+管理后台 Phase 1 无鉴权（内网使用），Phase 4 加入用户系统后加权限控制。
+
+### 4.4 「在 ChaWork 中安装」
+
+Web 页面上的安装按钮提供两种方式：
+
+1. **Deep Link（优先）** — `chawork://install/skill/{id}` 或 `chawork://install/employee/{id}`，桌面端注册 URL scheme 处理
+2. **复制命令** — 复制一条安装命令，用户在桌面端粘贴执行
+
+## 5. REST API 设计
 
 **Base URL**: `http://{hub-host}:{port}/api/v1`
 
-### 4.1 技能 API
+Web 前端和桌面端共用同一套 API。
+
+### 5.1 技能 API
 
 | 方法 | 路径 | 说明 |
 |------|------|------|
@@ -151,21 +347,6 @@ Phase 1-3 使用文件系统存储（JSON/MD/YAML），与现有 pipeline 产物
 }
 ```
 
-响应：`201 Created`，返回完整的 `HubSkill` 对象。
-
-#### 更新技能 `PUT /skills/:id`
-
-```json
-{
-  "name": "新名称",
-  "description_zh": "更新后的描述",
-  "skill_md": "---\nname: ...\n---\n# 更新后的内容...",
-  "tags": ["updated"]
-}
-```
-
-仅传需要更新的字段，未传字段保持不变。更新后自动重新计算 `content_hash`。
-
 #### 从 GitHub 导入 `POST /skills/import/github`
 
 ```json
@@ -175,29 +356,20 @@ Phase 1-3 使用文件系统存储（JSON/MD/YAML），与现有 pipeline 产物
 }
 ```
 
-Hub 服务端执行完整 pipeline：git clone → scan → translate → classify → 入库。
+Hub 服务端执行：git clone → scan → translate → classify → 入库。
 
-响应（同步返回，pipeline 耗时 1-5 分钟）：
-
+响应：
 ```json
 {
   "source": "anthropics-skills",
   "imported": 16,
   "skills": [
-    { "id": "anthropics-skills--skills--pdf", "name": "pdf", "profession": "通用技能" },
-    ...
+    { "id": "anthropics-skills--skills--pdf", "name": "pdf", "profession": "通用技能" }
   ]
 }
 ```
 
 #### 技能列表 `GET /skills`
-
-支持查询参数：
-- `q` — 关键词搜索（name、description_zh、description_en 子串匹配）
-- `profession` — 按职业分类过滤
-- `page`、`limit` — 分页
-
-响应：
 
 ```json
 {
@@ -212,31 +384,26 @@ Hub 服务端执行完整 pipeline：git clone → scan → translate → classi
 
 ```json
 {
-  "id": "anthropics-skills--skills--pdf",
+  "id": "...",
   "name": "pdf",
   "profession": "通用技能",
   "description_zh": "...",
   "description_en": "...",
-  "source": { "type": "github", "repo": "anthropics-skills", "path": "...", "commit": "..." },
+  "source": { "type": "github", "repo": "...", "path": "...", "commit": "..." },
   "content_hash": "...",
   "tags": [],
   "created_at": "...",
   "updated_at": "...",
-  "skill_md": "---\nname: pdf\n---\n# 完整 SKILL.md 内容..."
+  "skill_md": "---\nname: pdf\n---\n# 完整内容...",
+  "referenced_by_employees": ["frontend-dev", "fullstack-dev"]
 }
 ```
 
 #### 下载技能包 `GET /skills/:id/bundle`
 
-响应：`Content-Type: application/gzip`
+`Content-Type: application/gzip`，tar.gz 包含 SKILL.md + skill.meta.json + 辅助文件。
 
-tar.gz 包含：
-- `SKILL.md`
-- `SKILL.original.md`（如有）
-- `skill.meta.json`
-- 其他辅助文件
-
-### 4.2 员工 API
+### 5.2 员工 API
 
 | 方法 | 路径 | 说明 |
 |------|------|------|
@@ -261,19 +428,7 @@ tar.gz 包含：
 }
 ```
 
-`skill_ids` 中引用的技能必须在 Hub 中已存在，否则返回 400 错误。
-
-创建时自动生成 `prompt_preview`（截取 prompt_md 前 200 字）。
-
-#### 更新员工 `PUT /employees/:id`
-
-```json
-{
-  "name": "新名称",
-  "prompt_md": "更新后的提示词...",
-  "skill_ids": ["skill-a", "skill-b"]
-}
-```
+`skill_ids` 引用的技能必须已存在，否则 400。
 
 #### 员工详情 `GET /employees/:id`
 
@@ -281,12 +436,11 @@ tar.gz 包含：
 {
   "id": "frontend-dev",
   "name": "前端开发工程师",
-  "description": "精通 React/Vue/TypeScript 的前端开发角色",
+  "description": "...",
   "kind": "ordinary",
   "prompt_md": "你是一名资深前端开发工程师...",
   "skills": [
-    { "id": "web-artifacts-builder", "name": "web-artifacts-builder", "description_zh": "..." },
-    { "id": "webapp-testing", "name": "webapp-testing", "description_zh": "..." }
+    { "id": "web-artifacts-builder", "name": "...", "description_zh": "..." }
   ],
   "tags": ["开发", "前端"],
   "source": { "type": "official" },
@@ -297,59 +451,17 @@ tar.gz 包含：
 
 #### 下载员工包 `GET /employees/:id/bundle`
 
-响应：`Content-Type: application/gzip`
+tar.gz 包含 employee.json + prompt.md + skills.json + skills/（内联技能文件）。
 
-tar.gz 包含：
-```
-employee.json          # 元数据
-prompt.md              # 系统提示词
-skills.json            # 技能引用列表
-skills/                # 内联的技能文件（完整安装用）
-  web-artifacts-builder/
-    SKILL.md
-  webapp-testing/
-    SKILL.md
-```
-
-员工 bundle 内联技能文件，安装时不需要额外下载。
-
-### 4.3 总览 API
+### 5.3 总览 API
 
 | 方法 | 路径 | 说明 |
 |------|------|------|
-| `GET` | `/manifest` | 市场总览 |
+| `GET` | `/manifest` | 市场总览（技能数、员工数、职业分布） |
 | `GET` | `/professions` | 职业列表 + 各职业下的技能/员工数 |
 | `GET` | `/health` | 健康检查 |
 
-#### Manifest `GET /manifest`
-
-```json
-{
-  "generated_at": "...",
-  "skills_count": 16,
-  "employees_count": 5,
-  "professions": [
-    { "name": "开发工程师", "skill_count": 2, "employee_count": 1 },
-    ...
-  ],
-  "sources": [
-    { "name": "anthropics-skills", "url": "https://github.com/anthropics/skills", "skill_count": 16 }
-  ]
-}
-```
-
-#### Health `GET /health`
-
-```json
-{
-  "status": "ok",
-  "skills_count": 16,
-  "employees_count": 5,
-  "sources_count": 1
-}
-```
-
-### 4.4 用户 API（Phase 4 预留）
+### 5.4 用户 API（Phase 4 预留）
 
 | 方法 | 路径 | 说明 |
 |------|------|------|
@@ -361,89 +473,108 @@ skills/                # 内联的技能文件（完整安装用）
 | `POST` | `/marketplace/purchase` | 购买/获取员工 |
 | `GET` | `/marketplace/listings` | 市场上架列表 |
 
-Phase 1-3 的 API 不带鉴权。Phase 4 通过中间件给需要的端点加 JWT 校验，Employee 增加 `source.author_id` 关联创建者。
+## 6. 项目结构
 
-## 5. 模块结构
-
-### 5.1 新增模块
+### 6.1 整体布局
 
 ```
 chawork-skills/
-├── src/
+├── web/                           # Next.js 前端（官网 + 市场 + 管理后台）
+│   ├── app/                       # App Router 页面
+│   ├── components/                # UI 组件
+│   ├── lib/                       # 工具函数、API 客户端
+│   ├── public/                    # 静态资源（logo、截图等）
+│   ├── next.config.ts
+│   ├── tailwind.config.ts
+│   ├── tsconfig.json
+│   └── package.json
+├── src/                           # API 服务 + Pipeline（已有 + 新增）
 │   ├── server/
-│   │   ├── index.ts              # Hono app 入口，注册路由
+│   │   ├── index.ts               # Hono app 入口
 │   │   ├── routes/
-│   │   │   ├── skills.ts         # 技能 CRUD + 搜索 + 下载 + GitHub 导入
-│   │   │   ├── employees.ts      # 员工 CRUD + 搜索 + 下载
-│   │   │   ├── manifest.ts       # 总览 + 职业列表
-│   │   │   └── health.ts         # 健康检查
-│   │   └── search.ts             # 内存搜索索引（技能 + 员工）
+│   │   │   ├── skills.ts          # 技能 CRUD + GitHub 导入 + bundle
+│   │   │   ├── employees.ts       # 员工 CRUD + bundle
+│   │   │   ├── manifest.ts        # 总览 + 职业列表
+│   │   │   └── health.ts          # 健康检查
+│   │   └── search.ts              # 内存搜索索引
 │   ├── store/
-│   │   ├── skills.ts             # 技能存储层（读写 data/skills/）
-│   │   └── employees.ts          # 员工存储层（读写 data/employees/）
+│   │   ├── skills.ts              # 技能存储层
+│   │   └── employees.ts           # 员工存储层
 │   ├── pipeline/
-│   │   └── runner.ts             # GitHub 导入 pipeline 封装
-│   ├── cli.ts                    # 增加 serve 命令
-│   └── ... (existing: sources/, discover/, translate/, classify/, export/)
+│   │   └── runner.ts              # GitHub 导入 pipeline 封装
+│   ├── cli.ts                     # CLI（serve / run / sync 等）
+│   └── ... (existing)
+├── config/
+│   └── sources.yaml               # 配置
+├── data/                           # 运行时数据
+├── dist/                           # 兼容导出产物
+└── package.json                    # 根 monorepo（workspace: web, src）
 ```
 
-### 5.2 各模块职责
+### 6.2 各模块职责
 
-**store/skills.ts** — 技能存储层
-- `listSkills(filter?)` — 读取 data/skills/ 下所有技能
-- `getSkill(id)` — 读取单个技能（meta + SKILL.md）
-- `createSkill(input)` — 写入 data/skills/{id}/
-- `updateSkill(id, input)` — 更新文件
-- `deleteSkill(id)` — 删除目录
-- `bundleSkill(id)` — 打包 tar.gz stream
+**web/** — Next.js 前端
 
-**store/employees.ts** — 员工存储层
-- `listEmployees(filter?)` — 读取 data/employees/ 下所有员工
-- `getEmployee(id)` — 读取元数据 + prompt.md + 展开 skills 详情
-- `createEmployee(input)` — 校验 skill_ids 存在 → 写入 data/employees/{id}/
-- `updateEmployee(id, input)` — 更新文件
-- `deleteEmployee(id)` — 删除目录
-- `bundleEmployee(id)` — 打包 tar.gz（含内联技能文件）
+- 官网页面（SSR，SEO 友好）
+- 市场浏览页面（SSR 首屏 + CSR 交互）
+- 管理后台页面（CSR，CRUD 表单）
+- 调用 `/api/v1/*` 接口获取数据
 
-**pipeline/runner.ts** — GitHub 导入封装
-- `runImportPipeline(url, ref?)` — 封装现有 CLI 的 sync → scan → translate → classify → export 为单次调用
-- 返回结构化 `PipelineResult`
+**src/server/** — Hono REST API
 
-**server/search.ts** — 内存搜索索引
-- 启动时加载所有技能和员工到内存
-- 在 name、description_zh、description_en、tags 上做子串匹配
-- 每次 CRUD 操作或 pipeline 完成后自动重建
+- 接收 Web 前端和 ChaWork 桌面端的请求
+- 调用 store 层读写数据
+- 调用 pipeline 处理 GitHub 导入
 
-### 5.3 技术选型
+**src/store/** — 存储层
+
+- `skills.ts` — 技能文件系统 CRUD
+- `employees.ts` — 员工文件系统 CRUD
+
+**src/pipeline/** — GitHub 导入
+
+- `runner.ts` — 封装 sync → scan → translate → classify → 入库
+
+**src/server/search.ts** — 内存搜索
+
+- 启动时加载全量，CRUD/pipeline 后自动重建
+
+### 6.3 技术选型
 
 | 模块 | 选型 | 理由 |
 |------|------|------|
-| HTTP 框架 | Hono | 轻量、TypeScript 原生、Node.js 兼容 |
-| 存储 | 文件系统 | 与现有 pipeline 产物兼容，简单可调试 |
-| 搜索 | 内存索引 | 数据规模小（百级），子串匹配足够 |
-| 打包 | tar + gzip (Node.js stream) | bundle 下载 |
+| Web 前端 | Next.js (App Router) | SSR 保证 SEO、React 生态与桌面端一致 |
+| 样式 | Tailwind CSS | 与桌面端风格统一 |
+| 组件库 | shadcn/ui | 与桌面端共享设计语言 |
+| API 框架 | Hono | 轻量 TypeScript HTTP 框架 |
+| 存储 | 文件系统 → (Phase 4) SQLite/PG | 先简单后迁移 |
+| 搜索 | 内存索引 | 数据规模小 |
+| 包管理 | pnpm workspace | web/ 和 src/ 作为 workspace |
 
-## 6. CLI 扩展
+### 6.4 开发与部署
 
 ```bash
-# 启动 Hub Web 服务
-chawork-skills serve [--port 3100] [--host 0.0.0.0]
+# 开发
+pnpm dev:api          # 启动 API 服务 (Hono, port 3100)
+pnpm dev:web          # 启动 Next.js dev server (port 3000, proxy /api → 3100)
 
-# 原有 pipeline 命令保持不变
-chawork-skills run / sync / scan / translate / classify / export / status / install
+# 生产
+pnpm build            # 构建 API + Next.js
+pnpm start            # 启动生产服务（API + Next.js SSR 同进程或反代）
 ```
 
-`serve` 启动后：
-1. 加载配置（`config/sources.yaml`）
-2. 读取现有 `data/skills/` 和 `data/employees/`
-3. 构建内存搜索索引
-4. 启动 HTTP 服务器
+生产部署方案：
+- **方案 A**：Hono 服务同时托管 Next.js 的 SSR output（单进程）
+- **方案 B**：Next.js standalone + Hono API 分开部署，Nginx 反代合并
+- **方案 C**：Next.js 部署到 Vercel，API 单独部署（需配 CORS）
 
-### 配置扩展
+推荐 Phase 1 用方案 B（简单明确），后续按需调整。
 
-在 `config/sources.yaml` 中新增 server 段：
+## 7. 配置
 
 ```yaml
+# config/sources.yaml
+
 sources:
   - name: anthropics-skills
     type: git
@@ -457,54 +588,99 @@ llm:
 server:
   port: 3100
   host: "0.0.0.0"
-  cors_origins: ["*"]
+  cors_origins: ["http://localhost:3000", "*"]
+
+web:
+  port: 3000
+  site_name: "ChaWork"
+  site_description: "AI 驱动的智能工作流平台"
+  download_url: "https://github.com/xucailiang/chawork/releases"
 ```
 
-## 7. 实现计划
+## 8. 实现计划
 
-### Phase 1：核心 API
+### Phase 1：API + 官网 + 市场浏览
 
 | 工作项 | 说明 |
 |--------|------|
+| **API 层** | |
 | `store/skills.ts` | 技能存储层 CRUD |
 | `store/employees.ts` | 员工存储层 CRUD |
-| `pipeline/runner.ts` | 将 CLI pipeline 封装为可编程调用 |
-| `server/routes/skills.ts` | 技能 API（CRUD + GitHub 导入 + bundle 下载） |
-| `server/routes/employees.ts` | 员工 API（CRUD + bundle 下载） |
-| `server/routes/manifest.ts` | 总览 + 职业列表 |
-| `server/routes/health.ts` | 健康检查 |
+| `pipeline/runner.ts` | GitHub 导入 pipeline 封装 |
+| `server/` 路由 | skills / employees / manifest / health |
 | `server/search.ts` | 内存搜索索引 |
-| `server/index.ts` | Hono app 入口 |
-| CLI `serve` 命令 | 启动 Web 服务 |
-| 配置扩展 | sources.yaml 新增 server 段 |
+| CLI `serve` 命令 | 启动 API 服务 |
+| **Web 前端** | |
+| 项目初始化 | Next.js + Tailwind + shadcn/ui |
+| 全局布局 | Navbar + Footer |
+| 官网首页 `/` | Hero + 功能特性 + 市场统计 |
+| 下载页 `/download` | 桌面端下载链接 |
+| 技能市场 `/market/skills` | 列表 + 搜索 + 职业筛选 |
+| 技能详情 `/market/skills/:id` | SKILL.md 渲染 + 安装入口 |
+| 员工市场 `/market/employees` | 列表 + 搜索 |
+| 员工详情 `/market/employees/:id` | prompt 展示 + 技能列表 + 安装入口 |
 
-### Phase 2（预留）：用户与积分
+### Phase 2：管理后台
 
 | 工作项 | 说明 |
 |--------|------|
-| 用户注册/登录 | JWT 鉴权中间件 |
+| `/admin/skills` | 技能列表 + 创建/编辑/删除 |
+| `/admin/skills/import` | GitHub 导入表单 + 进度展示 |
+| `/admin/employees` | 员工列表 + 创建/编辑/删除 |
+| PromptEditor 组件 | Markdown 编辑器（提示词编写） |
+| SkillPicker 组件 | 技能多选器（员工编辑时选择技能组合） |
+
+### Phase 3：产品文档
+
+| 工作项 | 说明 |
+|--------|------|
+| `/docs` 文档系统 | 基于 MDX 或 Contentlayer |
+| 产品使用文档 | ChaWork 桌面端使用指南 |
+| 技能开发文档 | 如何编写 SKILL.md |
+| 员工配置文档 | 如何创建和训练员工 |
+
+### Phase 4：用户与积分体系
+
+| 工作项 | 说明 |
+|--------|------|
+| 用户注册/登录 | JWT 鉴权、OAuth（GitHub 登录） |
+| `/profile` 用户中心 | 个人信息、发布的员工、积分余额 |
 | 积分系统 | 注册赠送 + 分享获取 + 交易消耗 |
-| 员工发布/交易 | marketplace 端点 |
+| 员工发布 | 用户将训练好的员工发布到市场 |
+| 员工交易 | 积分购买/获取他人发布的员工 |
 | 存储迁移 | 文件系统 → SQLite/PostgreSQL |
+| 管理后台权限 | admin 角色鉴权 |
 
-## 8. 设计决策
+## 9. 设计决策
 
-### Q1: `POST /skills/import/github` 同步还是异步？
+### Q1: Web 前端放在本项目还是独立仓库？
 
-**同步返回。** 典型仓库（~16 个 Skill）pipeline 耗时 1-5 分钟，HTTP 长连接可 hold。规模增大后可改为异步（返回 job ID + 轮询状态端点）。
+**放在本项目内（monorepo workspace）。** Web 前端和 API 共享类型定义，部署在同一域名下，放一起开发效率更高。通过 pnpm workspace 隔离依赖。
 
-### Q2: 员工 bundle 是否内联技能文件？
+### Q2: 为什么选 Next.js 而不是纯 SPA？
 
-**是。** 牺牲一点包体积换取安装的原子性 — 客户端下载一个 bundle 即可完成员工安装，不需要额外请求。
+**官网需要 SEO。** 首页、市场列表、技能详情页需要被搜索引擎收录，SSR 是必要的。管理后台部分可以 CSR，但统一用 Next.js 更简单。
 
-### Q3: 存储选型？
+### Q3: API 和 Web 前端是否同进程？
 
-**Phase 1 用文件系统。** 数据规模小（百级），文件系统简单可调试，与现有 pipeline 产物兼容。Phase 2 引入多用户后迁移到数据库。
+**开发时分进程（Next.js dev + Hono dev），生产时可选。** Phase 1 推荐分开部署（Nginx 反代合并），简单明确。后续可合并为单进程优化资源。
 
-### Q4: 搜索能力？
+### Q4: 管理后台是否需要鉴权？
 
-**内存子串匹配。** 数据规模小，启动时全量加载到内存，CRUD 操作后增量更新。不需要引入 Elasticsearch 等外部依赖。
+**Phase 1-2 不需要（内网/本地使用）。Phase 4 加入用户系统后加 admin 角色鉴权。** 管理 API（POST/PUT/DELETE）在 Phase 4 之前通过部署层面限制访问（如内网 only）。
 
-### Q5: 职业分类 whitelist
+### Q5: 「在 ChaWork 中安装」怎么实现？
 
-沿用现有 35 个职业分类（`src/classify/professions.ts`），GitHub 导入的技能通过 LLM 自动分类，手动创建的技能由调用方指定。
+**两步走：Phase 1 提供复制安装 ID 的按钮，Phase 2 注册 `chawork://` URL scheme 实现 deep link。** Deep link 需要桌面端配合注册协议处理器。
+
+### Q6: `POST /skills/import/github` 同步还是异步？
+
+**同步返回。** 典型仓库 pipeline 耗时 1-5 分钟。管理后台页面显示 loading + 进度文案。规模增大后改为异步（WebSocket 推进度）。
+
+### Q7: 员工 bundle 是否内联技能文件？
+
+**是。** 桌面端下载一个 bundle 即可完成安装，不需要额外请求。
+
+### Q8: 职业分类 whitelist
+
+沿用现有 35 个职业（`src/classify/professions.ts`），GitHub 导入的技能 LLM 自动分类，手动创建的由调用方指定。
