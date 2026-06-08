@@ -1,0 +1,38 @@
+services:
+  hub-api:
+    build: .
+    container_name: chawork-skills-api
+    restart: unless-stopped
+    ports:
+      - "8010:3100"
+    volumes:
+      - hub-data:/app/data
+      - hub-dist:/app/dist
+      - ./config:/app/config:ro
+    environment:
+      - NODE_ENV=production
+      - PORT=3100
+      - HOST=0.0.0.0
+      # GitHub 导入需要 git 访问，如有代理可在此配置
+      # - HTTP_PROXY=http://proxy:port
+      # - HTTPS_PROXY=http://proxy:port
+      # 后续接入 LLM 翻译时配置
+      # - OPENAI_API_KEY=sk-xxx
+
+  hub-web:
+    build:
+      context: .
+      dockerfile: web/Dockerfile
+    container_name: chawork-skills-web
+    restart: unless-stopped
+    ports:
+      - "8011:3000"
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_API_URL=http://hub-api:3100/api/v1
+    depends_on:
+      - hub-api
+
+volumes:
+  hub-data:
+  hub-dist:

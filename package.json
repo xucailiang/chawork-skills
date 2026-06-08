@@ -10,13 +10,18 @@
   },
   "scripts": {
     "dev": "tsx src/cli.ts",
+    "dev:api": "tsx src/cli.ts serve",
+    "dev:web": "cd web && pnpm dev",
     "build": "tsc -p tsconfig.json",
+    "build:web": "cd web && pnpm build",
     "start": "node dist-build/cli.js",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
+    "@hono/node-server": "^2.0.4",
     "cac": "^6.7.14",
     "gray-matter": "^4.0.3",
+    "hono": "^4.12.23",
     "simple-git": "^3.27.0",
     "yaml": "^2.6.1"
   },

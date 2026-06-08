@@ -1,11 +1,12 @@
 node_modules/
 dist-build/
 data/
+dist/
+web/.next/
+web/out/
+web/node_modules/
+.git/
 *.log
 .DS_Store
 .env
 .env.local
-
-# Next.js
-web/.next/
-web/out/

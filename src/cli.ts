@@ -7,6 +7,7 @@ import { runClassify } from "./classify/classifier.js"
 import { runExport } from "./export/archive.js"
 import { installToChawork, listProfessionsFromManifest, defaultChaworkRoot } from "./install/chawork.js"
 import { readState } from "./state/store.js"
+import { startServer } from "./server/index.js"
 import { log } from "./utils/logger.js"
 
 const cli = cac("chawork-skills")
@@ -140,6 +141,20 @@ cli
     })
     log.info(`[install] root=${r.chawork_root} installed=${r.installed.length} skipped=${r.skipped.length}`)
     if (r.skipped.length) for (const s of r.skipped) log.warn(`  skipped ${s.skill_id}: ${s.reason}`)
+  })
+
+cli
+  .command("serve", "Start the Skill Hub API server")
+  .option("--port <port>", "Override server port")
+  .option("--host <host>", "Override server host")
+  .action(async (opts: { port?: string; host?: string }) => {
+    const cfg = await loadConfig()
+    const serverConfig = {
+      port: opts.port ? Number(opts.port) : (cfg.server?.port ?? 3100),
+      host: opts.host ?? cfg.server?.host ?? "0.0.0.0",
+      cors_origins: cfg.server?.cors_origins ?? ["http://localhost:3000", "*"],
+    }
+    await startServer(serverConfig)
   })
 
 cli.help()

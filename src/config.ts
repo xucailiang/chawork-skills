@@ -1,6 +1,6 @@
 import { readFile } from "node:fs/promises"
 import { parse as parseYaml } from "yaml"
-import type { AppConfig, LLMProviderName, SourceConfig } from "./types.js"
+import type { AppConfig, LLMProviderName, ServerConfig, SourceConfig } from "./types.js"
 import { CONFIG_PATH } from "./utils/paths.js"
 
 function expandEnv(input: unknown): unknown {
@@ -50,6 +50,15 @@ function validate(raw: unknown): AppConfig {
   const claudeCliRaw = (llmRaw.claude_cli ?? {}) as Record<string, unknown>
   const openaiRaw = (llmRaw.openai ?? {}) as Record<string, unknown>
 
+  const serverRaw = (obj.server ?? {}) as Record<string, unknown>
+  const server: ServerConfig = {
+    port: typeof serverRaw.port === "number" ? serverRaw.port : 3100,
+    host: typeof serverRaw.host === "string" ? serverRaw.host : "0.0.0.0",
+    cors_origins: Array.isArray(serverRaw.cors_origins)
+      ? (serverRaw.cors_origins as string[])
+      : ["http://localhost:3000", "*"],
+  }
+
   return {
     sources,
     llm: {
@@ -65,6 +74,7 @@ function validate(raw: unknown): AppConfig {
         model: typeof openaiRaw.model === "string" ? openaiRaw.model : "gpt-4o-mini",
       },
     },
+    server,
   }
 }
 
