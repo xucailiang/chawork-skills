@@ -26,8 +26,6 @@ COPY config/ config/
 
 RUN mkdir -p data/skills data/employees data/sources dist
 
-VOLUME ["/app/data", "/app/dist", "/app/config"]
-
 ENV NODE_ENV=production
 ENV HOST=0.0.0.0
 ENV PORT=3100
