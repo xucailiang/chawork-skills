@@ -1,0 +1,17 @@
+{
+  "id": "obra-superpowers--skills--brainstorming",
+  "name": "brainstorming",
+  "description_zh": "",
+  "description_en": "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation.",
+  "profession": "开发工程师",
+  "content_hash": "bba47904a7f6bbee3bf8a107ebbe84e65d392be683bbb898ded736b29e415f90",
+  "source": {
+    "type": "github",
+    "repo": "obra-superpowers",
+    "path": "skills/brainstorming/SKILL.md",
+    "commit": "6fd4507659784c351abbd2bc264c7162cfd386dc"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.055Z",
+  "updated_at": "2026-06-05T09:53:10.055Z"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "obra-superpowers--skills--writing-skills",
+  "name": "writing-skills",
+  "description_zh": "",
+  "description_en": "Use when creating new skills, editing existing skills, or verifying skills work before deployment",
+  "profession": "开发工程师",
+  "content_hash": "38ba648975ae6ba512d6695676f146163db61a496b867f716f4bdfb0ee3aca3e",
+  "source": {
+    "type": "github",
+    "repo": "obra-superpowers",
+    "path": "skills/writing-skills/SKILL.md",
+    "commit": "6fd4507659784c351abbd2bc264c7162cfd386dc"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.062Z",
+  "updated_at": "2026-06-05T09:53:10.062Z"
+}

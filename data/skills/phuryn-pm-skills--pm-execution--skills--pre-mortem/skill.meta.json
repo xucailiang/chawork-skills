@@ -1,0 +1,17 @@
+{
+  "id": "phuryn-pm-skills--pm-execution--skills--pre-mortem",
+  "name": "pre-mortem",
+  "description_zh": "",
+  "description_en": "Run a pre-mortem risk analysis on a PRD or launch plan. Categorizes risks as Tigers (real problems), Paper Tigers (overblown concerns), and Elephants (unspoken worries), then classifies as launch-blocking, fast-follow, or track. Use when preparing for launch, stress-testing a product plan, or identifying what could go wrong.",
+  "profession": "产品经理",
+  "content_hash": "4e5cf10a46ac1d1cdde6aa009ba2b860c532f55c0c3d9ec53a82082cad073052",
+  "source": {
+    "type": "github",
+    "repo": "phuryn-pm-skills",
+    "path": "pm-execution/skills/pre-mortem/SKILL.md",
+    "commit": "f9eaa51000a65e04494aeaf90355d30f2080ebf2"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.067Z",
+  "updated_at": "2026-06-05T09:53:10.067Z"
+}

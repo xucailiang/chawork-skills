@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--umap-learn",
+  "name": "umap-learn",
+  "description_zh": "",
+  "description_en": "UMAP dimensionality reduction. Fast nonlinear manifold learning for 2D/3D visualization, clustering preprocessing (HDBSCAN), supervised/parametric UMAP, for high-dimensional data.",
+  "profession": "科研学术",
+  "content_hash": "56a81d9434cf01d9f16bb416a751c51b3626672aab63d853ad476c4635eef51c",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/umap-learn/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.202Z",
+  "updated_at": "2026-06-05T09:53:10.202Z"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "phuryn-pm-skills--pm-product-strategy--skills--business-model",
+  "name": "business-model",
+  "description_zh": "",
+  "description_en": "Generate a Business Model Canvas with all 9 building blocks. Use when creating a business model, documenting how a business creates value, or analyzing an existing business model.",
+  "profession": "产品经理",
+  "content_hash": "515621fd8a41ecba5b7234d0d9e1e50185ba33805c4dd170b66364281f84acc8",
+  "source": {
+    "type": "github",
+    "repo": "phuryn-pm-skills",
+    "path": "pm-product-strategy/skills/business-model/SKILL.md",
+    "commit": "f9eaa51000a65e04494aeaf90355d30f2080ebf2"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.083Z",
+  "updated_at": "2026-06-05T09:53:10.083Z"
+}

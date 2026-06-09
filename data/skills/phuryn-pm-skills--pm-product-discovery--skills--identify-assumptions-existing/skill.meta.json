@@ -1,0 +1,17 @@
+{
+  "id": "phuryn-pm-skills--pm-product-discovery--skills--identify-assumptions-existing",
+  "name": "identify-assumptions-existing",
+  "description_zh": "",
+  "description_en": "Identify risky assumptions for a feature idea in an existing product across Value, Usability, Viability, and Feasibility. Uses multi-perspective devil's advocate thinking. Use when stress-testing a feature idea, doing risk assessment, or preparing for assumption mapping.",
+  "profession": "产品经理",
+  "content_hash": "59d788213014552ac64f589c71ce82b135f9ef4b84fec457446ad90795fd439f",
+  "source": {
+    "type": "github",
+    "repo": "phuryn-pm-skills",
+    "path": "pm-product-discovery/skills/identify-assumptions-existing/SKILL.md",
+    "commit": "f9eaa51000a65e04494aeaf90355d30f2080ebf2"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.080Z",
+  "updated_at": "2026-06-05T09:53:10.080Z"
+}

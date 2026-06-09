@@ -1,0 +1,17 @@
+{
+  "id": "phuryn-pm-skills--pm-product-strategy--skills--lean-canvas",
+  "name": "lean-canvas",
+  "description_zh": "",
+  "description_en": "Generate a Lean Canvas with problem, solution, metrics, cost structure, UVP, unfair advantage, channels, segments, and revenue. Use when exploring a lean startup canvas, testing a business hypothesis, or modeling a new venture.",
+  "profession": "产品经理",
+  "content_hash": "5bafe7a33cf57631937fa863ebc6c3d3b0679808a6e5b5fa04b70be615fbc240",
+  "source": {
+    "type": "github",
+    "repo": "phuryn-pm-skills",
+    "path": "pm-product-strategy/skills/lean-canvas/SKILL.md",
+    "commit": "f9eaa51000a65e04494aeaf90355d30f2080ebf2"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.085Z",
+  "updated_at": "2026-06-05T09:53:10.085Z"
+}

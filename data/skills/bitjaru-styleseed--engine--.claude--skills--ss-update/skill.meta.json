@@ -1,0 +1,17 @@
+{
+  "id": "bitjaru-styleseed--engine--.claude--skills--ss-update",
+  "name": "ss-update",
+  "description_zh": "",
+  "description_en": "Update StyleSeed engine in your project — analyzes what's outdated and updates safely",
+  "profession": "设计师",
+  "content_hash": "1018ae2c04b261ff3b5d5cd6f404a5bd9f57df4bb6c5b03a2daf3b3216097df0",
+  "source": {
+    "type": "github",
+    "repo": "bitjaru-styleseed",
+    "path": "engine/.claude/skills/ss-update/SKILL.md",
+    "commit": "9ce238d6a9e7a7c0ccfb28d0805d8d7987e595a0"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.212Z",
+  "updated_at": "2026-06-05T09:53:10.212Z"
+}

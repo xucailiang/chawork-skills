@@ -1,0 +1,17 @@
+{
+  "id": "tanshilong-article-skill--.",
+  "name": "tanshilong-article-skill--.",
+  "description_zh": "本文件为 Claude Code (claude.ai/code) 在此代码库中工作时提供指导。 这是一个**中文文章写作 Skill 系统**，专为公众号内容创作设计。它提供了一个综合性的 AI 辅助写作工作流程，能够学习作者风格并生成高质量、引人入胜的文章。 系统由多个 Markdown \"技能文件\"组成，它们协同工作，而非独立工具。",
+  "description_en": "",
+  "profession": "内容运营",
+  "content_hash": "320276e8d3dc47601f8aff53ab3e67c45c567a04addd6562ca0b490510f7ec84",
+  "source": {
+    "type": "github",
+    "repo": "tanshilong-article-skill",
+    "path": "CLAUDE.md",
+    "commit": "9c1de25f62d859f365d24dc28dac276f386b2ec1"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.215Z",
+  "updated_at": "2026-06-05T09:53:10.215Z"
+}

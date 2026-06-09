@@ -1,0 +1,17 @@
+{
+  "id": "alchaincyf-zhangxuefeng--.",
+  "name": "zhangxuefeng-perspective",
+  "description_zh": "",
+  "description_en": "张雪峰的思维框架与表达方式。基于5本著作、15+篇权威媒体深度采访、\n30+条一手语录、11个关键决策记录和完整人生时间线的深度调研，\n提炼5个核心心智模型、8条决策启发式和完整的表达DNA。\n用途：作为思维顾问，用张雪峰的视角分析教育选择、职业规划、阶层流动等问题。\n当用户提到「用张雪峰的视角」「张雪峰会怎么看」「张雪峰模式」「雪峰视角」时使用。\n即使用户只是说「帮我用张雪峰的角度想想」「如果张雪峰会怎么说」「切换到张雪峰」也应触发。\n",
+  "profession": "教育培训",
+  "content_hash": "7dbd490302d78245e1995f62cdd43fa63b434c44c8868091a8e8bb5fc3694b61",
+  "source": {
+    "type": "github",
+    "repo": "alchaincyf-zhangxuefeng",
+    "path": "SKILL.md",
+    "commit": "a9a71563a39f1ba8e5421d1b9b44e318c691f37b"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.214Z",
+  "updated_at": "2026-06-05T09:53:10.214Z"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--scanpy",
+  "name": "scanpy",
+  "description_zh": "",
+  "description_en": "Standard single-cell RNA-seq analysis pipeline. Use for QC, normalization, dimensionality reduction (PCA/UMAP/t-SNE), clustering, differential expression, and visualization. Best for exploratory scRNA-seq analysis with established workflows. For deep learning models use scvi-tools; for data format questions use anndata.",
+  "profession": "科研学术",
+  "content_hash": "d747e39ee838772c4e2f635fbb1857a49a03102c11b0988e98c92bc5f497d396",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/scanpy/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.184Z",
+  "updated_at": "2026-06-05T09:53:10.184Z"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--docx",
+  "name": "docx",
+  "description_zh": "",
+  "description_en": "Use this skill whenever the user wants to create, read, edit, or manipulate Word documents (.docx files). Triggers include: any mention of 'Word doc', 'word document', '.docx', or requests to produce professional documents with formatting like tables of contents, headings, page numbers, or letterheads. Also use when extracting or reorganizing content from .docx files, inserting or replacing images in documents, performing find-and-replace in Word files, working with tracked changes or comments, or converting content into a polished Word document. If the user asks for a 'report', 'memo', 'letter', 'template', or similar deliverable as a Word or .docx file, use this skill. Do NOT use for PDFs, spreadsheets, Google Docs, or general coding tasks unrelated to document generation.",
+  "profession": "科研学术",
+  "content_hash": "7728fbebb36f728cd0e5fbd87ea12e3f0838bafc19d31b1f7a45b2afc5f8141b",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/docx/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.129Z",
+  "updated_at": "2026-06-05T09:53:10.129Z"
+}

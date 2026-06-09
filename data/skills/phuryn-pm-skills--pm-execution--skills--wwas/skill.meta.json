@@ -1,0 +1,17 @@
+{
+  "id": "phuryn-pm-skills--pm-execution--skills--wwas",
+  "name": "wwas",
+  "description_zh": "",
+  "description_en": "Create product backlog items in Why-What-Acceptance format — independent, valuable, testable items with strategic context. Use when writing structured backlog items, breaking features into work items, or using the WWA format.",
+  "profession": "产品经理",
+  "content_hash": "7fad2bed16046679a9eb2941573f978c692db425e5e5b7a7c31a8be2e4dd10a4",
+  "source": {
+    "type": "github",
+    "repo": "phuryn-pm-skills",
+    "path": "pm-execution/skills/wwas/SKILL.md",
+    "commit": "f9eaa51000a65e04494aeaf90355d30f2080ebf2"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.070Z",
+  "updated_at": "2026-06-05T09:53:10.070Z"
+}

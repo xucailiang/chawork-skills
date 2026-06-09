@@ -1,0 +1,17 @@
+{
+  "id": "phuryn-pm-skills--pm-product-discovery--skills--brainstorm-ideas-existing",
+  "name": "brainstorm-ideas-existing",
+  "description_zh": "",
+  "description_en": "Brainstorm product ideas for an existing product using multi-perspective ideation from PM, Designer, and Engineer viewpoints. Use when generating new feature ideas, brainstorming solutions for an identified opportunity, or ideating with a product trio.",
+  "profession": "产品经理",
+  "content_hash": "cf950494541bd9b47e60054f1a917cef02094fe8c769d5feca86603282e2bd5b",
+  "source": {
+    "type": "github",
+    "repo": "phuryn-pm-skills",
+    "path": "pm-product-discovery/skills/brainstorm-ideas-existing/SKILL.md",
+    "commit": "f9eaa51000a65e04494aeaf90355d30f2080ebf2"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.079Z",
+  "updated_at": "2026-06-05T09:53:10.079Z"
+}

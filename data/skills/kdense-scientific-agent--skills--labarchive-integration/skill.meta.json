@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--labarchive-integration",
+  "name": "labarchive-integration",
+  "description_zh": "",
+  "description_en": "Electronic lab notebook API integration. Access notebooks, manage entries/attachments, backup notebooks, integrate with Protocols.io/Jupyter/REDCap, for programmatic ELN workflows.",
+  "profession": "科研学术",
+  "content_hash": "3396d3e2e8e0be5e12a591ac0482536cdb44d6f424555240ad108dc1c96e1ccb",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/labarchive-integration/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.145Z",
+  "updated_at": "2026-06-05T09:53:10.145Z"
+}

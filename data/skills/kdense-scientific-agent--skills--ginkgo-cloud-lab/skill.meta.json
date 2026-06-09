@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--ginkgo-cloud-lab",
+  "name": "ginkgo-cloud-lab",
+  "description_zh": "",
+  "description_en": "Submit and manage protocols on Ginkgo Bioworks Cloud Lab (cloud.ginkgo.bio), a web-based interface for autonomous lab execution on Reconfigurable Automation Carts (RACs). Use when the user wants to run cell-free protein expression (validation or optimization), generate fluorescent pixel art, or interact with Ginkgo Cloud Lab services. Covers protocol selection, input preparation, pricing, and ordering workflows.",
+  "profession": "科研学术",
+  "content_hash": "e5d488dd263d2ea360ee97f3eaec23d48080bcfa475a4f2fc1f7e54dd29f5e91",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/ginkgo-cloud-lab/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.138Z",
+  "updated_at": "2026-06-05T09:53:10.138Z"
+}

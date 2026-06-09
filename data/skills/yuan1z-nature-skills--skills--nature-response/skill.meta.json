@@ -1,0 +1,17 @@
+{
+  "id": "yuan1z-nature-skills--skills--nature-response",
+  "name": "nature-response",
+  "description_zh": "",
+  "description_en": "Draft, audit, or revise point-by-point reviewer response letters for Nature-family manuscript revisions. Use when the user provides reviewer comments, editor decision letters, revision notes, response drafts, or asks how to respond to major/minor revision requests, rebuttal letters, response to reviewers, peer-review reports, 审稿意见回复, 逐点回复, 修回信, 大修回复, 小修回复, or 如何回复 reviewer. Also trigger on general peer-review response needs during academic writing/revision even without the word \"Nature\", such as replying to reviewers for any journal, writing a rebuttal/response letter, handling revision comments, and Chinese phrasings like 回复审稿人、审稿回复、返修、 修改稿回复、写rebuttal、回应审稿意见、应对审稿.",
+  "profession": "科研学术",
+  "content_hash": "b41f7eecfd47ff7e0dba5477faa2efd1d6cc1bd7bf27dfd5b0ed248436f14baf",
+  "source": {
+    "type": "github",
+    "repo": "yuan1z-nature-skills",
+    "path": "skills/nature-response/SKILL.md",
+    "commit": "c9b874a675e29e40fed88af89509092665d5a236"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.103Z",
+  "updated_at": "2026-06-05T09:53:10.103Z"
+}

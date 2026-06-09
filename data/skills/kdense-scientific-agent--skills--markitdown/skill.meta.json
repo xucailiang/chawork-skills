@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--markitdown",
+  "name": "markitdown",
+  "description_zh": "",
+  "description_en": "Convert files and office documents to Markdown. Supports PDF, DOCX, PPTX, XLSX, images (with OCR), audio (with transcription), HTML, CSV, JSON, XML, ZIP, YouTube URLs, EPubs and more.",
+  "profession": "科研学术",
+  "content_hash": "483c095bb03429cebfff1dfe909737b4a58e7f88e3cc2f8d90742f0106c961ce",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/markitdown/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.150Z",
+  "updated_at": "2026-06-05T09:53:10.150Z"
+}

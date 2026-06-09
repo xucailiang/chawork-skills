@@ -1,0 +1,17 @@
+{
+  "id": "phuryn-pm-skills--pm-product-strategy--skills--product-vision",
+  "name": "product-vision",
+  "description_zh": "",
+  "description_en": "Brainstorm an inspiring, achievable, and emotional product vision that motivates teams and aligns stakeholders. Use when defining or refining a product vision, creating a vision statement, or aligning the team around a shared direction.",
+  "profession": "产品经理",
+  "content_hash": "1414332e0f7893963a3308b8bea0d3ac05f5d704ad344f1c0013f7d7804a12fe",
+  "source": {
+    "type": "github",
+    "repo": "phuryn-pm-skills",
+    "path": "pm-product-strategy/skills/product-vision/SKILL.md",
+    "commit": "f9eaa51000a65e04494aeaf90355d30f2080ebf2"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.089Z",
+  "updated_at": "2026-06-05T09:53:10.089Z"
+}

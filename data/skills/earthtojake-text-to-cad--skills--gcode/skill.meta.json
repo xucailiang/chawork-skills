@@ -1,0 +1,17 @@
+{
+  "id": "earthtojake-text-to-cad--skills--gcode",
+  "name": "gcode",
+  "description_zh": "",
+  "description_en": "Generate, inspect, dry-run, and statically validate plain FDM `.gcode` from 3D mesh files by orchestrating real slicer CLIs. Use when Codex needs to slice `.stl`, `.obj`, unsliced `.3mf`, `.ply`, `.glb`, or `.gltf` into printer-profiled G-code, discover local slicer backends, inspect whether a mesh is slice-ready, or validate generated G-code before any printer-specific handoff.",
+  "profession": "设计师",
+  "content_hash": "2f8bb887be8174db116909f86a1adb2f6d412a548153ad22e8448a651c62adeb",
+  "source": {
+    "type": "github",
+    "repo": "earthtojake-text-to-cad",
+    "path": "skills/gcode/SKILL.md",
+    "commit": "99b3cec82a3a1cf9e6bc8846b868ba4f9ff4ad18"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.108Z",
+  "updated_at": "2026-06-05T09:53:10.108Z"
+}

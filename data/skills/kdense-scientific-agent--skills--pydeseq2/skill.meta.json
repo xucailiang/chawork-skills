@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--pydeseq2",
+  "name": "pydeseq2",
+  "description_zh": "",
+  "description_en": "Differential gene expression analysis (Python DESeq2). Identify DE genes from bulk RNA-seq counts, Wald tests, FDR correction, volcano/MA plots, for RNA-seq analysis.",
+  "profession": "科研学术",
+  "content_hash": "7f91912c5f2447cb1475ce113c037ee1f1c28e56aec9437967e810497a7f7708",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/pydeseq2/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.170Z",
+  "updated_at": "2026-06-05T09:53:10.170Z"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--optimize-for-gpu",
+  "name": "optimize-for-gpu",
+  "description_zh": "",
+  "description_en": "GPU-accelerate Python code using CuPy, Numba CUDA, Warp, cuDF, cuML, cuGraph, KvikIO, cuCIM, cuxfilter, cuVS, cuSpatial, and RAFT. Use whenever the user mentions GPU/CUDA/NVIDIA acceleration, or wants to speed up NumPy, pandas, scikit-learn, scikit-image, NetworkX, GeoPandas, or Faiss workloads. Covers physics simulation, differentiable rendering, mesh ray casting, particle systems (DEM/SPH/fluids), vector/similarity search, GPUDirect Storage file IO, interactive dashboards, geospatial analysis, medical imaging, and sparse eigensolvers. Also use when you see CPU-bound Python code (loops, large arrays, ML pipelines, graph analytics, image processing) that would benefit from GPU acceleration, even if not explicitly requested.",
+  "profession": "科研学术",
+  "content_hash": "7659871a07b094abce125fadada580c4097fff57aa1b2ed8ddd967af94a35143",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/optimize-for-gpu/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.159Z",
+  "updated_at": "2026-06-05T09:53:10.159Z"
+}

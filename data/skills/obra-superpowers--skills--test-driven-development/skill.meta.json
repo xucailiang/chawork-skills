@@ -1,0 +1,17 @@
+{
+  "id": "obra-superpowers--skills--test-driven-development",
+  "name": "test-driven-development",
+  "description_zh": "",
+  "description_en": "Use when implementing any feature or bugfix, before writing implementation code",
+  "profession": "开发工程师",
+  "content_hash": "7dee67b4af6bdccc7a914ca34533184d64592d0f5b23aeae631538168db14994",
+  "source": {
+    "type": "github",
+    "repo": "obra-superpowers",
+    "path": "skills/test-driven-development/SKILL.md",
+    "commit": "6fd4507659784c351abbd2bc264c7162cfd386dc"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.060Z",
+  "updated_at": "2026-06-05T09:53:10.060Z"
+}

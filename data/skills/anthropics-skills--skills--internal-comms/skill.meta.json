@@ -1,0 +1,17 @@
+{
+  "id": "anthropics-skills--skills--internal-comms",
+  "name": "internal-comms",
+  "description_zh": "一组帮助我撰写各类公司内部沟通文档的资源，使用本公司常用的格式。每当被要求撰写各类内部沟通材料（状态报告、领导层汇报、3P 更新、公司通讯、FAQ、事件报告、项目进展等）时，Claude 都应使用此 skill。",
+  "description_en": "A set of resources to help me write all kinds of internal communications, using the formats that my company likes to use. Claude should use this skill whenever asked to write some sort of internal communications (status reports, leadership updates, 3P updates, company newsletters, FAQs, incident reports, project updates, etc.).",
+  "profession": "内容运营",
+  "content_hash": "28e514a9f032768aa181b4949c7049fa45f5eadf74b2370e62fe6ca1110b2cd7",
+  "source": {
+    "type": "github",
+    "repo": "anthropics-skills",
+    "path": "skills/internal-comms/SKILL.md",
+    "commit": "da20c92503b2e8ff1cf28ca81a0df4673debdbf7"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:44:58.282Z",
+  "updated_at": "2026-06-05T09:44:58.282Z"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "bitjaru-styleseed--engine--.claude--skills--ss-motion",
+  "name": "ss-motion",
+  "description_zh": "",
+  "description_en": "Apply a named StyleSeed motion to a component — either one of the 5 personality seeds (Spring/Silk/Snap/Float/Pulse × entrance/exit/hover/press/layout) or a distinctive keyword move from the motion library (toggle-flip, toggle-curtain, reveal-blur, pop-in, shimmer, …). Translates vibe words into framer-motion code from one source of truth.",
+  "profession": "设计师",
+  "content_hash": "afc341e5858dec2493b841e9e01a7edc5bb1d1945e2618dbb1d5d9e87f5c311c",
+  "source": {
+    "type": "github",
+    "repo": "bitjaru-styleseed",
+    "path": "engine/.claude/skills/ss-motion/SKILL.md",
+    "commit": "9ce238d6a9e7a7c0ccfb28d0805d8d7987e595a0"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.209Z",
+  "updated_at": "2026-06-05T09:53:10.209Z"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--neurokit2",
+  "name": "neurokit2",
+  "description_zh": "",
+  "description_en": "Comprehensive biosignal processing toolkit for analyzing physiological data including ECG, EEG, EDA, RSP, PPG, EMG, and EOG signals. Use this skill when processing cardiovascular signals, brain activity, electrodermal responses, respiratory patterns, muscle activity, or eye movements. Applicable for heart rate variability analysis, event-related potentials, complexity measures, autonomic nervous system assessment, psychophysiology research, and multi-modal physiological signal integration.",
+  "profession": "科研学术",
+  "content_hash": "4ee41e9b665d0f8599764fa0b45f3a0b39a17b99d8c2ba70529227120310b8c3",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/neurokit2/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.156Z",
+  "updated_at": "2026-06-05T09:53:10.156Z"
+}

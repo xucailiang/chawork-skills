@@ -1,0 +1,17 @@
+{
+  "id": "phuryn-pm-skills--pm-go-to-market--skills--gtm-strategy",
+  "name": "gtm-strategy",
+  "description_zh": "",
+  "description_en": "Create a go-to-market strategy covering marketing channels, messaging, success metrics, and launch timeline. Use when planning a product launch, creating a GTM plan from scratch, or defining a launch strategy for a new market.",
+  "profession": "产品经理",
+  "content_hash": "fcc7c24dda6b4fec94d1d847e0ba2b42cff38b5ec6215bb1749a65d8b885f91e",
+  "source": {
+    "type": "github",
+    "repo": "phuryn-pm-skills",
+    "path": "pm-go-to-market/skills/gtm-strategy/SKILL.md",
+    "commit": "f9eaa51000a65e04494aeaf90355d30f2080ebf2"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.072Z",
+  "updated_at": "2026-06-05T09:53:10.072Z"
+}

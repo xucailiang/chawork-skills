@@ -1,0 +1,17 @@
+{
+  "id": "earthtojake-text-to-cad--skills--sendcutsend",
+  "name": "sendcutsend",
+  "description_zh": "",
+  "description_en": "Review DXF and STEP/STP uploads for SendCutSend.com orders using its ordering guide, catalog, and specs. Use only for SendCutSend.com preflight reports covering upload readiness, selected material/SKU/thickness/service availability, and service-specific checks for laser cutting, CNC routing, bending, tapping, countersinking, hardware insertion, and finishing.",
+  "profession": "设计师",
+  "content_hash": "60a1243669bd200a194ad1362fa41a72995172dc7c110ad412618def82e8e2cf",
+  "source": {
+    "type": "github",
+    "repo": "earthtojake-text-to-cad",
+    "path": "skills/sendcutsend/SKILL.md",
+    "commit": "99b3cec82a3a1cf9e6bc8846b868ba4f9ff4ad18"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.110Z",
+  "updated_at": "2026-06-05T09:53:10.110Z"
+}

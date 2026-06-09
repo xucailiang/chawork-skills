@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--pydicom",
+  "name": "pydicom",
+  "description_zh": "",
+  "description_en": "Python library for working with DICOM (Digital Imaging and Communications in Medicine) files. Use this skill when reading, writing, or modifying medical imaging data in DICOM format, extracting pixel data from medical images (CT, MRI, X-ray, ultrasound), anonymizing DICOM files, working with DICOM metadata and tags, converting DICOM images to other formats, handling compressed DICOM data, or processing medical imaging datasets. Applies to tasks involving medical image analysis, PACS systems, radiology workflows, and healthcare imaging applications.",
+  "profession": "科研学术",
+  "content_hash": "be3d35c1f3293894b6a80c598dd6042ed136eabdbabb649c514a66442c376e2a",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/pydicom/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.171Z",
+  "updated_at": "2026-06-05T09:53:10.171Z"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--pptx",
+  "name": "pptx",
+  "description_zh": "",
+  "description_en": "Use this skill any time a .pptx file is involved in any way — as input, output, or both. This includes: creating slide decks, pitch decks, or presentations; reading, parsing, or extracting text from any .pptx file (even if the extracted content will be used elsewhere, like in an email or summary); editing, modifying, or updating existing presentations; combining or splitting slide files; working with templates, layouts, speaker notes, or comments. Trigger whenever the user mentions \"deck,\" \"slides,\" \"presentation,\" or references a .pptx filename, regardless of what they plan to do with the content afterward. If a .pptx file needs to be opened, created, or touched, use this skill.",
+  "profession": "科研学术",
+  "content_hash": "a3d9e04e99d5e9c53a26502ccdd05dbf43bcbb568a1e6e5400b8fbb415befbe2",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/pptx/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.167Z",
+  "updated_at": "2026-06-05T09:53:10.167Z"
+}

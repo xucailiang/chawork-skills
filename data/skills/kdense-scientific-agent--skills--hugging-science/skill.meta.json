@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--hugging-science",
+  "name": "hugging-science",
+  "description_zh": "",
+  "description_en": "Use when the user is doing AI/ML work in a scientific domain such as biology, chemistry, physics, astronomy, climate, genomics, materials, medicine, ecology, energy, engineering, math, drug discovery, protein design, weather modeling, theorem proving, single-cell, or PDE solving. Hugging Science is a curated catalog of scientific datasets, models, blog posts, and interactive Spaces. This skill helps discover and use resources via `datasets`, `transformers`, the HF Inference API, `gradio_client`, and methodology citations.",
+  "profession": "科研学术",
+  "content_hash": "385843367fa66d12c86f5e538362a680d5e829350d8a26036a4088c54d0b17c8",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/hugging-science/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.140Z",
+  "updated_at": "2026-06-05T09:53:10.140Z"
+}

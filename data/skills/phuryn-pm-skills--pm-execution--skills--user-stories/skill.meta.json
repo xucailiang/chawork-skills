@@ -1,0 +1,17 @@
+{
+  "id": "phuryn-pm-skills--pm-execution--skills--user-stories",
+  "name": "user-stories",
+  "description_zh": "",
+  "description_en": "Create user stories following the 3 C's (Card, Conversation, Confirmation) and INVEST criteria with descriptions, design links, and acceptance criteria. Use when writing user stories, breaking down features into backlog items, or defining acceptance criteria.",
+  "profession": "产品经理",
+  "content_hash": "8ce89cd81de5a3df7d504380d18c54cec6c59ccdb7fd18cbcb62b6b6183d0a55",
+  "source": {
+    "type": "github",
+    "repo": "phuryn-pm-skills",
+    "path": "pm-execution/skills/user-stories/SKILL.md",
+    "commit": "f9eaa51000a65e04494aeaf90355d30f2080ebf2"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.070Z",
+  "updated_at": "2026-06-05T09:53:10.070Z"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--hypogenic",
+  "name": "hypogenic",
+  "description_zh": "",
+  "description_en": "Automated LLM-driven hypothesis generation and testing on tabular datasets. Use when you want to systematically explore hypotheses about patterns in empirical data (e.g., deception detection, content analysis). Combines literature insights with data-driven hypothesis testing. For manual hypothesis formulation use hypothesis-generation; for creative ideation use scientific-brainstorming.",
+  "profession": "科研学术",
+  "content_hash": "2f33dd660e1e7b25bd7b5c8b4e58f23c89818082cf2512fa82234bf407e8107c",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/hypogenic/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.141Z",
+  "updated_at": "2026-06-05T09:53:10.141Z"
+}

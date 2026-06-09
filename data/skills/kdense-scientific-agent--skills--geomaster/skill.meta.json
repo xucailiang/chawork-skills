@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--geomaster",
+  "name": "geomaster",
+  "description_zh": "",
+  "description_en": "Comprehensive geospatial science skill covering remote sensing, GIS, spatial analysis, machine learning for earth observation, and 30+ scientific domains. Supports satellite imagery processing (Sentinel, Landsat, MODIS, SAR, hyperspectral), vector and raster data operations, spatial statistics, point cloud processing, network analysis, cloud-native workflows (STAC, COG, Planetary Computer), and 8 programming languages (Python, R, Julia, JavaScript, C++, Java, Go, Rust) with 500+ code examples. Use for remote sensing workflows, GIS analysis, spatial ML, Earth observation data processing, terrain analysis, hydrological modeling, marine spatial analysis, atmospheric science, and any geospatial computation task.",
+  "profession": "科研学术",
+  "content_hash": "af4b2235b45df0aece7de446d96d153e2aa5635f9af46c5242afcd762f026490",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/geomaster/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.135Z",
+  "updated_at": "2026-06-05T09:53:10.135Z"
+}

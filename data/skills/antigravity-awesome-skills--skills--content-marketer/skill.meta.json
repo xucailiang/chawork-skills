@@ -1,0 +1,17 @@
+{
+  "id": "antigravity-awesome-skills--skills--content-marketer",
+  "name": "content-marketer",
+  "description_zh": "",
+  "description_en": "Elite content marketing strategist specializing in AI-powered content creation, omnichannel distribution, SEO optimization, and data-driven performance marketing.",
+  "profession": "市场营销",
+  "content_hash": "3436d589af5d5c34f96fbd111144a83c4fa9a074cb90a900877a880967633d3f",
+  "source": {
+    "type": "github",
+    "repo": "antigravity-awesome-skills",
+    "path": "skills/content-marketer/SKILL.md",
+    "commit": "b806b97a9a48063f7bdbee5611caf40edd17e305"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.214Z",
+  "updated_at": "2026-06-05T09:53:10.214Z"
+}

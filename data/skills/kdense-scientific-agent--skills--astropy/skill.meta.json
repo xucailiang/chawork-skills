@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--astropy",
+  "name": "astropy",
+  "description_zh": "",
+  "description_en": "Core Python library for astronomy and astrophysics workflows that need Astropy APIs, including units/quantities, coordinates, FITS I/O, tables, time systems, WCS, and cosmology. Use when implementing or debugging astronomical data analysis code with Astropy.",
+  "profession": "科研学术",
+  "content_hash": "40b509fa3d0593436aa2b213c8307e6bbc7c24c786f07e891a27ec67357a08a6",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/astropy/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.114Z",
+  "updated_at": "2026-06-05T09:53:10.114Z"
+}

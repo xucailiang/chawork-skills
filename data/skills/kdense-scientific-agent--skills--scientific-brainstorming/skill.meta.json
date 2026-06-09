@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--scientific-brainstorming",
+  "name": "scientific-brainstorming",
+  "description_zh": "",
+  "description_en": "Creative research ideation and exploration. Use for open-ended brainstorming sessions, exploring interdisciplinary connections, challenging assumptions, or identifying research gaps. Best for early-stage research planning when you do not have specific observations yet. For formulating testable hypotheses from data use hypothesis-generation.",
+  "profession": "科研学术",
+  "content_hash": "3283e347969e6a84712cae790de58609719983b17eaf1d233d060bfcb6d43b93",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/scientific-brainstorming/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.185Z",
+  "updated_at": "2026-06-05T09:53:10.185Z"
+}

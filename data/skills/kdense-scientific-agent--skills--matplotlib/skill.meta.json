@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--matplotlib",
+  "name": "matplotlib",
+  "description_zh": "",
+  "description_en": "Low-level plotting library for full customization. Use when you need fine-grained control over every plot element, creating novel plot types, or integrating with specific scientific workflows. Export to PNG/PDF/SVG for publication. For quick statistical plots use seaborn; for interactive plots use plotly; for publication-ready multi-panel figures with journal styling, use scientific-visualization.",
+  "profession": "科研学术",
+  "content_hash": "ae84cfcdb306bf3ce3eeb721736243d7678fee082590caa76603ffea33e08fbe",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/matplotlib/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.152Z",
+  "updated_at": "2026-06-05T09:53:10.152Z"
+}

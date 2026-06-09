@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--market-research-reports",
+  "name": "market-research-reports",
+  "description_zh": "",
+  "description_en": "Generate comprehensive market research reports (50+ pages) in the style of top consulting firms (McKinsey, BCG, Gartner). Features professional LaTeX formatting, extensive visual generation with scientific-schematics and generate-image, deep integration with research-lookup for data gathering, and multi-framework strategic analysis including Porter Five Forces, PESTLE, SWOT, TAM/SAM/SOM, and BCG Matrix.",
+  "profession": "科研学术",
+  "content_hash": "ac5f7ce4fed24ff9820669a634d90e18a54e7b3f463a82feb309d779cbadf590",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/market-research-reports/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.150Z",
+  "updated_at": "2026-06-05T09:53:10.150Z"
+}

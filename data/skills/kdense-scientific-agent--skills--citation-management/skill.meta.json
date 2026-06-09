@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--citation-management",
+  "name": "citation-management",
+  "description_zh": "",
+  "description_en": "Comprehensive citation management for academic research. Search Google Scholar and PubMed for papers, extract accurate metadata, validate citations, and generate properly formatted BibTeX entries. This skill should be used when you need to find papers, verify citation information, convert DOIs to BibTeX, or ensure reference accuracy in scientific writing.",
+  "profession": "科研学术",
+  "content_hash": "cdb3f78ac0bdc758f2128d1941aebc85d6bc6f18b289e5bf53b4d9ce2ca3c4bc",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/citation-management/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.120Z",
+  "updated_at": "2026-06-05T09:53:10.120Z"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--tiledbvcf",
+  "name": "tiledbvcf",
+  "description_zh": "",
+  "description_en": "Efficient storage and retrieval of genomic variant data using TileDB. Scalable VCF/BCF ingestion, incremental sample addition, compressed storage, parallel queries, and export capabilities for population genomics.",
+  "profession": "科研学术",
+  "content_hash": "141830c0722d4becf786882f8c9cdf4b7b0586ae5ed18a24b90d145fe7ccdeda",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/tiledbvcf/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.197Z",
+  "updated_at": "2026-06-05T09:53:10.197Z"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--hypothesis-generation",
+  "name": "hypothesis-generation",
+  "description_zh": "",
+  "description_en": "Structured hypothesis formulation from observations. Use when you have experimental observations or data and need to formulate testable hypotheses with predictions, propose mechanisms, and design experiments to test them. Follows scientific method framework. For open-ended ideation use scientific-brainstorming; for automated LLM-driven hypothesis testing on datasets use hypogenic.",
+  "profession": "科研学术",
+  "content_hash": "ae47110407e3c2403f802efbdef98c076090f2cf36b3ab3f7cd808ddfd4e90d9",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/hypothesis-generation/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.142Z",
+  "updated_at": "2026-06-05T09:53:10.142Z"
+}

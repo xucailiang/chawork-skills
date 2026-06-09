@@ -1,0 +1,17 @@
+{
+  "id": "obra-superpowers--skills--receiving-code-review",
+  "name": "receiving-code-review",
+  "description_zh": "",
+  "description_en": "Use when receiving code review feedback, before implementing suggestions, especially if feedback seems unclear or technically questionable - requires technical rigor and verification, not performative agreement or blind implementation",
+  "profession": "开发工程师",
+  "content_hash": "c9382e92b8f32363566068ecfed19d3b2651eaf40d3942b24840f839dedfc406",
+  "source": {
+    "type": "github",
+    "repo": "obra-superpowers",
+    "path": "skills/receiving-code-review/SKILL.md",
+    "commit": "6fd4507659784c351abbd2bc264c7162cfd386dc"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.057Z",
+  "updated_at": "2026-06-05T09:53:10.057Z"
+}

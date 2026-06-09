@@ -1,0 +1,17 @@
+{
+  "id": "phuryn-pm-skills--pm-product-discovery--skills--analyze-feature-requests",
+  "name": "analyze-feature-requests",
+  "description_zh": "",
+  "description_en": "Analyze and prioritize a list of feature requests by theme, strategic alignment, impact, effort, and risk. Use when reviewing customer feature requests, triaging a backlog, or making prioritization decisions.",
+  "profession": "产品经理",
+  "content_hash": "7615db7687a668a99e015664295f849bfab696a8dd7b3c02b0200a512c6ad3c2",
+  "source": {
+    "type": "github",
+    "repo": "phuryn-pm-skills",
+    "path": "pm-product-discovery/skills/analyze-feature-requests/SKILL.md",
+    "commit": "f9eaa51000a65e04494aeaf90355d30f2080ebf2"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.078Z",
+  "updated_at": "2026-06-05T09:53:10.078Z"
+}

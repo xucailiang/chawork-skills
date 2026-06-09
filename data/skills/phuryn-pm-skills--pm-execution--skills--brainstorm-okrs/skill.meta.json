@@ -1,0 +1,17 @@
+{
+  "id": "phuryn-pm-skills--pm-execution--skills--brainstorm-okrs",
+  "name": "brainstorm-okrs",
+  "description_zh": "",
+  "description_en": "Brainstorm team-level OKRs aligned with company objectives — qualitative objectives with measurable key results. Use when setting quarterly OKRs, aligning team goals with company strategy, drafting objectives, or learning how to write effective OKRs.",
+  "profession": "产品经理",
+  "content_hash": "9d4fcbc779aad7bcf4b4793148be31bec4bfe70e08f5885cf34635ecd08c47ee",
+  "source": {
+    "type": "github",
+    "repo": "phuryn-pm-skills",
+    "path": "pm-execution/skills/brainstorm-okrs/SKILL.md",
+    "commit": "f9eaa51000a65e04494aeaf90355d30f2080ebf2"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.064Z",
+  "updated_at": "2026-06-05T09:53:10.064Z"
+}

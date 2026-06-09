@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--qiskit",
+  "name": "qiskit",
+  "description_zh": "",
+  "description_en": "IBM quantum computing framework. Use when targeting IBM Quantum hardware, working with Qiskit Runtime for production workloads, or needing IBM optimization tools. Best for IBM hardware execution, quantum error mitigation, and enterprise quantum computing. For Google hardware use cirq; for gradient-based quantum ML use pennylane; for open quantum system simulations use qutip.",
+  "profession": "科研学术",
+  "content_hash": "21e8440d81f471e58965b8a409d840c32726b42b1dc3fffe7720e679b74e1a41",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/qiskit/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.179Z",
+  "updated_at": "2026-06-05T09:53:10.179Z"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "phuryn-pm-skills--pm-product-strategy--skills--swot-analysis",
+  "name": "swot-analysis",
+  "description_zh": "",
+  "description_en": "Perform a detailed SWOT analysis — strengths, weaknesses, opportunities, and threats with actionable recommendations. Use when doing strategic assessment, competitive analysis, or evaluating a product or business position.",
+  "profession": "产品经理",
+  "content_hash": "ef5efbc2d4b84237469808cc9ce90016d926c0b3d65977f7edf21c60e3d5f85b",
+  "source": {
+    "type": "github",
+    "repo": "phuryn-pm-skills",
+    "path": "pm-product-strategy/skills/swot-analysis/SKILL.md",
+    "commit": "f9eaa51000a65e04494aeaf90355d30f2080ebf2"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.090Z",
+  "updated_at": "2026-06-05T09:53:10.090Z"
+}

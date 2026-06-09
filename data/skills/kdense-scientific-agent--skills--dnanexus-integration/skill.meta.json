@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--dnanexus-integration",
+  "name": "dnanexus-integration",
+  "description_zh": "",
+  "description_en": "DNAnexus cloud genomics platform. Build apps/applets, manage data (upload/download), dxpy Python SDK, run workflows, FASTQ/BAM/VCF, for genomics pipeline development and execution.",
+  "profession": "科研学术",
+  "content_hash": "585d2eb07c79aac18f80826e595ffeee9e866f0b75cef3094f56371ea50dce95",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/dnanexus-integration/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.129Z",
+  "updated_at": "2026-06-05T09:53:10.129Z"
+}

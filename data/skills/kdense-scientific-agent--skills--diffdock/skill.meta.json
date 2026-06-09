@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--diffdock",
+  "name": "diffdock",
+  "description_zh": "",
+  "description_en": "Diffusion-based molecular docking. Predict protein-ligand binding poses from PDB/SMILES, confidence scores, virtual screening, for structure-based drug design. Not for affinity prediction.",
+  "profession": "科研学术",
+  "content_hash": "08e6cd02e1815dcb76bb979c1fa0ea021ba0363e2afda388fc9a8243101b359c",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/diffdock/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.128Z",
+  "updated_at": "2026-06-05T09:53:10.128Z"
+}

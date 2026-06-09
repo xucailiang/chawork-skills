@@ -1,0 +1,17 @@
+{
+  "id": "obra-superpowers--skills--using-superpowers",
+  "name": "using-superpowers",
+  "description_zh": "",
+  "description_en": "Use when starting any conversation - establishes how to find and use skills, requiring Skill tool invocation before ANY response including clarifying questions",
+  "profession": "开发工程师",
+  "content_hash": "316e29381219adf0cac62190c67aeabf427d6e6e5f2735541d502b3d339be7aa",
+  "source": {
+    "type": "github",
+    "repo": "obra-superpowers",
+    "path": "skills/using-superpowers/SKILL.md",
+    "commit": "6fd4507659784c351abbd2bc264c7162cfd386dc"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.061Z",
+  "updated_at": "2026-06-05T09:53:10.061Z"
+}

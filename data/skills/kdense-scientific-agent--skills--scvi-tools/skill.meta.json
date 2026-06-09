@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--scvi-tools",
+  "name": "scvi-tools",
+  "description_zh": "",
+  "description_en": "Deep generative models for single-cell omics. Use when you need probabilistic batch correction (scVI), transfer learning, differential expression with uncertainty, or multi-modal integration (TOTALVI, MultiVI). Best for advanced modeling, batch effects, multimodal data. For standard analysis pipelines use scanpy.",
+  "profession": "科研学术",
+  "content_hash": "6be01b41da9cbbcd9a83a072b1dddb7717efc0fbc8dad1627de497eb8b20b2b6",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/scvi-tools/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.192Z",
+  "updated_at": "2026-06-05T09:53:10.192Z"
+}

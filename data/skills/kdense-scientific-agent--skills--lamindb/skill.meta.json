@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--lamindb",
+  "name": "lamindb",
+  "description_zh": "",
+  "description_en": "This skill should be used when working with LaminDB, an open-source data framework for biology that makes data queryable, traceable, reproducible, and FAIR. Use when managing biological datasets (scRNA-seq, spatial, flow cytometry, etc.), tracking computational workflows, curating and validating data with biological ontologies, building data lakehouses, or ensuring data lineage and reproducibility in biological research. Covers data management, annotation, ontologies (genes, cell types, diseases, tissues), schema validation, integrations with workflow managers (Nextflow, Snakemake) and MLOps platforms (W&B, MLflow), and deployment strategies.",
+  "profession": "科研学术",
+  "content_hash": "8f06e7c784367a340e5182c21db0897737186049bc544787556222faf4acdc7b",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/lamindb/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.145Z",
+  "updated_at": "2026-06-05T09:53:10.145Z"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "greensock-gsap-skills--skills--gsap-performance",
+  "name": "gsap-performance",
+  "description_zh": "",
+  "description_en": "Official GSAP skill for performance — prefer transforms, avoid layout thrashing, will-change, batching. Use when optimizing GSAP animations, reducing jank, or when the user asks about animation performance, FPS, or smooth 60fps.",
+  "profession": "开发工程师",
+  "content_hash": "cb5408d6fba707aabcbfe3320317a14c1f8fca6070074e5261047930f50d441e",
+  "source": {
+    "type": "github",
+    "repo": "greensock-gsap-skills",
+    "path": "skills/gsap-performance/SKILL.md",
+    "commit": "aed9cfd3277740755f6bfc1155c7aa645403b760"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.095Z",
+  "updated_at": "2026-06-05T09:53:10.095Z"
+}

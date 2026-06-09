@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--imaging-data-commons",
+  "name": "imaging-data-commons",
+  "description_zh": "",
+  "description_en": "Query and download public cancer imaging data from NCI Imaging Data Commons using idc-index. Use for accessing large-scale radiology (CT, MR, PET) and pathology datasets for AI training or research. No authentication required. Query by metadata, visualize in browser, check licenses.",
+  "profession": "科研学术",
+  "content_hash": "47c33c008dab8de804b2da8e45e69e731bc956200609cc61434bf478109fd881",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/imaging-data-commons/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.142Z",
+  "updated_at": "2026-06-05T09:53:10.142Z"
+}

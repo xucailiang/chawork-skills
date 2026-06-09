@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--clinical-decision-support",
+  "name": "clinical-decision-support",
+  "description_zh": "",
+  "description_en": "Generate professional clinical decision support (CDS) documents for pharmaceutical and clinical research settings, including patient cohort analyses (biomarker-stratified with outcomes) and treatment recommendation reports (evidence-based guidelines with decision algorithms). Supports GRADE evidence grading, statistical analysis (hazard ratios, survival curves, waterfall plots), biomarker integration, and regulatory compliance. Outputs publication-ready LaTeX/PDF format optimized for drug development, clinical research, and evidence synthesis.",
+  "profession": "科研学术",
+  "content_hash": "f93683af8e961537dd50d2858c1c5663abf27c88bd3905f8ea9d44cb7a9a5a19",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/clinical-decision-support/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.120Z",
+  "updated_at": "2026-06-05T09:53:10.120Z"
+}

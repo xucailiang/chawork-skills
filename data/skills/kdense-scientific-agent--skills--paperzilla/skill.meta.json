@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--paperzilla",
+  "name": "paperzilla",
+  "description_zh": "",
+  "description_en": "Chat with your agent about projects, recommendations, and canonical papers in Paperzilla. Use when users ask for recent project recommendations, canonical paper details, markdown-based summaries, recommendation feedback, feed export, or Atom feed URLs.",
+  "profession": "科研学术",
+  "content_hash": "9af353f3a41c47b0f046674c1044bf7aefbfdc3177331c553a2d4ece4a839564",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/paperzilla/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.161Z",
+  "updated_at": "2026-06-05T09:53:10.161Z"
+}

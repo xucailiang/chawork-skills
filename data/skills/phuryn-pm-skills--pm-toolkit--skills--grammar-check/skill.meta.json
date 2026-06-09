@@ -1,0 +1,17 @@
+{
+  "id": "phuryn-pm-skills--pm-toolkit--skills--grammar-check",
+  "name": "grammar-check",
+  "description_zh": "",
+  "description_en": "Identify grammar, logical, and flow errors in text and suggest targeted fixes without rewriting the entire text. Use when proofreading content, checking writing quality, or reviewing a draft.",
+  "profession": "产品经理",
+  "content_hash": "67e4721b25541cea2f2b72e27dca0099cad66ac9a1a6fdc49d63adbae6450e02",
+  "source": {
+    "type": "github",
+    "repo": "phuryn-pm-skills",
+    "path": "pm-toolkit/skills/grammar-check/SKILL.md",
+    "commit": "f9eaa51000a65e04494aeaf90355d30f2080ebf2"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.092Z",
+  "updated_at": "2026-06-05T09:53:10.092Z"
+}

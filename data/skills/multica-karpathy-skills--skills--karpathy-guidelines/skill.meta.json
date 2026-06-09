@@ -1,0 +1,17 @@
+{
+  "id": "multica-karpathy-skills--skills--karpathy-guidelines",
+  "name": "karpathy-guidelines",
+  "description_zh": "",
+  "description_en": "Behavioral guidelines to reduce common LLM coding mistakes. Use when writing, reviewing, or refactoring code to avoid overcomplication, make surgical changes, surface assumptions, and define verifiable success criteria.",
+  "profession": "开发工程师",
+  "content_hash": "6e22cc54cb02a5e98ae42d06d9d7292db0c1b43894831b32879beb0166b2aea7",
+  "source": {
+    "type": "github",
+    "repo": "multica-karpathy-skills",
+    "path": "skills/karpathy-guidelines/SKILL.md",
+    "commit": "2c606141936f1eeef17fa3043a72095b4765b9c2"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.063Z",
+  "updated_at": "2026-06-05T09:53:10.063Z"
+}

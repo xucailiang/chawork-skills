@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--molecular-dynamics",
+  "name": "molecular-dynamics",
+  "description_zh": "",
+  "description_en": "Run and analyze molecular dynamics simulations with OpenMM and MDAnalysis. Set up protein/small molecule systems, define force fields, run energy minimization and production MD, analyze trajectories (RMSD, RMSF, contact maps, free energy surfaces). For structural biology, drug binding, and biophysics.",
+  "profession": "科研学术",
+  "content_hash": "34286765052a00009ea6f656469763f614e79a8de50c6aebe4f85c61b5690efd",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/molecular-dynamics/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.153Z",
+  "updated_at": "2026-06-05T09:53:10.153Z"
+}

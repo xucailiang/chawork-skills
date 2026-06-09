@@ -1,0 +1,17 @@
+{
+  "id": "phuryn-pm-skills--pm-execution--skills--summarize-meeting",
+  "name": "summarize-meeting",
+  "description_zh": "",
+  "description_en": "Summarize a meeting transcript into structured notes with date, participants, topic, key decisions, summary points, and action items. Use when processing meeting recordings, creating meeting notes, writing meeting minutes, or recapping discussions.",
+  "profession": "产品经理",
+  "content_hash": "4deabdd7f99c692ee800a80a4eaf6a688fb8873cdaaaea44b7f472499205f8e7",
+  "source": {
+    "type": "github",
+    "repo": "phuryn-pm-skills",
+    "path": "pm-execution/skills/summarize-meeting/SKILL.md",
+    "commit": "f9eaa51000a65e04494aeaf90355d30f2080ebf2"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.069Z",
+  "updated_at": "2026-06-05T09:53:10.069Z"
+}

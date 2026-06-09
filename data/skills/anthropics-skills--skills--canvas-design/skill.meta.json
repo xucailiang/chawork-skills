@@ -1,0 +1,17 @@
+{
+  "id": "anthropics-skills--skills--canvas-design",
+  "name": "canvas-design",
+  "description_zh": "使用设计哲学创建精美的 .png 和 .pdf 视觉艺术文档。当用户请求创建海报、艺术作品、设计或其他静态作品时，应使用此 skill。创建原创视觉设计，切勿复制现有艺术家的作品，以避免版权侵权。",
+  "description_en": "Create beautiful visual art in .png and .pdf documents using design philosophy. You should use this skill when the user asks to create a poster, piece of art, design, or other static piece. Create original visual designs, never copying existing artists' work to avoid copyright violations.",
+  "profession": "设计师",
+  "content_hash": "e221862aade17cf7d92dd8434c6c8664c28d47f3ef48a0e8f66106db518b10a5",
+  "source": {
+    "type": "github",
+    "repo": "anthropics-skills",
+    "path": "skills/canvas-design/SKILL.md",
+    "commit": "da20c92503b2e8ff1cf28ca81a0df4673debdbf7"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:44:58.278Z",
+  "updated_at": "2026-06-05T09:44:58.278Z"
+}

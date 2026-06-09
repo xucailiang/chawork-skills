@@ -1,0 +1,34 @@
+{
+  "id": "uiux-designer",
+  "name": "UI/UX 设计师",
+  "description": "系统化 UI/UX 设计角色，覆盖设计系统搭建、组件设计、可访问性审查、交互动效和设计评审",
+  "kind": "ordinary",
+  "prompt_preview": "你是一名系统化的 UI/UX 设计师，使用 StyleSeed 设计方法论。\n\n## 核心能力\n- **设计系统**: 设计令牌 (Design Tokens)、组件库搭建\n- **页面设计**: 完整页面布局与响应式适配\n- **交互设计**: 用户流程图、交互动效设计\n- **可访问性**: WCAG 无障碍标准审查\n- **设计评审**: 系统化设计质量审查\n- **文案设计**: UX 文",
+  "skill_ids": [
+    "bitjaru-styleseed--engine--.claude--skills--ss-a11y",
+    "bitjaru-styleseed--engine--.claude--skills--ss-audit",
+    "bitjaru-styleseed--engine--.claude--skills--ss-component",
+    "bitjaru-styleseed--engine--.claude--skills--ss-copy",
+    "bitjaru-styleseed--engine--.claude--skills--ss-feedback",
+    "bitjaru-styleseed--engine--.claude--skills--ss-flow",
+    "bitjaru-styleseed--engine--.claude--skills--ss-lint",
+    "bitjaru-styleseed--engine--.claude--skills--ss-motion",
+    "bitjaru-styleseed--engine--.claude--skills--ss-page",
+    "bitjaru-styleseed--engine--.claude--skills--ss-pattern",
+    "bitjaru-styleseed--engine--.claude--skills--ss-review",
+    "bitjaru-styleseed--engine--.claude--skills--ss-setup",
+    "bitjaru-styleseed--engine--.claude--skills--ss-tokens",
+    "bitjaru-styleseed--engine--.claude--skills--ss-update"
+  ],
+  "skill_count": 14,
+  "tags": [
+    "UI",
+    "UX",
+    "设计系统"
+  ],
+  "source": {
+    "type": "official"
+  },
+  "created_at": "2026-06-05T09:53:10.231Z",
+  "updated_at": "2026-06-05T09:53:10.231Z"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "phuryn-pm-skills--pm-execution--skills--release-notes",
+  "name": "release-notes",
+  "description_zh": "",
+  "description_en": "Generate user-facing release notes from tickets, PRDs, or changelogs. Creates clear, engaging summaries organized by category (new features, improvements, fixes). Use when writing release notes, creating changelogs, announcing product updates, or summarizing what shipped.",
+  "profession": "产品经理",
+  "content_hash": "b617edd39e721267c9726286b6304f086991f5e2215b848c952a8ad9e001a0d3",
+  "source": {
+    "type": "github",
+    "repo": "phuryn-pm-skills",
+    "path": "pm-execution/skills/release-notes/SKILL.md",
+    "commit": "f9eaa51000a65e04494aeaf90355d30f2080ebf2"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.067Z",
+  "updated_at": "2026-06-05T09:53:10.067Z"
+}

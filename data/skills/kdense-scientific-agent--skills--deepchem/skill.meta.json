@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--deepchem",
+  "name": "deepchem",
+  "description_zh": "",
+  "description_en": "Molecular ML with diverse featurizers and pre-built datasets. Use for property prediction (ADMET, toxicity) with traditional ML or GNNs when you want extensive featurization options and MoleculeNet benchmarks. Best for quick experiments with pre-trained models, diverse molecular representations. For graph-first PyTorch workflows use torchdrug; for benchmark datasets use pytdc.",
+  "profession": "科研学术",
+  "content_hash": "9ba36a531abe5eb9fdfe5808deb208b9fb45e6481c29ee7815c5460bbb11fafd",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/deepchem/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.125Z",
+  "updated_at": "2026-06-05T09:53:10.125Z"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--open-notebook",
+  "name": "open-notebook",
+  "description_zh": "",
+  "description_en": "Self-hosted, open-source alternative to Google NotebookLM for AI-powered research and document analysis. Use when organizing research materials into notebooks, ingesting diverse content sources (PDFs, videos, audio, web pages, Office documents), generating AI-powered notes and summaries, creating multi-speaker podcasts from research, chatting with documents using context-aware AI, searching across materials with full-text and vector search, or running custom content transformations. Supports 16+ AI providers including OpenAI, Anthropic, Google, Ollama, Groq, and Mistral with complete data privacy through self-hosting.",
+  "profession": "科研学术",
+  "content_hash": "61eb08c97e7e960d626fe76021a456e18ea8de3815a5e26d01015d0eea3b2186",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/open-notebook/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.158Z",
+  "updated_at": "2026-06-05T09:53:10.158Z"
+}

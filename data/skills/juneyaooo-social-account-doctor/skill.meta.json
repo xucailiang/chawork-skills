@@ -1,0 +1,17 @@
+{
+  "id": "juneyaooo-social-account-doctor",
+  "name": "social-account-doctor",
+  "description_zh": "小红书/抖音/快手/视频号自媒体「找对标→拆爆款→套自己」四命令闭环。给出账号/选题方向/原始素材，输出可发的下一条笔记初稿（标题+封面大字+首段+CTA）。支持 compose（素材打底）、find（找对标）、crack（拆爆款）、adapt（仿写）四个核心命令。",
+  "description_en": "Social media content creation pipeline for Xiaohongshu/Douyin/Kuaishou/WeChat Channels. Four-command closed loop: compose (material analysis) → find (benchmark discovery) → crack (viral content breakdown) → adapt (personalized adaptation). Outputs ready-to-publish drafts with titles, cover text, opening paragraph, and CTA.",
+  "profession": "内容运营",
+  "content_hash": "3624c579ca7beb9e0962d4e2bf65d0106375967a3bf446d5411ee35e5ccdbb12",
+  "source": {
+    "type": "github",
+    "repo": "juneyaooo-social-account-doctor",
+    "path": "SKILL.md",
+    "commit": "51d18ab9682122c776b957e51858da2974a1bbd5"
+  },
+  "tags": ["小红书", "抖音", "快手", "视频号", "自媒体", "爆款", "内容创作"],
+  "created_at": "2026-06-05T10:15:00.000Z",
+  "updated_at": "2026-06-05T10:15:00.000Z"
+}

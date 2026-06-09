@@ -1,0 +1,17 @@
+{
+  "id": "yuan1z-nature-skills--skills--nature-paper2ppt",
+  "name": "nature-paper2ppt",
+  "description_zh": "",
+  "description_en": "Build a complete but efficient Nature-style Chinese PPTX presentation from a scientific paper, preprint, PDF, article text, abstract, figure legends, or reading notes. Use this skill whenever the user asks to make slides/PPT/PPTX for journal club, group meeting, paper sharing, thesis seminar, lab meeting, department report, or academic presentation from a research paper, not only medical papers. It identifies the paper type and argument, selects only the figures needed for the story, writes Chinese slide content and speaker notes, creates the actual .pptx deck, and runs an explicit self-review/corrective revision loop focused on figure quality, text overflow prevention, and non-template visual design before delivery. Also trigger on general academic-presentation requests even without the word \"Nature\", such as turning a paper into slides, building an academic talk deck, conference/defense presentations, and Chinese phrasings like 论文做PPT、论文汇报、组会PPT、文献汇报、学术汇报、做幻灯片、讲paper、读书报告PPT.",
+  "profession": "科研学术",
+  "content_hash": "e1b495cfaebfa457cc2b8ae429f717308efdb772c0491ef2b22a4bd8376cba62",
+  "source": {
+    "type": "github",
+    "repo": "yuan1z-nature-skills",
+    "path": "skills/nature-paper2ppt/SKILL.md",
+    "commit": "c9b874a675e29e40fed88af89509092665d5a236"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.101Z",
+  "updated_at": "2026-06-05T09:53:10.101Z"
+}

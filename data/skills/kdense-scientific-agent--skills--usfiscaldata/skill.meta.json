@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--usfiscaldata",
+  "name": "usfiscaldata",
+  "description_zh": "",
+  "description_en": "Query the U.S. Treasury Fiscal Data REST API for federal financial data. No API key required. Use for national debt (Debt to the Penny), Daily Treasury Statements, Monthly Treasury Statements, Treasury securities auctions, interest rates, foreign exchange rates, savings bonds, or U.S. government revenue and spending statistics.",
+  "profession": "科研学术",
+  "content_hash": "ee973d8e61518c809f6329b1b698e04b7ec5fd8b402faaf15b1f3c0bee6005dc",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/usfiscaldata/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.202Z",
+  "updated_at": "2026-06-05T09:53:10.202Z"
+}

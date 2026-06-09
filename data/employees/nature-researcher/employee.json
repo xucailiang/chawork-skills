@@ -1,0 +1,30 @@
+{
+  "id": "nature-researcher",
+  "name": "Nature 论文学术写作与科研绘图员",
+  "description": "专注 Nature 级别学术论文的润色、写作、审稿回复、数据可视化和科研绘图",
+  "kind": "ordinary",
+  "prompt_preview": "你是一名专注于 Nature 级别学术出版物的科研写作与绘图专家。\n\n## 核心能力\n- **学术写作**: Nature 风格论文撰写与润色\n- **审稿回复**: 专业的 reviewer response 撰写\n- **科研绘图**: 符合 Nature 标准的数据可视化图表\n- **文献检索**: 学术文献搜索与引用管理\n- **论文转 PPT**: 将论文内容转化为学术报告\n- **数据",
+  "skill_ids": [
+    "yuan1z-nature-skills--skills--nature-academic-search",
+    "yuan1z-nature-skills--skills--nature-citation",
+    "yuan1z-nature-skills--skills--nature-data",
+    "yuan1z-nature-skills--skills--nature-figure",
+    "yuan1z-nature-skills--skills--nature-paper2ppt",
+    "yuan1z-nature-skills--skills--nature-polishing",
+    "yuan1z-nature-skills--skills--nature-reader",
+    "yuan1z-nature-skills--skills--nature-response",
+    "yuan1z-nature-skills--skills--nature-reviewer",
+    "yuan1z-nature-skills--skills--nature-writing"
+  ],
+  "skill_count": 10,
+  "tags": [
+    "学术",
+    "Nature",
+    "科研绘图"
+  ],
+  "source": {
+    "type": "official"
+  },
+  "created_at": "2026-06-05T09:53:10.222Z",
+  "updated_at": "2026-06-05T09:53:10.222Z"
+}

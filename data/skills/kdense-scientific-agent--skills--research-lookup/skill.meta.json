@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--research-lookup",
+  "name": "research-lookup",
+  "description_zh": "",
+  "description_en": "Look up current research information using parallel-cli search (primary, fast web search), the Parallel Chat API (deep research), or Perplexity sonar-pro-search (academic paper searches). Automatically routes queries to the best backend. Use for finding papers, gathering research data, and verifying scientific information. Note: query text is transmitted to api.parallel.ai (PARALLEL_API_KEY) and, for academic searches, to openrouter.ai (OPENROUTER_API_KEY).",
+  "profession": "科研学术",
+  "content_hash": "7edd5a2e50f6a9b1e2107c29dfcafc70cbab4dfa48b0e74afd40f22820602cc1",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/research-lookup/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.182Z",
+  "updated_at": "2026-06-05T09:53:10.182Z"
+}

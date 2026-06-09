@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--etetoolkit",
+  "name": "etetoolkit",
+  "description_zh": "",
+  "description_en": "Phylogenetic tree toolkit (ETE). Tree manipulation (Newick/NHX), evolutionary event detection, orthology/paralogy, NCBI taxonomy, visualization (PDF/SVG), for phylogenomics.",
+  "profession": "科研学术",
+  "content_hash": "bdcf66329c167bb4165fc462721588ec0797b4001a71c42f738f555e11436c75",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/etetoolkit/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.131Z",
+  "updated_at": "2026-06-05T09:53:10.131Z"
+}

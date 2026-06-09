@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--flowio",
+  "name": "flowio",
+  "description_zh": "",
+  "description_en": "Parse FCS (Flow Cytometry Standard) files v2.0-3.1. Extract events as NumPy arrays, read metadata/channels, convert to CSV/DataFrame, for flow cytometry data preprocessing.",
+  "profession": "科研学术",
+  "content_hash": "4ffc97f404f98462a2264460123deab31c2e57c012948b39aac71c2116fcf857",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/flowio/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.133Z",
+  "updated_at": "2026-06-05T09:53:10.133Z"
+}

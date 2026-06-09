@@ -1,0 +1,17 @@
+{
+  "id": "phuryn-pm-skills--pm-market-research--skills--user-personas",
+  "name": "user-personas",
+  "description_zh": "",
+  "description_en": "Create refined user personas from research data — 3 personas with JTBD, pains, gains, and unexpected insights. Use when building personas from survey data, creating user profiles from research, or segmenting users for product decisions.",
+  "profession": "产品经理",
+  "content_hash": "012eb8ea4a6ec51bb72ddf41f48d8520f26c7f4e43ff82d69d1074e3503087ca",
+  "source": {
+    "type": "github",
+    "repo": "phuryn-pm-skills",
+    "path": "pm-market-research/skills/user-personas/SKILL.md",
+    "commit": "f9eaa51000a65e04494aeaf90355d30f2080ebf2"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.075Z",
+  "updated_at": "2026-06-05T09:53:10.075Z"
+}

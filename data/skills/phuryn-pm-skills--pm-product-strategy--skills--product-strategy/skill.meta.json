@@ -1,0 +1,17 @@
+{
+  "id": "phuryn-pm-skills--pm-product-strategy--skills--product-strategy",
+  "name": "product-strategy",
+  "description_zh": "",
+  "description_en": "Create a comprehensive product strategy using the 9-section Product Strategy Canvas — vision, segments, costs, value propositions, trade-offs, metrics, growth, capabilities, and defensibility. Use when building a product strategy, creating a strategic plan, or defining product direction.",
+  "profession": "产品经理",
+  "content_hash": "50d4bfe62ae71a321271a491148e8dca4715a6a7550f82ffba2ded06f036d5b8",
+  "source": {
+    "type": "github",
+    "repo": "phuryn-pm-skills",
+    "path": "pm-product-strategy/skills/product-strategy/SKILL.md",
+    "commit": "f9eaa51000a65e04494aeaf90355d30f2080ebf2"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.089Z",
+  "updated_at": "2026-06-05T09:53:10.089Z"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--geniml",
+  "name": "geniml",
+  "description_zh": "",
+  "description_en": "This skill should be used when working with genomic interval data (BED files) for machine learning tasks. Use for training region embeddings (Region2Vec, BEDspace), single-cell ATAC-seq analysis (scEmbed), building consensus peaks (universes), or any ML-based analysis of genomic regions. Applies to BED file collections, scATAC-seq data, chromatin accessibility datasets, and region-based genomic feature learning.",
+  "profession": "科研学术",
+  "content_hash": "106e625ce5f70c8daa025a5f1e7602ca376ba6781b479e157a3581b6a83f7cfe",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/geniml/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.135Z",
+  "updated_at": "2026-06-05T09:53:10.135Z"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "bitjaru-styleseed--engine--.claude--skills--ss-tokens",
+  "name": "ss-tokens",
+  "description_zh": "",
+  "description_en": "View, add, or modify design tokens in the StyleSeed design system",
+  "profession": "设计师",
+  "content_hash": "d4ac2068396be59d00274540af97a3d6d4d8ed88dec8324324f4c96c59b2e18e",
+  "source": {
+    "type": "github",
+    "repo": "bitjaru-styleseed",
+    "path": "engine/.claude/skills/ss-tokens/SKILL.md",
+    "commit": "9ce238d6a9e7a7c0ccfb28d0805d8d7987e595a0"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.211Z",
+  "updated_at": "2026-06-05T09:53:10.211Z"
+}

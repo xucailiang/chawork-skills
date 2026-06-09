@@ -1,0 +1,17 @@
+{
+  "id": "antigravity-awesome-skills--skills--ad-creative",
+  "name": "ad-creative",
+  "description_zh": "",
+  "description_en": "Create, iterate, and scale paid ad creative for Google Ads, Meta, LinkedIn, TikTok, and similar platforms. Use when generating headlines, descriptions, primary text, or large sets of ad variations for testing and performance optimization.",
+  "profession": "市场营销",
+  "content_hash": "e6ed48c6b1239a3969ee4a1cd586e7bc3357d36a27c5f1af800a889dbf5fbea5",
+  "source": {
+    "type": "github",
+    "repo": "antigravity-awesome-skills",
+    "path": "skills/ad-creative/SKILL.md",
+    "commit": "b806b97a9a48063f7bdbee5611caf40edd17e305"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.212Z",
+  "updated_at": "2026-06-05T09:53:10.212Z"
+}

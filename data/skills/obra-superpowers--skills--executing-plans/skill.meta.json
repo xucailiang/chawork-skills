@@ -1,0 +1,17 @@
+{
+  "id": "obra-superpowers--skills--executing-plans",
+  "name": "executing-plans",
+  "description_zh": "",
+  "description_en": "Use when you have a written implementation plan to execute in a separate session with review checkpoints",
+  "profession": "开发工程师",
+  "content_hash": "e2102f11631433939f162d383d769f8257d859d6639e0e14969cda3ef0a95eca",
+  "source": {
+    "type": "github",
+    "repo": "obra-superpowers",
+    "path": "skills/executing-plans/SKILL.md",
+    "commit": "6fd4507659784c351abbd2bc264c7162cfd386dc"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.056Z",
+  "updated_at": "2026-06-05T09:53:10.056Z"
+}

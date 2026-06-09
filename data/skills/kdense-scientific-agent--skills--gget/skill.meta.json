@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--gget",
+  "name": "gget",
+  "description_zh": "",
+  "description_en": "Fast CLI/Python queries to 20+ bioinformatics databases. Use for quick lookups: gene info, BLAST searches, AlphaFold structures, enrichment analysis. Best for interactive exploration, simple queries. For batch processing or advanced BLAST use biopython; for multi-database Python workflows use bioservices.",
+  "profession": "科研学术",
+  "content_hash": "2f1f663f11482ee21c690574ad108277e3bf9f3e34822c1b6b07f9407d80c7ea",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/gget/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.137Z",
+  "updated_at": "2026-06-05T09:53:10.137Z"
+}

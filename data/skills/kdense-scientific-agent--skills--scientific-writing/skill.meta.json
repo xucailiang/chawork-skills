@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--scientific-writing",
+  "name": "scientific-writing",
+  "description_zh": "",
+  "description_en": "Core skill for the deep research and writing tool. Write scientific manuscripts in full paragraphs (never bullet points). Use two-stage process with (1) section outlines with key points using research-lookup then (2) convert to flowing prose. IMRAD structure, citations (APA/AMA/Vancouver), figures/tables, reporting guidelines (CONSORT/STROBE/PRISMA), for research papers and journal submissions.",
+  "profession": "科研学术",
+  "content_hash": "1c09b073a53f46ad05a0643667984c17f7062e61145047df1716f5cd3d61cf28",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/scientific-writing/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.189Z",
+  "updated_at": "2026-06-05T09:53:10.189Z"
+}

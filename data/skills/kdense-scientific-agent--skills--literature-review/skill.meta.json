@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--literature-review",
+  "name": "literature-review",
+  "description_zh": "",
+  "description_en": "Conduct comprehensive, systematic literature reviews using multiple academic databases (PubMed, arXiv, bioRxiv, Semantic Scholar, etc.). This skill should be used when conducting systematic literature reviews, meta-analyses, research synthesis, or comprehensive literature searches across biomedical, scientific, and technical domains. Creates professionally formatted markdown documents and PDFs with verified citations in multiple citation styles (APA, Nature, Vancouver, etc.).",
+  "profession": "科研学术",
+  "content_hash": "44cadd34b8577c4723f8d1fb57ad46c1e92d832a12ca81173ff8bd4d48553840",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/literature-review/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.148Z",
+  "updated_at": "2026-06-05T09:53:10.148Z"
+}

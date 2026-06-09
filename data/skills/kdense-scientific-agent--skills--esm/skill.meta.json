@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--esm",
+  "name": "esm",
+  "description_zh": "",
+  "description_en": "Comprehensive toolkit for EvolutionaryScale protein language models including ESM3 (generative multimodal design across sequence, structure, and function) and ESM C (efficient embeddings). Use for protein sequence/structure/function tasks, inverse folding, embeddings, variant design, and ESMFold2 structure prediction via Biohub. Supports local open weights (Python 3.12, esm on PyPI) and cloud Forge/Biohub APIs with ESM_API_KEY authentication.",
+  "profession": "科研学术",
+  "content_hash": "03b55cab50570fc39fa1ad8ebedc9753656745826308da416c4d51623be8d565",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/esm/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.130Z",
+  "updated_at": "2026-06-05T09:53:10.130Z"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "greensock-gsap-skills--skills--gsap-plugins",
+  "name": "gsap-plugins",
+  "description_zh": "",
+  "description_en": "Official GSAP skill for GSAP plugins — registration, ScrollToPlugin, ScrollSmoother, Flip, Draggable, Inertia, Observer, SplitText, ScrambleText, SVG and physics plugins, CustomEase, EasePack, CustomWiggle, CustomBounce, GSDevTools. Use when the user asks about a GSAP plugin, scroll-to, flip animations, draggable, SVG drawing, or plugin registration.",
+  "profession": "开发工程师",
+  "content_hash": "5838b856c74c07fbc9fa99b6dfd1eee34ea554c3e530c30e0d58014b707d70a4",
+  "source": {
+    "type": "github",
+    "repo": "greensock-gsap-skills",
+    "path": "skills/gsap-plugins/SKILL.md",
+    "commit": "aed9cfd3277740755f6bfc1155c7aa645403b760"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.096Z",
+  "updated_at": "2026-06-05T09:53:10.096Z"
+}

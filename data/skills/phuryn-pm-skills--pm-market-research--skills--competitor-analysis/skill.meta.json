@@ -1,0 +1,17 @@
+{
+  "id": "phuryn-pm-skills--pm-market-research--skills--competitor-analysis",
+  "name": "competitor-analysis",
+  "description_zh": "",
+  "description_en": "Analyze competitors with strengths, weaknesses, and differentiation opportunities. Identifies direct competitors and maps the competitive landscape. Use when doing competitive research, preparing a competitive brief, or finding differentiation opportunities.",
+  "profession": "产品经理",
+  "content_hash": "8e627fc7fba96f223ad9f8fd23c6033a429cc28f9e9ce2d672854c6851810c2b",
+  "source": {
+    "type": "github",
+    "repo": "phuryn-pm-skills",
+    "path": "pm-market-research/skills/competitor-analysis/SKILL.md",
+    "commit": "f9eaa51000a65e04494aeaf90355d30f2080ebf2"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.073Z",
+  "updated_at": "2026-06-05T09:53:10.073Z"
+}

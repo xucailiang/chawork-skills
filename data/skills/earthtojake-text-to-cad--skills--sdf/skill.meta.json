@@ -1,0 +1,17 @@
+{
+  "id": "earthtojake-text-to-cad--skills--sdf",
+  "name": "sdf",
+  "description_zh": "",
+  "description_en": "SDFormat/SDF model and world generation, validation, and simulator handoff. Use for `.sdf` files, SDFormat XML, Python `gen_sdf()` sources, models, worlds, links, joints, poses, frames, inertials, visual/collision geometry, mesh URIs, sensors, lights, physics, plugins, includes, Gazebo, static SDF review, or simulator-specific metadata. Do not use for signed-distance-field geometry.",
+  "profession": "设计师",
+  "content_hash": "7339be0e0cb910464b655def4c53f0f8e4b877b88114faf8517d71fa2b1b6018",
+  "source": {
+    "type": "github",
+    "repo": "earthtojake-text-to-cad",
+    "path": "skills/sdf/SKILL.md",
+    "commit": "99b3cec82a3a1cf9e6bc8846b868ba4f9ff4ad18"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.109Z",
+  "updated_at": "2026-06-05T09:53:10.109Z"
+}

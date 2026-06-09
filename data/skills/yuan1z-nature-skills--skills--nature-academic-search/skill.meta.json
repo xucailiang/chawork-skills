@@ -1,0 +1,17 @@
+{
+  "id": "yuan1z-nature-skills--skills--nature-academic-search",
+  "name": "nature-academic-search",
+  "description_zh": "",
+  "description_en": "Multi-source literature search, citation verification, MeSH search strategy, citation file management (.nbib/.ris/.bib conversion), and reference management (BibTeX, related articles, ID conversion) via MCP tools (PubMed, CrossRef, arXiv, Scopus, ScienceDirect). Use when the user needs coordinated multi-step literature workflows beyond a single MCP call. Also trigger on general literature-search needs during academic writing even without the word \"Nature\", such as searching for papers/literature, doing a literature review, verifying a citation, converting citation files, and Chinese phrasings like 文献检索、查文献、找文献、 文献综述检索、查论文、引文核对、参考文献管理、文献去重.",
+  "profession": "科研学术",
+  "content_hash": "ff41b4dfbed67778ddaedf7e3a2d02b1fbf2b7d73450226d1ad9520cd0ff3050",
+  "source": {
+    "type": "github",
+    "repo": "yuan1z-nature-skills",
+    "path": "skills/nature-academic-search/SKILL.md",
+    "commit": "c9b874a675e29e40fed88af89509092665d5a236"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.099Z",
+  "updated_at": "2026-06-05T09:53:10.099Z"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "phuryn-pm-skills--pm-product-strategy--skills--startup-canvas",
+  "name": "startup-canvas",
+  "description_zh": "",
+  "description_en": "Generate a Startup Canvas combining Product Strategy (9 sections) and Business Model (costs + revenue) for a new product. An alternative to BMC and Lean Canvas that separates strategy from business model. Use when launching a new product or evaluating a startup concept.",
+  "profession": "产品经理",
+  "content_hash": "356f02faf7bc60a71de658dbb6469e1e10bc4a7907b34c2096dc617a99616495",
+  "source": {
+    "type": "github",
+    "repo": "phuryn-pm-skills",
+    "path": "pm-product-strategy/skills/startup-canvas/SKILL.md",
+    "commit": "f9eaa51000a65e04494aeaf90355d30f2080ebf2"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.090Z",
+  "updated_at": "2026-06-05T09:53:10.090Z"
+}

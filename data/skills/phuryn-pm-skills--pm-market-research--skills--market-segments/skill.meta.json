@@ -1,0 +1,17 @@
+{
+  "id": "phuryn-pm-skills--pm-market-research--skills--market-segments",
+  "name": "market-segments",
+  "description_zh": "",
+  "description_en": "Identify 3-5 potential customer segments with demographics, JTBD, and product fit analysis. Use when exploring market segments, identifying target audiences, evaluating new markets, or learning how to segment a market.",
+  "profession": "产品经理",
+  "content_hash": "f8425da0486d844a661fe18f809de1e055d7125c74ed423ee750cf2be74a2319",
+  "source": {
+    "type": "github",
+    "repo": "phuryn-pm-skills",
+    "path": "pm-market-research/skills/market-segments/SKILL.md",
+    "commit": "f9eaa51000a65e04494aeaf90355d30f2080ebf2"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.074Z",
+  "updated_at": "2026-06-05T09:53:10.074Z"
+}

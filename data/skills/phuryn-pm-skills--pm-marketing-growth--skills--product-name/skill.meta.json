@@ -1,0 +1,17 @@
+{
+  "id": "phuryn-pm-skills--pm-marketing-growth--skills--product-name",
+  "name": "product-name",
+  "description_zh": "",
+  "description_en": "Brainstorm 5 unique, memorable product names with rationale aligned to brand values and target audience. Use when naming a new product, rebranding, or exploring product name ideas.",
+  "profession": "产品经理",
+  "content_hash": "16d715bbe6ab07b024a63a1a38f3616a3d9602bf4ca9425e1bb33496becce0b3",
+  "source": {
+    "type": "github",
+    "repo": "phuryn-pm-skills",
+    "path": "pm-marketing-growth/skills/product-name/SKILL.md",
+    "commit": "f9eaa51000a65e04494aeaf90355d30f2080ebf2"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.077Z",
+  "updated_at": "2026-06-05T09:53:10.077Z"
+}

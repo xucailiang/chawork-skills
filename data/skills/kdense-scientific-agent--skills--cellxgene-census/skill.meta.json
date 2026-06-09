@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--cellxgene-census",
+  "name": "cellxgene-census",
+  "description_zh": "",
+  "description_en": "Query the CELLxGENE Census (61M+ cells) programmatically. Use when you need expression data across tissues, diseases, or cell types from the largest curated single-cell atlas. Best for population-scale queries, reference atlas comparisons. For analyzing your own data use scanpy or scvi-tools.",
+  "profession": "科研学术",
+  "content_hash": "bbba41ac73c865af2a2c65e19d0164583a6c15b02220a1cdab1f68d9e9b431f7",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/cellxgene-census/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.118Z",
+  "updated_at": "2026-06-05T09:53:10.118Z"
+}

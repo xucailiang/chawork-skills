@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--liteparse",
+  "name": "liteparse",
+  "description_zh": "",
+  "description_en": "Local document and PDF parsing with spatial text and bounding boxes. Use for extracting text from PDFs, DOCX, Office files, and images; OCR on scans; layout-preserved JSON for RAG; batch-ingesting paper folders; or page screenshots for multimodal agents — even when the user does not name liteparse. Prefer over MarkItDown when you need bboxes, fast local parsing, or PNG page renders; prefer over the pdf skill for merge/split/forms.",
+  "profession": "科研学术",
+  "content_hash": "e44c7abf7b60321e23fcc21720001d32a743580363a3954c0dac2a84e9f264dc",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/liteparse/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.147Z",
+  "updated_at": "2026-06-05T09:53:10.147Z"
+}

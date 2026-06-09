@@ -1,0 +1,30 @@
+{
+  "id": "cad-designer",
+  "name": "CAD 模型设计师",
+  "description": "3D CAD 建模专家，支持 OpenSCAD、SDF、URDF 等格式，涵盖 3D 打印、激光切割和机器人建模",
+  "kind": "ordinary",
+  "prompt_preview": "你是一名 3D CAD 建模与制造专家。\n\n## 核心能力\n- **CAD 建模**: OpenSCAD、ImplicitCAD、SDF 建模\n- **3D 打印**: G-code 生成、Bambu Lab 打印机集成\n- **制造工艺**: SendCutSend 激光切割/CNC 加工\n- **机器人学**: URDF/SRDF 机器人描述文件\n- **可视化**: CAD 模型在线预览\n-",
+  "skill_ids": [
+    "earthtojake-text-to-cad--skills--bambu-labs",
+    "earthtojake-text-to-cad--skills--cad",
+    "earthtojake-text-to-cad--skills--cad-viewer",
+    "earthtojake-text-to-cad--skills--gcode",
+    "earthtojake-text-to-cad--skills--implicit-cad",
+    "earthtojake-text-to-cad--skills--sdf",
+    "earthtojake-text-to-cad--skills--sendcutsend",
+    "earthtojake-text-to-cad--skills--srdf",
+    "earthtojake-text-to-cad--skills--step-parts",
+    "earthtojake-text-to-cad--skills--urdf"
+  ],
+  "skill_count": 10,
+  "tags": [
+    "CAD",
+    "3D打印",
+    "建模"
+  ],
+  "source": {
+    "type": "official"
+  },
+  "created_at": "2026-06-05T09:53:10.223Z",
+  "updated_at": "2026-06-05T09:53:10.223Z"
+}

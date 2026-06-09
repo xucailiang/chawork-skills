@@ -1,0 +1,17 @@
+{
+  "id": "obra-superpowers--skills--writing-plans",
+  "name": "writing-plans",
+  "description_zh": "",
+  "description_en": "Use when you have a spec or requirements for a multi-step task, before touching code",
+  "profession": "开发工程师",
+  "content_hash": "4fd4627d2c02367879c0307d7249270bed633317ff9be82e926a6d57bf5d331b",
+  "source": {
+    "type": "github",
+    "repo": "obra-superpowers",
+    "path": "skills/writing-plans/SKILL.md",
+    "commit": "6fd4507659784c351abbd2bc264c7162cfd386dc"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.061Z",
+  "updated_at": "2026-06-05T09:53:10.061Z"
+}

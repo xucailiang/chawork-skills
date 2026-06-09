@@ -1,0 +1,17 @@
+{
+  "id": "obra-superpowers--skills--requesting-code-review",
+  "name": "requesting-code-review",
+  "description_zh": "",
+  "description_en": "Use when completing tasks, implementing major features, or before merging to verify work meets requirements",
+  "profession": "开发工程师",
+  "content_hash": "5a3a44a3667800e2dc836829c6b92fada51e6dc58ac144ec05fe59f47d6bcd84",
+  "source": {
+    "type": "github",
+    "repo": "obra-superpowers",
+    "path": "skills/requesting-code-review/SKILL.md",
+    "commit": "6fd4507659784c351abbd2bc264c7162cfd386dc"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.058Z",
+  "updated_at": "2026-06-05T09:53:10.058Z"
+}

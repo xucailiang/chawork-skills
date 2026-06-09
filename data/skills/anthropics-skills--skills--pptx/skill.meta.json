@@ -1,0 +1,17 @@
+{
+  "id": "anthropics-skills--skills--pptx",
+  "name": "pptx",
+  "description_zh": "任何涉及 .pptx 文件的场景都应使用此 skill —— 无论作为输入、输出或两者皆是。包括：创建幻灯片、pitch deck 或演示文稿；读取、解析或从任何 .pptx 文件中提取文本（即使提取的内容将用于其他地方，如邮件或摘要）；编辑、修改或更新现有演示文稿；合并或拆分幻灯片文件；处理模板、版式、演讲者备注或评论。每当用户提到 \"deck\"、\"slides\"、\"presentation\" 或引用 .pptx 文件名时即触发，无论用户后续打算如何处理这些内容。只要需要打开、创建或操作 .pptx 文件，就使用此 skill。",
+  "description_en": "Use this skill any time a .pptx file is involved in any way — as input, output, or both. This includes: creating slide decks, pitch decks, or presentations; reading, parsing, or extracting text from any .pptx file (even if the extracted content will be used elsewhere, like in an email or summary); editing, modifying, or updating existing presentations; combining or splitting slide files; working with templates, layouts, speaker notes, or comments. Trigger whenever the user mentions \"deck,\" \"slides,\" \"presentation,\" or references a .pptx filename, regardless of what they plan to do with the content afterward. If a .pptx file needs to be opened, created, or touched, use this skill.",
+  "profession": "通用技能",
+  "content_hash": "500e25e314d3bc7e38202b590887af3d1be077cecea6e8851dd18413f91290dd",
+  "source": {
+    "type": "github",
+    "repo": "anthropics-skills",
+    "path": "skills/pptx/SKILL.md",
+    "commit": "da20c92503b2e8ff1cf28ca81a0df4673debdbf7"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:44:58.284Z",
+  "updated_at": "2026-06-05T09:44:58.284Z"
+}

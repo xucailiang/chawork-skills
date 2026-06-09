@@ -1,0 +1,17 @@
+{
+  "id": "yuan1z-nature-skills--skills--nature-figure",
+  "name": "nature-figure",
+  "description_zh": "",
+  "description_en": "Submission-grade Nature/high-impact journal figure workflow for Python or R. Use whenever the user asks to create, revise, audit, or polish manuscript figures, multi-panel scientific plots, figures4papers-style matplotlib plots, or journal-ready SVG/PDF/TIFF outputs, especially for Nature-family or other high-impact journals. Before plotting, define the figure's conclusion, evidence logic, export needs, and review risks. If the user has not chosen Python or R, ask \"Python or R?\" and stop. Use only the selected backend for figure generation, previewing, exporting, and QA. Supports matplotlib/seaborn and ggplot2/patchwork/ComplexHeatmap. Not for dashboards or Illustrator/Figma-first infographics. Also trigger on general academic-writing figure needs even without the word \"Nature\", such as making figures/plots for a paper, scientific/academic plotting, data visualization for a manuscript, and Chinese phrasings like 论文配图、学术写作配图、科研绘图、科研作图、画图、作图、出图、论文图表、可视化.",
+  "profession": "科研学术",
+  "content_hash": "7cddee9337bc2bb6fe6b72e1cd89cf05eb00f26d947f4c1e37b52bdd566f3781",
+  "source": {
+    "type": "github",
+    "repo": "yuan1z-nature-skills",
+    "path": "skills/nature-figure/SKILL.md",
+    "commit": "c9b874a675e29e40fed88af89509092665d5a236"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.101Z",
+  "updated_at": "2026-06-05T09:53:10.101Z"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "earthtojake-text-to-cad--skills--urdf",
+  "name": "urdf",
+  "description_zh": "",
+  "description_en": "URDF robot description generation and default generation-time validation. Use when creating, editing, regenerating, inspecting, or debugging `.urdf` files, Python `gen_urdf()` sources, robot links, joints, limits, inertials, visual/collision geometry, mesh references, frame conventions, or generated robot-description artifacts. Use the SRDF skill for MoveIt2 semantic groups and IK/path-planning semantics; use the cad-viewer skill for local MoveIt2 server controls; use the CAD skill for STEP/STL/3MF/DXF/GLB outputs.",
+  "profession": "设计师",
+  "content_hash": "2973ccd2515bef07748fa291522ab43bcd21e3d67f1338dd67753cf37954153a",
+  "source": {
+    "type": "github",
+    "repo": "earthtojake-text-to-cad",
+    "path": "skills/urdf/SKILL.md",
+    "commit": "99b3cec82a3a1cf9e6bc8846b868ba4f9ff4ad18"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.111Z",
+  "updated_at": "2026-06-05T09:53:10.111Z"
+}

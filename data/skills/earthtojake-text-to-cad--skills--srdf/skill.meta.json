@@ -1,0 +1,17 @@
+{
+  "id": "earthtojake-text-to-cad--skills--srdf",
+  "name": "srdf",
+  "description_zh": "",
+  "description_en": "MoveIt2 SRDF generation, validation, and planning-semantics workflow. Use when creating, editing, regenerating, inspecting, or validating `.srdf` files, `gen_srdf()` sources, MoveIt planning groups, virtual joints, passive joints, end effectors, group states, disabled collisions, URDF-linked planning semantics, or SRDF handoff for live review. Use the URDF skill for robot structure, the SDF skill for simulator descriptions, and the cad-viewer skill for rendering, live review links, and optional MoveIt2 controls.",
+  "profession": "设计师",
+  "content_hash": "9e753222fe9cb14fac4fc0046c53490836f11c5a7a05f7361e79fdcd755db0eb",
+  "source": {
+    "type": "github",
+    "repo": "earthtojake-text-to-cad",
+    "path": "skills/srdf/SKILL.md",
+    "commit": "99b3cec82a3a1cf9e6bc8846b868ba4f9ff4ad18"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.110Z",
+  "updated_at": "2026-06-05T09:53:10.110Z"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "phuryn-pm-skills--pm-execution--skills--prioritization-frameworks",
+  "name": "prioritization-frameworks",
+  "description_zh": "",
+  "description_en": "Reference guide to 9 prioritization frameworks with formulas, when-to-use guidance, and templates — RICE, ICE, Kano, MoSCoW, Opportunity Score, and more. Use when selecting a prioritization method, comparing frameworks like RICE vs ICE, or learning how different prioritization approaches work.",
+  "profession": "产品经理",
+  "content_hash": "5dab45be9e46397ec1c35a6a6aaa85233843184fd1e9d8e5f279dd02d6e4fc21",
+  "source": {
+    "type": "github",
+    "repo": "phuryn-pm-skills",
+    "path": "pm-execution/skills/prioritization-frameworks/SKILL.md",
+    "commit": "f9eaa51000a65e04494aeaf90355d30f2080ebf2"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.067Z",
+  "updated_at": "2026-06-05T09:53:10.067Z"
+}

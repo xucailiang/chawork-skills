@@ -1,0 +1,17 @@
+{
+  "id": "phuryn-pm-skills--pm-market-research--skills--customer-journey-map",
+  "name": "customer-journey-map",
+  "description_zh": "",
+  "description_en": "Create an end-to-end customer journey map with stages, touchpoints, emotions, pain points, and opportunities. Use when mapping the customer experience, identifying friction points, improving onboarding, or visualizing the user journey.",
+  "profession": "产品经理",
+  "content_hash": "656c0e16318b3b24870065a8eabb8a116b72e47c167472836ce76ea97ec5c75e",
+  "source": {
+    "type": "github",
+    "repo": "phuryn-pm-skills",
+    "path": "pm-market-research/skills/customer-journey-map/SKILL.md",
+    "commit": "f9eaa51000a65e04494aeaf90355d30f2080ebf2"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.073Z",
+  "updated_at": "2026-06-05T09:53:10.073Z"
+}

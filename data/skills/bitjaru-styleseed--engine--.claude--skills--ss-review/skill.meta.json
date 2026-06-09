@@ -1,0 +1,17 @@
+{
+  "id": "bitjaru-styleseed--engine--.claude--skills--ss-review",
+  "name": "ss-review",
+  "description_zh": "",
+  "description_en": "Review UI code for design system compliance, accessibility, and best practices",
+  "profession": "设计师",
+  "content_hash": "a94e6188b39063f3c1ba08b17ee00d7b23780ad92a3736045e16e9ccece25101",
+  "source": {
+    "type": "github",
+    "repo": "bitjaru-styleseed",
+    "path": "engine/.claude/skills/ss-review/SKILL.md",
+    "commit": "9ce238d6a9e7a7c0ccfb28d0805d8d7987e595a0"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.210Z",
+  "updated_at": "2026-06-05T09:53:10.210Z"
+}

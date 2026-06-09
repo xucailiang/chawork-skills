@@ -1,0 +1,17 @@
+{
+  "id": "anthropics-skills--skills--algorithmic-art",
+  "name": "algorithmic-art",
+  "description_zh": "使用 p5.js 创建算法艺术，支持种子化随机性与交互式参数探索。当用户请求使用代码创作艺术、生成艺术、算法艺术、流场或粒子系统时使用此 skill。请创作原创算法艺术，而非复制现有艺术家的作品，以避免侵犯版权。",
+  "description_en": "Creating algorithmic art using p5.js with seeded randomness and interactive parameter exploration. Use this when users request creating art using code, generative art, algorithmic art, flow fields, or particle systems. Create original algorithmic art rather than copying existing artists' work to avoid copyright violations.",
+  "profession": "设计师",
+  "content_hash": "e520b6777bb35c7a8fe8d0bcce715fbdd561985342d2f23531c78fdcdd6e391a",
+  "source": {
+    "type": "github",
+    "repo": "anthropics-skills",
+    "path": "skills/algorithmic-art/SKILL.md",
+    "commit": "da20c92503b2e8ff1cf28ca81a0df4673debdbf7"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:44:58.276Z",
+  "updated_at": "2026-06-05T09:44:58.276Z"
+}

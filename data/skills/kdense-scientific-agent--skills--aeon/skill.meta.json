@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--aeon",
+  "name": "aeon",
+  "description_zh": "",
+  "description_en": "This skill should be used for time series machine learning tasks including classification, regression, clustering, forecasting, anomaly detection, segmentation, and similarity search. Use when working with temporal data, sequential patterns, or time-indexed observations requiring specialized algorithms beyond standard ML approaches. Particularly suited for univariate and multivariate time series analysis with scikit-learn compatible APIs.",
+  "profession": "科研学术",
+  "content_hash": "93a909636a4b048f7d7c1bc81febf1832008b27f7e9a7bb233c0de043a1adfd3",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/aeon/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.113Z",
+  "updated_at": "2026-06-05T09:53:10.113Z"
+}

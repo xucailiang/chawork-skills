@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--scientific-critical-thinking",
+  "name": "scientific-critical-thinking",
+  "description_zh": "",
+  "description_en": "Evaluate scientific claims and evidence quality. Use for assessing experimental design validity, identifying biases and confounders, applying evidence grading frameworks (GRADE, Cochrane Risk of Bias), or teaching critical analysis. Best for understanding evidence quality, identifying flaws. For formal peer review writing use peer-review.",
+  "profession": "科研学术",
+  "content_hash": "c31c85233b9edff20d954f0ad740ad3d05cb1ba3888013e1d8edacbcf672c76c",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/scientific-critical-thinking/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.186Z",
+  "updated_at": "2026-06-05T09:53:10.186Z"
+}

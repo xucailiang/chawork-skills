@@ -1,6 +1,9 @@
 node_modules/
 dist-build/
-data/
+data/sources/
+data/state.json
+data/translated/
+data/overrides/
 *.log
 .DS_Store
 .env

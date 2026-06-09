@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--pathml",
+  "name": "pathml",
+  "description_zh": "",
+  "description_en": "Full-featured computational pathology toolkit. Use for advanced WSI analysis including multiplexed immunofluorescence (CODEX, Vectra), nucleus segmentation, tissue graph construction, and ML model training on pathology data. Supports 160+ slide formats. For simple tile extraction from H&E slides, histolab may be simpler.",
+  "profession": "科研学术",
+  "content_hash": "6055f86be24bf827b96f2a6b731fedced80b2e4bc84c847f0ea5f40d9e36eb3d",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/pathml/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.162Z",
+  "updated_at": "2026-06-05T09:53:10.162Z"
+}

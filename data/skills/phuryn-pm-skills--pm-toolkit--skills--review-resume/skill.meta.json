@@ -1,0 +1,17 @@
+{
+  "id": "phuryn-pm-skills--pm-toolkit--skills--review-resume",
+  "name": "review-resume",
+  "description_zh": "",
+  "description_en": "Comprehensive PM resume review and tailoring against 10 best practices including XYZ+S formula, keyword optimization, job-specific tailoring, and structure. Use when reviewing a PM resume, preparing for job applications, or improving resume impact.",
+  "profession": "产品经理",
+  "content_hash": "cec1de0916b608a559844c5f39a3b18e65f88d6694d3bb9c1ff04bde9e062c2f",
+  "source": {
+    "type": "github",
+    "repo": "phuryn-pm-skills",
+    "path": "pm-toolkit/skills/review-resume/SKILL.md",
+    "commit": "f9eaa51000a65e04494aeaf90355d30f2080ebf2"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.093Z",
+  "updated_at": "2026-06-05T09:53:10.093Z"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "phuryn-pm-skills--pm-go-to-market--skills--ideal-customer-profile",
+  "name": "ideal-customer-profile",
+  "description_zh": "",
+  "description_en": "Identify the Ideal Customer Profile (ICP) from research data with demographics, behaviors, JTBD, and needs. Use when defining your ICP, analyzing PMF survey data, or understanding who your best customers are.",
+  "profession": "产品经理",
+  "content_hash": "8d434df786db2290efb575f1d219c7e19650e7a7e3df9a5f4b82b0bd0d2ce298",
+  "source": {
+    "type": "github",
+    "repo": "phuryn-pm-skills",
+    "path": "pm-go-to-market/skills/ideal-customer-profile/SKILL.md",
+    "commit": "f9eaa51000a65e04494aeaf90355d30f2080ebf2"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.072Z",
+  "updated_at": "2026-06-05T09:53:10.072Z"
+}

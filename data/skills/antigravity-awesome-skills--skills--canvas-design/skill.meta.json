@@ -1,0 +1,17 @@
+{
+  "id": "antigravity-awesome-skills--skills--canvas-design",
+  "name": "canvas-design",
+  "description_zh": "",
+  "description_en": "These are instructions for creating design philosophies - aesthetic movements that are then EXPRESSED VISUALLY. Output only .md files, .pdf files, and .png files.",
+  "profession": "市场营销",
+  "content_hash": "191dc6fe55e57704c23bbcecbe64b9d005c53eadcb5cdd98d5316837778d68f3",
+  "source": {
+    "type": "github",
+    "repo": "antigravity-awesome-skills",
+    "path": "skills/canvas-design/SKILL.md",
+    "commit": "b806b97a9a48063f7bdbee5611caf40edd17e305"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.213Z",
+  "updated_at": "2026-06-05T09:53:10.213Z"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--glycoengineering",
+  "name": "glycoengineering",
+  "description_zh": "",
+  "description_en": "Analyze and engineer protein glycosylation. Scan sequences for N-glycosylation sequons (N-X-S/T), predict O-glycosylation hotspots, and access curated glycoengineering tools (NetOGlyc, GlycoShield, GlycoWorkbench). For glycoprotein engineering, therapeutic antibody optimization, and vaccine design.",
+  "profession": "科研学术",
+  "content_hash": "8029b09af7cb1b77f1df2d89e67343310c3d48d8e2613398b889c25a8737d306",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/glycoengineering/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.139Z",
+  "updated_at": "2026-06-05T09:53:10.139Z"
+}

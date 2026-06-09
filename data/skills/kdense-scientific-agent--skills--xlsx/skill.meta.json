@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--xlsx",
+  "name": "xlsx",
+  "description_zh": "",
+  "description_en": "Create, edit, analyze, or convert Excel spreadsheets (.xlsx, .xlsm) where the workbook file is the primary deliverable. Use for formulas, formatting, financial models, multi-sheet workbooks, and tabular cleanup exported to Excel. Also applies to .csv/.tsv when the user wants spreadsheet output. Do NOT use for Word documents, HTML reports, standalone Python scripts, database pipelines, or Google Sheets API work.",
+  "profession": "科研学术",
+  "content_hash": "e94665e06a393251e7223048ac641c3061f2bfa1ff19dcf154869366fd073476",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/xlsx/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.205Z",
+  "updated_at": "2026-06-05T09:53:10.205Z"
+}

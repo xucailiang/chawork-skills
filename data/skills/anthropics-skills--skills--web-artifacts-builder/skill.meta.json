@@ -1,0 +1,17 @@
+{
+  "id": "anthropics-skills--skills--web-artifacts-builder",
+  "name": "web-artifacts-builder",
+  "description_zh": "用于创建复杂多组件 claude.ai HTML artifacts 的工具套件，基于现代前端 Web 技术（React、Tailwind CSS、shadcn/ui）。适用于需要状态管理、路由或 shadcn/ui 组件的复杂 artifacts，不适用于简单的单文件 HTML/JSX artifacts。",
+  "description_en": "Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern frontend web technologies (React, Tailwind CSS, shadcn/ui). Use for complex artifacts requiring state management, routing, or shadcn/ui components - not for simple single-file HTML/JSX artifacts.",
+  "profession": "开发工程师",
+  "content_hash": "ea5a333387869cb1ca6e32b1df2b87ea2138711a48830c3417b674cf45b50cb6",
+  "source": {
+    "type": "github",
+    "repo": "anthropics-skills",
+    "path": "skills/web-artifacts-builder/SKILL.md",
+    "commit": "da20c92503b2e8ff1cf28ca81a0df4673debdbf7"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:44:58.287Z",
+  "updated_at": "2026-06-05T09:44:58.287Z"
+}

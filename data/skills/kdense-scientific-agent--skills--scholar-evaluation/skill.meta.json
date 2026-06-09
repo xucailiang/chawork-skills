@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--scholar-evaluation",
+  "name": "scholar-evaluation",
+  "description_zh": "",
+  "description_en": "Systematically evaluate scholarly work using the ScholarEval framework, providing structured assessment across research quality dimensions including problem formulation, methodology, analysis, and writing with quantitative scoring and actionable feedback.",
+  "profession": "科研学术",
+  "content_hash": "652d8ceff6fc6464014a3f25280d48abbf565c2053382f0168f7e596f2b27f26",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/scholar-evaluation/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.184Z",
+  "updated_at": "2026-06-05T09:53:10.184Z"
+}

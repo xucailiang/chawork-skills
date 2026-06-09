@@ -1,0 +1,17 @@
+{
+  "id": "kdense-scientific-agent--skills--pytdc",
+  "name": "pytdc",
+  "description_zh": "",
+  "description_en": "Therapeutics Data Commons. AI-ready drug discovery datasets (ADME, toxicity, DTI), benchmarks, scaffold splits, molecular oracles, for therapeutic ML and pharmacological prediction.",
+  "profession": "科研学术",
+  "content_hash": "688ac0d82e1598fdcfa4e68a6d895b34d662a7417a9df045bb1c3170ba0225e0",
+  "source": {
+    "type": "github",
+    "repo": "kdense-scientific-agent",
+    "path": "skills/pytdc/SKILL.md",
+    "commit": "93124850ef08487e423165554c54f0b333d5631d"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.177Z",
+  "updated_at": "2026-06-05T09:53:10.177Z"
+}

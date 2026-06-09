@@ -1,0 +1,17 @@
+{
+  "id": "yuan1z-nature-skills--skills--nature-writing",
+  "name": "nature-writing",
+  "description_zh": "",
+  "description_en": "Draft, restructure, or plan Nature-style manuscript sections from author-provided claims, results, figures, notes, or Chinese drafts. Use when the user wants to write or rebuild an abstract, introduction, related-work, method, experiments, discussion, conclusion, title, or full manuscript argument rather than only polish finished prose. Also trigger on general academic-writing requests even without the word \"Nature\", such as writing a paper from scratch, drafting a manuscript/section, structuring a paper, and Chinese phrasings like 学术写作、科研写作、论文写作、写论文、写paper、SCI写作、帮我写论文、搭论文框架、起草论文、写引言/摘要/讨论.",
+  "profession": "科研学术",
+  "content_hash": "e1d5d7d3100e56b5e5512a6d9a37b70d08c1b819220824fc81dfe1d2bc66a83d",
+  "source": {
+    "type": "github",
+    "repo": "yuan1z-nature-skills",
+    "path": "skills/nature-writing/SKILL.md",
+    "commit": "c9b874a675e29e40fed88af89509092665d5a236"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.104Z",
+  "updated_at": "2026-06-05T09:53:10.104Z"
+}

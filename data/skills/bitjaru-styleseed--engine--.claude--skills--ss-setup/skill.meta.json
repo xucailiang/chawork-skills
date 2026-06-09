@@ -1,0 +1,17 @@
+{
+  "id": "bitjaru-styleseed--engine--.claude--skills--ss-setup",
+  "name": "ss-setup",
+  "description_zh": "",
+  "description_en": "Interactive setup wizard — guides you step-by-step to configure the design system for your project",
+  "profession": "设计师",
+  "content_hash": "0a78c981de123fcea2d38fa59e38abeadb70e3a71fc3f9f57347301d87c685a6",
+  "source": {
+    "type": "github",
+    "repo": "bitjaru-styleseed",
+    "path": "engine/.claude/skills/ss-setup/SKILL.md",
+    "commit": "9ce238d6a9e7a7c0ccfb28d0805d8d7987e595a0"
+  },
+  "tags": [],
+  "created_at": "2026-06-05T09:53:10.211Z",
+  "updated_at": "2026-06-05T09:53:10.211Z"
+}
