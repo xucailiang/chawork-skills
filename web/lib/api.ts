@@ -1,7 +1,10 @@
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "";
+function getApiBase(): string {
+  if (typeof window !== "undefined") return "";
+  return process.env.API_INTERNAL_URL || "http://hub-api:3100";
+}
 
 async function fetchApi<T>(path: string, init?: RequestInit): Promise<T> {
-  const url = `${API_BASE}/api/v1${path}`;
+  const url = `${getApiBase()}/api/v1${path}`;
   const res = await fetch(url, {
     ...init,
     headers: { "Content-Type": "application/json", ...init?.headers },
