@@ -6,8 +6,8 @@ services:
     ports:
       - "8010:3100"
     volumes:
-      - hub-data:/app/data
-      - hub-dist:/app/dist
+      - ./data:/app/data
+      - ./dist:/app/dist
       - ./config:/app/config:ro
     environment:
       - NODE_ENV=production
@@ -32,6 +32,3 @@ services:
     depends_on:
       - hub-api
 
-volumes:
-  hub-data:
-  hub-dist:
