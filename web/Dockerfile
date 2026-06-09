@@ -10,9 +10,6 @@ FROM base AS build
 COPY --from=deps /app/node_modules ./node_modules
 COPY web/ .
 
-ENV NEXT_PUBLIC_API_URL=http://hub-api:3100/api/v1
-ENV API_PROXY_TARGET=http://hub-api:3100
-
 RUN pnpm run build
 
 FROM base AS runtime
