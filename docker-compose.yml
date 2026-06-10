@@ -27,9 +27,10 @@ services:
     restart: unless-stopped
     ports:
       - "8011:3000"
+    volumes:
+      - ./web/public/downloads:/app/public/downloads
     environment:
       - NODE_ENV=production
       - API_INTERNAL_URL=http://hub-api:3100
     depends_on:
       - hub-api
-

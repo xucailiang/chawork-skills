@@ -1,9 +1,10 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getEmployees } from "@/lib/api";
+import { getEmployees, type HubEmployee, type PaginatedResponse } from "@/lib/api";
 import { EmployeeCard } from "@/components/market/EmployeeCard";
 import { SearchBar } from "@/components/market/SearchBar";
+import { MarketTabs } from "@/components/market/MarketTabs";
 
 export const metadata: Metadata = {
   title: "员工市场",
@@ -19,7 +20,7 @@ export default async function EmployeesPage({
   const tags = params.tags;
   const page = Number(params.page || "1");
 
-  let employees = { total: 0, page: 1, limit: 20, items: [] as any[] };
+  let employees: PaginatedResponse<HubEmployee> = { total: 0, page: 1, limit: 20, items: [] };
 
   try {
     employees = await getEmployees({ q, tags, page, limit: 20 });
@@ -30,46 +31,75 @@ export default async function EmployeesPage({
   const totalPages = Math.ceil(employees.total / employees.limit) || 1;
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold">员工市场</h1>
-        <p className="mt-1 text-muted-foreground">浏览和搜索 AI 数字员工</p>
+    <div
+      style={{
+        position: "relative",
+        zIndex: 1,
+        width: "min(1320px, 92%)",
+        margin: "0 auto",
+        padding: "140px 0 80px",
+      }}
+    >
+      {/* Toolbar */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: 16,
+          marginBottom: 28,
+          flexWrap: "wrap",
+        }}
+      >
+        <MarketTabs active="employees" />
+        <div style={{ display: "flex", alignItems: "center", gap: 12, flex: 1, maxWidth: 360 }}>
+          <Suspense>
+            <SearchBar basePath="/market/employees" />
+          </Suspense>
+        </div>
       </div>
 
-      <Suspense>
-        <SearchBar basePath="/market/employees" />
-      </Suspense>
-
-      <div className="mt-6 flex items-center gap-4 border-b border-border pb-4">
-        <Link
-          href="/market/skills"
-          className="text-sm font-medium text-muted-foreground hover:text-foreground pb-2"
-        >
-          技能
-        </Link>
-        <Link
-          href="/market/employees"
-          className="text-sm font-semibold text-primary border-b-2 border-primary pb-2"
-        >
-          员工
-        </Link>
-      </div>
-
-      <div className="mt-6">
+      <div>
         {employees.items.length === 0 ? (
-          <div className="py-20 text-center text-muted-foreground">
-            {q || tags ? "没有找到匹配的员工" : "暂无员工数据，请先通过管理后台创建"}
+          <div
+            style={{
+              textAlign: "center",
+              padding: "64px 20px",
+              color: "var(--text-dim)",
+              background: "var(--bg-card)",
+              border: "1px solid var(--border)",
+              borderRadius: "var(--radius-md)",
+            }}
+          >
+            {q || tags ? "没有找到匹配的员工" : "暂无员工模板"}
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(2, 1fr)",
+                gap: 1,
+                background: "var(--border)",
+                border: "1px solid var(--border)",
+                borderRadius: "var(--radius-lg)",
+                overflow: "hidden",
+              }}
+            >
               {employees.items.map((employee) => (
                 <EmployeeCard key={employee.id} employee={employee} />
               ))}
             </div>
 
             {totalPages > 1 && (
-              <div className="mt-8 flex items-center justify-center gap-2">
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  gap: 8,
+                  marginTop: 32,
+                }}
+              >
                 {page > 1 && (
                   <Link
                     href={`/market/employees?${new URLSearchParams({
@@ -77,12 +107,21 @@ export default async function EmployeesPage({
                       ...(tags ? { tags } : {}),
                       page: String(page - 1),
                     }).toString()}`}
-                    className="rounded-lg border border-border px-3 py-1.5 text-sm hover:bg-muted"
+                    className="btn btn--ghost btn--sm"
                   >
                     上一页
                   </Link>
                 )}
-                <span className="text-sm text-muted-foreground">
+                <span
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "0.85rem",
+                    color: "var(--text-dim)",
+                    display: "flex",
+                    alignItems: "center",
+                    padding: "0 8px",
+                  }}
+                >
                   {page} / {totalPages}
                 </span>
                 {page < totalPages && (
@@ -92,7 +131,7 @@ export default async function EmployeesPage({
                       ...(tags ? { tags } : {}),
                       page: String(page + 1),
                     }).toString()}`}
-                    className="rounded-lg border border-border px-3 py-1.5 text-sm hover:bg-muted"
+                    className="btn btn--ghost btn--sm"
                   >
                     下一页
                   </Link>
@@ -102,6 +141,7 @@ export default async function EmployeesPage({
           </>
         )}
       </div>
+
     </div>
   );
 }

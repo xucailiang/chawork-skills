@@ -1,25 +1,29 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { GeistSans, GeistMono } from "geist/font";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { Background } from "@/components/layout/Background";
+import { AdminPanel } from "@/components/download/AdminPanel";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: {
     default: "ChaWork - AI 驱动的智能工作流平台",
     template: "%s | ChaWork",
   },
-  description: "ChaWork 技能市场 — 浏览、搜索和安装 AI 技能与员工模板",
+  description: "ChaWork 技能市场 - 浏览、搜索和安装 AI 技能与员工模板",
+  openGraph: {
+    title: "ChaWork - AI 驱动的智能工作流平台",
+    description: "浏览、搜索和安装 AI 技能与数字员工模板。开源、本地优先、为一人公司而建。",
+    siteName: "ChaWork",
+    type: "website",
+    locale: "zh_CN",
+  },
+  twitter: {
+    card: "summary",
+    title: "ChaWork - AI 驱动的智能工作流平台",
+    description: "浏览、搜索和安装 AI 技能与数字员工模板。开源、本地优先、为一人公司而建。",
+  },
 };
 
 export default function RootLayout({
@@ -28,14 +32,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="zh-CN"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col font-sans">
+    <html lang="zh-CN" className={`${GeistSans.variable} ${GeistMono.variable} antialiased`}>
+      <body className="min-h-dvh bg-background font-sans text-muted-foreground">
+        <Background />
         <Navbar />
-        <main className="flex-1">{children}</main>
+        <main className="relative z-[1] flex-1">{children}</main>
         <Footer />
+        <AdminPanel />
       </body>
     </html>
   );

@@ -1,12 +1,16 @@
+import { Suspense } from "react";
 import { Hero } from "@/components/home/Hero";
 import { Features } from "@/components/home/Features";
 import { Stats } from "@/components/home/Stats";
+import { StatsSkeleton } from "@/components/ui/Skeleton";
 
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <Stats />
+      <Suspense fallback={<StatsSkeleton />}>
+        <Stats />
+      </Suspense>
       <Features />
     </>
   );

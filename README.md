@@ -1,116 +1,141 @@
 # chawork-skills
 
-面向职业工作流的 Skill 供应链中台。
+面向职业工作流的 AI 技能供应链中台。聚合、翻译、分类 GitHub 上的 Claude Code Skill，通过 Web 市场浏览和搜索，最终一键安装到 ChaWork 桌面应用。
 
-主链路：**聚合 → 翻译 → 职业分类 → 导出 → 一键安装**。
+## 项目结构
 
-- **聚合**：从多个 git 仓库同步 Claude Code Skill（首期：[anthropics/skills](https://github.com/anthropics/skills)）。
-- **翻译**：把英文 SKILL.md 翻成简体中文，frontmatter / 代码块 / 路径 / 命令保持原样。
-- **分类**：按固定职业白名单（34 项）归类，结果稳定可复核。
-- **导出**：写 `dist/professions/<职业>/skills/<id>/`（中文 + 英文原版 + meta），生成 `dist/professions.json` 索引。
-- **一键安装**：按职业挑选 skill，安装到下游 ChaWork 桌面应用的 root skills 目录。
-
-设计文档：[desnin.md](./desnin.md)。
+```
+chawork-skills/
+├── src/                     # CLI 工具 + API 服务 (Hono)
+│   ├── cli.ts               # 命令行入口
+│   ├── server/              # Hub API (端口 3100)
+│   │   └── routes/          # skills, employees, manifest, health
+│   ├── sources/             # Git 仓库聚合
+│   ├── translate/           # LLM 翻译
+│   ├── classify/            # 职业分类
+│   └── export/              # dist/ 产物导出
+├── web/                     # Web 前端 (Next.js 16 + Tailwind v4)
+│   ├── app/
+│   │   ├── page.tsx         # 首页
+│   │   ├── market/skills/   # 技能市场
+│   │   ├── market/employees/# 员工市场
+│   │   └── download/        # 桌面端下载
+│   └── public/
+│       ├── logo.png
+│       └── downloads/       # dmg / exe 安装包
+├── config/
+│   └── sources.yaml         # 上游仓库 + LLM 配置
+├── data/                    # 运行时数据 (gitignore)
+│   ├── sources/             # 上游仓库 clone
+│   ├── translated/          # 翻译产物
+│   ├── skills/              # 技能归档
+│   ├── employees/           # 员工归档
+│   └── overrides/           # 人工修正
+├── dist/                    # 导出产物 (commit 回仓)
+│   ├── professions.json
+│   └── professions/<职业>/skills/<id>/
+├── docker-compose.yml       # Docker 部署
+└── Dockerfile
+```
 
 ## 快速开始
 
+### 后端 API
+
 ```bash
 pnpm install
-
-# 配置上游
-$EDITOR config/sources.yaml
-
-# 同步 → 扫描 → 翻译 → 分类 → 导出（一键）
-pnpm dev run --limit 5     # MVP 先翻译 5 个看效果
-
-# 或者分步跑
-pnpm dev sync
-pnpm dev scan
-pnpm dev translate --limit 2
-pnpm dev classify --limit 2
-pnpm dev export
-pnpm dev status
-
-# 安装到本机 ChaWork（按职业挑选）
-pnpm dev install --list-professions
-pnpm dev install --profession="开发工程师,AI 工程师"
-# 自定义 root（默认 ~/Library/Application Support/com.chawork.app/root）
-pnpm dev install --profession="开发工程师" --chawork-root=/tmp/test-chawork
+pnpm dev:api         # 启动 API 服务 (localhost:3100)
 ```
 
-## 翻译通道
+### 前端 Web
+
+```bash
+cd web
+pnpm install
+API_INTERNAL_URL=http://localhost:3100 pnpm dev   # 前端 (localhost:3000)
+```
+
+### 数据管线
+
+```bash
+# 配置上游仓库
+$EDITOR config/sources.yaml
+
+# 全量跑通：同步 → 扫描 → 翻译 → 分类 → 导出
+pnpm dev run --limit 5
+
+# 分步执行
+pnpm dev sync           # 克隆上游 git 仓库
+pnpm dev scan           # 扫描 SKILL.md，更新 state.json
+pnpm dev translate      # LLM 翻译英文技能为中文
+pnpm dev classify       # 按职业白名单分类
+pnpm dev export         # 导出到 dist/
+pnpm dev status         # 查看技能和员工统计
+```
+
+### 安装到 ChaWork
+
+```bash
+pnpm dev install --list-professions
+pnpm dev install --profession="开发工程师,AI 工程师"
+```
+
+## Docker 部署
+
+```bash
+docker compose up -d
+```
+
+| 服务 | 端口 | 说明 |
+| --- | --- | --- |
+| hub-api | 8010 | API 服务 |
+| hub-web | 8011 | Web 前端 |
+
+安装包更新：将文件按以下命名放入 `web/public/downloads/`，然后 `docker compose restart hub-web`：
+
+| 文件 | 平台 |
+| --- | --- |
+| `ChaWork.dmg` | macOS (Apple Silicon) |
+| `ChaWork-Setup.exe` | Windows x64 |
+
+## Web 前端页面
+
+| 路由 | 说明 |
+| --- | --- |
+| `/` | 首页：Hero + 实时统计 + 核心功能 |
+| `/market/skills` | 技能市场：搜索、职业筛选、技能卡片 |
+| `/market/skills/[id]` | 技能详情：元数据 + SKILL.md 渲染 |
+| `/market/employees` | 员工市场：搜索、员工卡片 |
+| `/market/employees/[id]` | 员工详情：系统提示词 + 绑定技能 |
+| `/download` | 桌面端下载：macOS (Apple Silicon) / Windows |
+
+## API 接口
+
+Base: `http://localhost:3100/api/v1`
+
+| 端点 | 说明 |
+| --- | --- |
+| `GET /manifest` | 技能 + 员工总数及职业分布 |
+| `GET /skills?q=&profession=&page=&limit=` | 技能列表 |
+| `GET /skills/:id` | 技能详情（含 SKILL.md 全文） |
+| `GET /employees?q=&tags=&page=&limit=` | 员工列表 |
+| `GET /employees/:id` | 员工详情（含 prompt 全文） |
+| `GET /professions` | 职业列表 |
+| `GET /health` | 健康检查 |
+
+## LLM 通道
 
 `config/sources.yaml` 中 `llm.provider` 切换：
 
-- `claude-cli`：复用本机 `claude` CLI 登录态（默认；本地开发推荐）。小型 skill（&lt; 2KB）单条约 15-20 秒；超过 ~20KB 的大 skill 在 `-p` 模式下可能严重变慢甚至挂起，建议大批量时切到 `openai`。
-- `openai`：调用任意 OpenAI 兼容 `/v1/chat/completions`，环境变量 `OPENAI_API_KEY`（CI / 服务化推荐）。
-
-可在不改配置文件的情况下临时切换通道：
-
-```bash
-# 单次 sed 改下 provider，跑完再 git checkout 还原
-sed -i.bak 's/provider: claude-cli/provider: openai/' config/sources.yaml
-OPENAI_API_KEY=sk-xxx pnpm dev run
-```
-
-## 数据布局
-
-```
-config/
-  sources.yaml             # 上游来源 + LLM 通道配置
-data/                      # 运行时数据，gitignore
-  sources/<name>/          # 各上游仓库的本地 clone
-  translated/<id>/         # 翻译后的 SKILL.md + SKILL.original.md（导出来源）
-  overrides/<id>.yaml      # 人工修正（profession / translation_locked）
-  state.json               # 全量状态（每个 skill 的 hash / 职业 / 状态）
-dist/                      # 归档产物，commit 回仓
-  professions.json         # 总索引（给下游消费）
-  professions/<职业>/
-    pack.json
-    skills/<id>/
-      SKILL.md             # 中文翻译
-      SKILL.original.md    # 英文原文
-      skill.meta.json      # 来源 / hash / 职业等元数据
-```
+- `claude-cli`：复用本机 `claude` CLI 登录态（默认）
+- `openai`：调用 OpenAI 兼容 API，需设 `OPENAI_API_KEY`
 
 ## 人工修正
 
-为某个 skill 锁定职业或冻结译文，建文件 `data/overrides/<skill_id>.yaml`：
+锁定某个 skill 的职业或冻结译文，创建 `data/overrides/<skill_id>.yaml`：
 
 ```yaml
-profession: 数据分析师       # 锁死职业，不会被自动重分类覆盖
-translation_locked: true   # 跳过自动翻译
-notes: 这个 skill 既用于 AI 工程也用于数据分析，按业务优先级归到数据分析
+profession: 数据分析师
+translation_locked: true
+notes: 按业务优先级归到数据分析
 ```
-
-## 与 ChaWork 集成
-
-下游 ChaWork（[../chawork](../chawork)）按目录扫描 root skills，每个 skill 是一个含 `SKILL.md` 的子目录。本工具的 `install` 命令把翻译后的 skill 拷贝到 `<chawork-root>/skills/<id>/`，**不改 ChaWork 代码**。
-
-为了便于卸载与升级，本工具会在 `<chawork-root>/skills/_chawork_skills_manifest.json` 里记录由本工具安装过的 skill 列表（ChaWork 的 scan 因为该文件不是目录会自动忽略）。
-
-## 定时同步
-
-仓库内置 `.github/workflows/sync-and-translate.yml`：每天 UTC 18:00（北京时间 02:00）跑一次 `run`，把更新后的 `dist/` 提交回仓。也可在 Actions 页面 `workflow_dispatch` 手动触发。
-
-CI 中默认使用 `openai` 通道，需要在仓库 secrets 配置：
-- `OPENAI_API_KEY`
-- `OPENAI_BASE_URL`（可选，默认 `https://api.openai.com/v1`）
-
-## 命令参考
-
-| 命令 | 说明 |
-| --- | --- |
-| `pnpm dev sync` | 同步所有配置的 git 仓库到 `data/sources/` |
-| `pnpm dev scan` | 扫描 SKILL.md，更新 state.json（标记 new/changed/deleted） |
-| `pnpm dev translate [--limit N] [--force] [--ids a,b]` | 增量翻译 |
-| `pnpm dev classify [--limit N] [--force] [--ids a,b]` | 按白名单职业分类 |
-| `pnpm dev export` | 写 `dist/professions/` 与 `dist/professions.json` |
-| `pnpm dev run [--limit N] [--skip-sync]` | 一键跑完全部主链路 |
-| `pnpm dev status` | 查看 skill 总数 / 各职业分布 / 失败列表 |
-| `pnpm dev install --profession=<名> [--chawork-root=<路径>] [--force]` | 安装到 ChaWork |
-| `pnpm dev install --list-professions` | 列可选职业 |
-
-## 后续演进
-
-见 `desnin.md §6`：多职业标签、人工审核后台、翻译质量评分、Skill 推荐排序等。

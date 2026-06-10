@@ -1,8 +1,8 @@
 "use client";
 
-import { Search } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
+import { MagnifyingGlass, X } from "@phosphor-icons/react";
 
 export function SearchBar({ basePath }: { basePath: string }) {
   const router = useRouter();
@@ -21,16 +21,65 @@ export function SearchBar({ basePath }: { basePath: string }) {
     router.push(`${basePath}?${params.toString()}`);
   }
 
+  function handleClear() {
+    setQuery("");
+    const params = new URLSearchParams(searchParams.toString());
+    params.delete("q");
+    params.delete("page");
+    router.push(`${basePath}?${params.toString()}`);
+  }
+
   return (
-    <form onSubmit={handleSubmit} className="relative">
-      <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+    <form
+      onSubmit={handleSubmit}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: 10,
+        padding: "10px 16px",
+        background: "var(--bg-card)",
+        border: "1px solid var(--border)",
+        borderRadius: 999,
+        color: "var(--text-dim)",
+        flex: 1,
+        maxWidth: 360,
+        transition: "border-color 0.3s ease",
+      }}
+    >
+      <MagnifyingGlass size={16} weight="bold" />
       <input
         type="text"
         placeholder="搜索..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        className="w-full rounded-lg border border-border bg-background py-2.5 pl-10 pr-4 text-sm outline-none transition-colors focus:border-primary"
+        style={{
+          background: "none",
+          border: "none",
+          color: "var(--text-hi)",
+          fontFamily: "var(--font-body)",
+          fontSize: "0.9rem",
+          outline: "none",
+          width: "100%",
+        }}
       />
+      {query && (
+        <button
+          type="button"
+          onClick={handleClear}
+          aria-label="清除搜索"
+          style={{
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            color: "var(--text-dim)",
+            padding: 2,
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <X size={14} weight="bold" />
+        </button>
+      )}
     </form>
   );
 }

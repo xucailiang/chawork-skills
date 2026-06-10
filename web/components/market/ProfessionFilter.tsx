@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { cn } from "@/lib/utils";
 import type { ProfessionInfo } from "@/lib/api";
 
 export function ProfessionFilter({
@@ -29,32 +28,48 @@ export function ProfessionFilter({
   }
 
   return (
-    <nav className="space-y-1">
+    <nav style={{ display: "flex", flexDirection: "column", gap: 2 }}>
       <Link
         href={buildHref("")}
-        className={cn(
-          "flex items-center justify-between rounded-lg px-3 py-2 text-sm transition-colors",
-          !activeProfession
-            ? "bg-accent text-accent-foreground font-medium"
-            : "text-muted-foreground hover:text-foreground hover:bg-muted"
-        )}
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          padding: "10px 14px",
+          borderRadius: "var(--radius-sm)",
+          fontSize: "0.88rem",
+          textDecoration: "none",
+          fontWeight: !activeProfession ? 600 : 400,
+          color: !activeProfession ? "var(--text-hi)" : "var(--text-dim)",
+          background: !activeProfession ? "var(--amber-dim)" : "transparent",
+          transition: "all 0.2s ease",
+        }}
       >
         <span>全部</span>
-        <span className="text-xs">({totalSkills})</span>
+        <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.7rem" }}>{totalSkills}</span>
       </Link>
       {active.map((p) => (
         <Link
           key={p.name}
           href={buildHref(p.name)}
-          className={cn(
-            "flex items-center justify-between rounded-lg px-3 py-2 text-sm transition-colors",
-            activeProfession === p.name
-              ? "bg-accent text-accent-foreground font-medium"
-              : "text-muted-foreground hover:text-foreground hover:bg-muted"
-          )}
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            padding: "10px 14px",
+            borderRadius: "var(--radius-sm)",
+            fontSize: "0.88rem",
+            textDecoration: "none",
+            fontWeight: activeProfession === p.name ? 600 : 400,
+            color: activeProfession === p.name ? "var(--amber)" : "var(--text-dim)",
+            background: activeProfession === p.name ? "var(--amber-dim)" : "transparent",
+            transition: "all 0.2s ease",
+          }}
         >
-          <span className="truncate">{p.name}</span>
-          <span className="ml-2 shrink-0 text-xs">({p.skill_count})</span>
+          <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{p.name}</span>
+          <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.7rem", flexShrink: 0, marginLeft: 8 }}>
+            {p.skill_count}
+          </span>
         </Link>
       ))}
     </nav>

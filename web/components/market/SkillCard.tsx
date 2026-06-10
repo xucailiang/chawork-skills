@@ -1,39 +1,105 @@
+"use client";
+
 import Link from "next/link";
 import type { HubSkill } from "@/lib/api";
-import { Blocks } from "lucide-react";
+import { useCallback, useRef } from "react";
+import { PuzzlePiece } from "@phosphor-icons/react";
 
-export function SkillCard({ skill }: { skill: HubSkill }) {
+export function SkillCard({ skill }: { skill: HubSkill; index?: number }) {
+  const ref = useRef<HTMLAnchorElement>(null);
+
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+    const el = ref.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    el.style.setProperty("--mx", `${e.clientX - rect.left}px`);
+    el.style.setProperty("--my", `${e.clientY - rect.top}px`);
+  }, []);
+
   return (
     <Link
+      ref={ref}
       href={`/market/skills/${encodeURIComponent(skill.id)}`}
-      className="group flex flex-col rounded-xl border border-border p-5 transition-colors hover:border-primary/30 hover:bg-accent/30"
+      className="skill-card"
+      onMouseMove={handleMouseMove}
+      style={{
+        position: "relative",
+        background: "var(--bg-card)",
+        padding: "28px 24px",
+        display: "flex",
+        flexDirection: "column",
+        gap: 12,
+        transition: "background 0.3s cubic-bezier(0.22, 0.61, 0.36, 1)",
+        cursor: "pointer",
+        textDecoration: "none",
+      }}
     >
-      <div className="flex items-start gap-3">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-          <Blocks className="h-5 w-5" />
-        </div>
-        <div className="min-w-0 flex-1">
-          <h3 className="truncate font-semibold group-hover:text-primary transition-colors">
-            {skill.name}
-          </h3>
-          <p className="mt-0.5 text-xs text-muted-foreground">{skill.profession}</p>
-        </div>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <PuzzlePiece size={28} weight="duotone" style={{ color: "var(--amber)" }} />
+        <span
+          style={{
+            padding: "3px 10px",
+            borderRadius: 999,
+            fontFamily: "var(--font-mono)",
+            fontSize: "0.65rem",
+            color: "var(--amber)",
+            background: "var(--amber-dim)",
+            border: "1px solid rgba(245,158,11,0.15)",
+          }}
+        >
+          {skill.profession}
+        </span>
       </div>
-      <p className="mt-3 line-clamp-2 text-sm text-muted-foreground">
+      <h3
+        style={{
+          fontFamily: "var(--font-display)",
+          fontSize: "1.05rem",
+          fontWeight: 650,
+          color: "var(--text-hi)",
+        }}
+      >
+        {skill.name}
+      </h3>
+      <p
+        style={{
+          fontSize: "0.83rem",
+          color: "var(--text-body)",
+          lineHeight: 1.5,
+          display: "-webkit-box",
+          WebkitLineClamp: 2,
+          WebkitBoxOrient: "vertical",
+          overflow: "hidden",
+        }}
+      >
         {skill.description_zh || skill.description_en || "暂无描述"}
       </p>
       {skill.tags.length > 0 && (
-        <div className="mt-3 flex flex-wrap gap-1.5">
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: "auto" }}>
           {skill.tags.slice(0, 3).map((tag) => (
             <span
               key={tag}
-              className="rounded-md bg-muted px-2 py-0.5 text-xs text-muted-foreground"
+              style={{
+                padding: "3px 9px",
+                borderRadius: 999,
+                fontFamily: "var(--font-mono)",
+                fontSize: "0.65rem",
+                color: "var(--amber)",
+                background: "var(--amber-dim)",
+                border: "1px solid rgba(245,158,11,0.15)",
+              }}
             >
               {tag}
             </span>
           ))}
         </div>
       )}
+
     </Link>
   );
 }
