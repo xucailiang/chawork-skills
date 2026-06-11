@@ -11,6 +11,8 @@ export const metadata: Metadata = {
   title: "技能市场",
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function SkillsPage({
   searchParams,
 }: {

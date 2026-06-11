@@ -10,6 +10,8 @@ export const metadata: Metadata = {
   title: "员工市场",
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function EmployeesPage({
   searchParams,
 }: {
