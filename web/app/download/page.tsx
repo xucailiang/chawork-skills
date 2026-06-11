@@ -9,6 +9,8 @@ export const metadata: Metadata = {
   title: "下载 ChaWork",
 };
 
+export const dynamic = "force-dynamic";
+
 function getVersion(): string {
   try {
     const raw = readFileSync(
@@ -31,7 +33,7 @@ const PLATFORMS = [
     arch: "ARM64",
     cmd: "brew install chawork",
     version: VERSION,
-    file: "/downloads/ChaWork.dmg",
+    file: "/api/download/ChaWork.dmg",
   },
   {
     name: "Windows",
@@ -40,7 +42,7 @@ const PLATFORMS = [
     arch: "x64",
     cmd: "winget install ChaWork",
     version: VERSION,
-    file: "/downloads/ChaWork-Setup.exe",
+    file: "/api/download/ChaWork-Setup.exe",
   },
 ];
 
