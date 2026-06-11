@@ -32,6 +32,7 @@ const PLATFORMS = [
     desc: "仅支持 Apple Silicon (M 系列芯片)",
     arch: "ARM64",
     cmd: "brew install chawork",
+    extraCmd: "xattr -cr /Applications/ChaWork.app",
     version: VERSION,
     file: "/api/download/ChaWork.dmg",
   },
@@ -76,7 +77,7 @@ export default function DownloadPage() {
           gap: 16,
         }}
       >
-        {PLATFORMS.map(({ name, Icon, desc, arch, cmd, version, file }) => (
+        {PLATFORMS.map(({ name, Icon, desc, arch, cmd, extraCmd, version, file }) => (
           <div
             key={name}
             style={{
@@ -141,6 +142,27 @@ export default function DownloadPage() {
             >
               <span style={{ color: "var(--amber)" }}>$</span> {cmd}
             </div>
+
+            {extraCmd && (
+              <div>
+                <p style={{ fontSize: "0.78rem", color: "var(--text-dim)", marginBottom: 6 }}>
+                  若提示&quot;文件已损坏&quot;，运行以下命令：
+                </p>
+                <div
+                  style={{
+                    background: "rgba(0,0,0,0.3)",
+                    border: "1px solid var(--border)",
+                    borderRadius: "var(--radius-sm)",
+                    padding: "14px 18px",
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "0.78rem",
+                    color: "var(--text-body)",
+                  }}
+                >
+                  <span style={{ color: "var(--amber)" }}>$</span> {extraCmd}
+                </div>
+              </div>
+            )}
 
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: "auto" }}>
               <a
