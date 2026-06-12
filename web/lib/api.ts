@@ -125,3 +125,92 @@ export async function getEmployeeDetail(id: string): Promise<EmployeeDetail> {
 export async function getHealth(): Promise<{ status: string; timestamp: string }> {
   return fetchApi("/health");
 }
+
+// ── Admin API Functions ────────────────────────────────────────
+
+export interface ImportGithubResponse {
+  source: string;
+  imported: number;
+  skills: { id: string; name: string; profession: string }[];
+}
+
+export async function importFromUrl(
+  url: string,
+  ref?: string,
+): Promise<ImportGithubResponse> {
+  return fetchApi("/skills/import/github", {
+    method: "POST",
+    body: JSON.stringify({ url, ref: ref || "main" }),
+  });
+}
+
+export async function createSkill(params: {
+  id: string;
+  name: string;
+  description_zh?: string;
+  description_en?: string;
+  profession: string;
+  skill_md: string;
+  tags?: string[];
+}): Promise<HubSkill> {
+  return fetchApi("/skills", {
+    method: "POST",
+    body: JSON.stringify(params),
+  });
+}
+
+export async function updateSkill(
+  id: string,
+  patch: {
+    name?: string;
+    description_zh?: string;
+    description_en?: string;
+    profession?: string;
+    skill_md?: string;
+    tags?: string[];
+  },
+): Promise<HubSkill> {
+  return fetchApi(`/skills/${encodeURIComponent(id)}`, {
+    method: "PUT",
+    body: JSON.stringify(patch),
+  });
+}
+
+export async function deleteSkill(id: string): Promise<void> {
+  await fetchApi(`/skills/${encodeURIComponent(id)}`, { method: "DELETE" });
+}
+
+export async function createEmployee(params: {
+  id: string;
+  name: string;
+  description?: string;
+  kind?: string;
+  prompt_md: string;
+  skill_ids?: string[];
+  tags?: string[];
+}): Promise<HubEmployee> {
+  return fetchApi("/employees", {
+    method: "POST",
+    body: JSON.stringify(params),
+  });
+}
+
+export async function updateEmployee(
+  id: string,
+  patch: {
+    name?: string;
+    description?: string;
+    prompt_md?: string;
+    skill_ids?: string[];
+    tags?: string[];
+  },
+): Promise<HubEmployee> {
+  return fetchApi(`/employees/${encodeURIComponent(id)}`, {
+    method: "PUT",
+    body: JSON.stringify(patch),
+  });
+}
+
+export async function deleteEmployee(id: string): Promise<void> {
+  await fetchApi(`/employees/${encodeURIComponent(id)}`, { method: "DELETE" });
+}

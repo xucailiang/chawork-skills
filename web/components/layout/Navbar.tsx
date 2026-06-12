@@ -10,6 +10,7 @@ const NAV_ITEMS = [
   { href: "/market/skills", label: "技能市场" },
   { href: "/market/employees", label: "员工市场" },
   { href: "/download", label: "下载" },
+  { href: "/admin", label: "管理" },
 ];
 
 export function Navbar() {

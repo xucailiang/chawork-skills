@@ -99,9 +99,10 @@ export async function runImportFromUrl(
   ref: string = "main",
 ): Promise<ImportGithubResponse> {
   const name = url
-    .replace(/^https?:\/\/github\.com\//, "")
+    .replace(/^https?:\/\/[^/]+\//, "")
     .replace(/\.git$/, "")
     .replace(/\//g, "-")
+    || `import-${Date.now()}`
 
   const tempConfig: AppConfig = {
     sources: [
