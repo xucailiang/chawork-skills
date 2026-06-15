@@ -29,5 +29,6 @@ services:
     environment:
       - NODE_ENV=production
       - API_INTERNAL_URL=http://hub-api:3100
+      - API_PROXY_TARGET=http://hub-api:3100
     depends_on:
       - hub-api
