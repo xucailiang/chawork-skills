@@ -15,6 +15,10 @@ services:
       - NODE_ENV=production
       - PORT=3100
       - HOST=0.0.0.0
+      - HTTP_PROXY=${HTTP_PROXY:-}
+      - HTTPS_PROXY=${HTTPS_PROXY:-}
+      - http_proxy=${HTTP_PROXY:-}
+      - https_proxy=${HTTPS_PROXY:-}
 
   hub-web:
     build:
