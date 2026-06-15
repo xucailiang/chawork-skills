@@ -3,16 +3,20 @@ services:
     build: .
     container_name: chawork-skills-api
     restart: unless-stopped
-    network_mode: host
+    ports:
+      - "8010:3100"
     env_file:
       - .env
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
     volumes:
       - ./data:/app/data
       - ./dist:/app/dist
       - ./config:/app/config:ro
     environment:
       - NODE_ENV=production
-      - PORT=8010
+      - PORT=3100
       - HOST=0.0.0.0
 
   hub-web:
@@ -27,9 +31,7 @@ services:
       - ./web/public/downloads:/app/public/downloads
     environment:
       - NODE_ENV=production
-      - API_INTERNAL_URL=http://host.docker.internal:8010
-      - API_PROXY_TARGET=http://host.docker.internal:8010
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+      - API_INTERNAL_URL=http://hub-api:3100
+      - API_PROXY_TARGET=http://hub-api:3100
     depends_on:
       - hub-api

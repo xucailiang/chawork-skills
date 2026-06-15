@@ -10,8 +10,8 @@ FROM base AS build
 COPY --from=deps /app/node_modules ./node_modules
 COPY web/ .
 
-ENV API_PROXY_TARGET=http://host.docker.internal:8010
-ENV API_INTERNAL_URL=http://host.docker.internal:8010
+ENV API_PROXY_TARGET=http://hub-api:3100
+ENV API_INTERNAL_URL=http://hub-api:3100
 RUN pnpm run build
 
 FROM base AS runtime

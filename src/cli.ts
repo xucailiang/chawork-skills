@@ -150,8 +150,8 @@ cli
   .action(async (opts: { port?: string; host?: string }) => {
     const cfg = await loadConfig()
     const serverConfig = {
-      port: opts.port ? Number(opts.port) : (cfg.server?.port ?? 3100),
-      host: opts.host ?? cfg.server?.host ?? "0.0.0.0",
+      port: opts.port ? Number(opts.port) : Number(process.env.PORT || cfg.server?.port || 3100),
+      host: opts.host ?? process.env.HOST ?? cfg.server?.host ?? "0.0.0.0",
       cors_origins: cfg.server?.cors_origins ?? ["http://localhost:3000", "*"],
     }
     await startServer(serverConfig)
