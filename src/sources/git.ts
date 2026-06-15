@@ -28,7 +28,7 @@ async function detectDefaultBranch(url: string): Promise<string> {
   try {
     const result = await simpleGit().listRemote(["--symref", "HEAD", url])
     const match = result.match(/ref: refs\/heads\/(\S+)\s+HEAD/)
-    if (match) return match[1]
+    if (match?.[1]) return match[1]
   } catch {}
   return "main"
 }

@@ -131,21 +131,21 @@ function parseGitHubUrl(url: string): ParsedGitUrl | null {
   // https://github.com/user/repo/tree/branch/path/to/dir
   // https://github.com/user/repo/blob/branch/path/to/file.md
   const treeMatch = url.match(/^(https:\/\/github\.com\/[^/]+\/[^/]+)\/(tree|blob)\/([^/]+)\/(.+)$/)
-  if (treeMatch) {
+  if (treeMatch?.[1]) {
     return {
       repoUrl: treeMatch[1],
-      ref: treeMatch[3],
-      subpath: treeMatch[4],
+      ref: treeMatch[3] ?? "main",
+      subpath: treeMatch[4] ?? "",
     }
   }
 
   // https://gitlab.com/user/repo/-/tree/branch/path
   const gitlabMatch = url.match(/^(https:\/\/[^/]+\/[^/]+\/[^/]+)\/-\/(tree|blob)\/([^/]+)\/(.+)$/)
-  if (gitlabMatch) {
+  if (gitlabMatch?.[1]) {
     return {
       repoUrl: gitlabMatch[1],
-      ref: gitlabMatch[3],
-      subpath: gitlabMatch[4],
+      ref: gitlabMatch[3] ?? "main",
+      subpath: gitlabMatch[4] ?? "",
     }
   }
 
