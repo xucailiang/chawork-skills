@@ -18,6 +18,8 @@ let index: SearchIndex = {
 
 export async function rebuildIndex(): Promise<void> {
   const [skills, employees] = await Promise.all([listSkills(), listEmployees()])
+  skills.sort((a, b) => a.name.localeCompare(b.name, "zh-CN"))
+  employees.sort((a, b) => a.name.localeCompare(b.name, "zh-CN"))
   const skillMap = new Map<string, HubSkill>()
   for (const s of skills) skillMap.set(s.id, s)
   const employeeMap = new Map<string, HubEmployee>()

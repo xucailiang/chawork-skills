@@ -1,0 +1,17 @@
+{
+  "id": "nexu-io-open-design--skills--fal-realtime",
+  "name": "fal-realtime",
+  "description_zh": "",
+  "description_en": "Real-time and streaming AI image generation via fal.ai. Suited for moodboard exploration, draft variations, and rapid creative iteration.\n",
+  "profession": "通用技能",
+  "content_hash": "b0d8d09a628e8ed791084cbab54faffd55a2581afedec9eca2d5b9e3aa35b341",
+  "source": {
+    "type": "github",
+    "repo": "nexu-io-open-design",
+    "path": "skills/fal-realtime/SKILL.md",
+    "commit": "f6ce40ead54cdbeb41de7d1187e75362b092a083"
+  },
+  "tags": [],
+  "created_at": "2026-06-15T04:54:38.769Z",
+  "updated_at": "2026-06-15T04:54:38.769Z"
+}

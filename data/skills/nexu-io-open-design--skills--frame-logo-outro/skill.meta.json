@@ -1,0 +1,17 @@
+{
+  "id": "nexu-io-open-design--skills--frame-logo-outro",
+  "name": "frame-logo-outro",
+  "description_zh": "",
+  "description_en": "Segmented logo assembly, glow bloom, and tagline reveal for video outros or brand closing frames.",
+  "profession": "通用技能",
+  "content_hash": "c5b03280d2cc8f2747cd868bc5745a1763cf84fc42807070f008eedb15fdda9d",
+  "source": {
+    "type": "github",
+    "repo": "nexu-io-open-design",
+    "path": "skills/frame-logo-outro/SKILL.md",
+    "commit": "f6ce40ead54cdbeb41de7d1187e75362b092a083"
+  },
+  "tags": [],
+  "created_at": "2026-06-15T06:06:10.383Z",
+  "updated_at": "2026-06-15T06:06:10.383Z"
+}

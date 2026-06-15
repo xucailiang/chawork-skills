@@ -1,0 +1,17 @@
+{
+  "id": "nexu-io-open-design--skills--design-md",
+  "name": "design-md",
+  "description_zh": "",
+  "description_en": "Create and manage DESIGN.md files. Useful for capturing design direction, tokens, and visual rules in a single source of truth.\n",
+  "profession": "通用技能",
+  "content_hash": "516e40f923d65e0f1ce5094edb21ddb336cf33568576e2b366241084759ba965",
+  "source": {
+    "type": "github",
+    "repo": "nexu-io-open-design",
+    "path": "skills/design-md/SKILL.md",
+    "commit": "2133796cd07ad6a18240b53848c99aced4b762be"
+  },
+  "tags": [],
+  "created_at": "2026-06-12T08:22:24.638Z",
+  "updated_at": "2026-06-12T08:22:24.638Z"
+}

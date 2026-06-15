@@ -1,0 +1,18 @@
+{
+  "id": "员工测试呢",
+  "name": "test_em",
+  "description": "",
+  "kind": "ordinary",
+  "prompt_preview": "蛮试试",
+  "skill_ids": [
+    "anthropics-skills--skills--brand-guidelines",
+    "anthropics-skills--skills--algorithmic-art"
+  ],
+  "skill_count": 2,
+  "tags": [],
+  "source": {
+    "type": "official"
+  },
+  "created_at": "2026-06-15T04:42:43.289Z",
+  "updated_at": "2026-06-15T04:42:43.289Z"
+}

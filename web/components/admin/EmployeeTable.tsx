@@ -3,21 +3,26 @@
 import { useState } from "react";
 import type { HubEmployee } from "@/lib/api";
 import { EmployeeForm } from "./EmployeeForm";
+import { EmployeeDetail } from "./EmployeeDetail";
+import { PageJumper } from "./PageJumper";
 
 interface Props {
   employees: HubEmployee[];
   total: number;
   page: number;
   loading: boolean;
+  search: string;
+  onSearchChange: (q: string) => void;
   onPageChange: (page: number) => void;
   onDelete: (id: string) => void;
   onRefresh: () => void;
 }
 
-export function EmployeeTable({ employees, total, page, loading, onPageChange, onDelete, onRefresh }: Props) {
+export function EmployeeTable({ employees, total, page, loading, search, onSearchChange, onPageChange, onDelete, onRefresh }: Props) {
   const totalPages = Math.ceil(total / 20) || 1;
   const [formMode, setFormMode] = useState<"create" | "edit" | null>(null);
   const [editId, setEditId] = useState<string | undefined>();
+  const [detailId, setDetailId] = useState<string | null>(null);
 
   function openCreate() {
     setFormMode("create");
@@ -42,10 +47,27 @@ export function EmployeeTable({ employees, total, page, loading, onPageChange, o
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
       {/* Header */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <span style={{ fontSize: "0.85rem", color: "var(--text-dim)" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12 }}>
+        <span style={{ fontSize: "0.85rem", color: "var(--text-dim)", flexShrink: 0 }}>
           共 {total} 个员工
         </span>
+        <input
+          type="text"
+          value={search}
+          onChange={(e) => onSearchChange(e.target.value)}
+          placeholder="搜索员工名称、ID、描述..."
+          style={{
+            flex: 1,
+            maxWidth: 300,
+            padding: "6px 12px",
+            background: "rgba(0,0,0,0.2)",
+            border: "1px solid var(--border)",
+            borderRadius: "var(--radius-sm)",
+            color: "var(--text-hi)",
+            fontSize: "0.82rem",
+            outline: "none",
+          }}
+        />
         <div style={{ display: "flex", gap: 8 }}>
           <button onClick={openCreate} className="btn btn--primary btn--sm">
             新增员工
@@ -141,30 +163,20 @@ export function EmployeeTable({ employees, total, page, loading, onPageChange, o
                   <td style={{ ...tdStyle, textAlign: "right" }}>
                     <div style={{ display: "flex", gap: 6, justifyContent: "flex-end" }}>
                       <button
+                        onClick={() => setDetailId(e.id)}
+                        style={{ padding: "4px 10px", fontSize: "0.78rem", background: "rgba(34,197,94,0.06)", border: "1px solid rgba(34,197,94,0.15)", borderRadius: "var(--radius-sm)", color: "#22c55e", cursor: "pointer" }}
+                      >
+                        查看
+                      </button>
+                      <button
                         onClick={() => openEdit(e.id)}
-                        style={{
-                          padding: "4px 10px",
-                          fontSize: "0.78rem",
-                          background: "rgba(59,130,246,0.06)",
-                          border: "1px solid rgba(59,130,246,0.15)",
-                          borderRadius: "var(--radius-sm)",
-                          color: "#3b82f6",
-                          cursor: "pointer",
-                        }}
+                        style={{ padding: "4px 10px", fontSize: "0.78rem", background: "rgba(59,130,246,0.06)", border: "1px solid rgba(59,130,246,0.15)", borderRadius: "var(--radius-sm)", color: "#3b82f6", cursor: "pointer" }}
                       >
                         编辑
                       </button>
                       <button
                         onClick={() => onDelete(e.id)}
-                        style={{
-                          padding: "4px 10px",
-                          fontSize: "0.78rem",
-                          background: "rgba(239,68,68,0.06)",
-                          border: "1px solid rgba(239,68,68,0.15)",
-                          borderRadius: "var(--radius-sm)",
-                          color: "#ef4444",
-                          cursor: "pointer",
-                        }}
+                        style={{ padding: "4px 10px", fontSize: "0.78rem", background: "rgba(239,68,68,0.06)", border: "1px solid rgba(239,68,68,0.15)", borderRadius: "var(--radius-sm)", color: "#ef4444", cursor: "pointer" }}
                       >
                         删除
                       </button>
@@ -179,28 +191,11 @@ export function EmployeeTable({ employees, total, page, loading, onPageChange, o
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 8 }}>
-          <button
-            onClick={() => onPageChange(page - 1)}
-            disabled={page <= 1}
-            className="btn btn--ghost btn--sm"
-            style={{ opacity: page <= 1 ? 0.3 : 1 }}
-          >
-            上一页
-          </button>
-          <span style={{ fontSize: "0.82rem", color: "var(--text-dim)", fontFamily: "var(--font-mono)" }}>
-            {page} / {totalPages}
-          </span>
-          <button
-            onClick={() => onPageChange(page + 1)}
-            disabled={page >= totalPages}
-            className="btn btn--ghost btn--sm"
-            style={{ opacity: page >= totalPages ? 0.3 : 1 }}
-          >
-            下一页
-          </button>
-        </div>
+        <PageJumper page={page} totalPages={totalPages} onPageChange={onPageChange} />
       )}
+
+      {/* Detail Dialog */}
+      {detailId && <EmployeeDetail employeeId={detailId} onClose={() => setDetailId(null)} />}
 
       {/* Form Dialog */}
       {formMode && (

@@ -1,27 +1,50 @@
 "use client";
 
+import { useState } from "react";
 import type { HubSkill } from "@/lib/api";
+import { PageJumper } from "./PageJumper";
+import { SkillDetail } from "./SkillDetail";
 
 interface Props {
   skills: HubSkill[];
   total: number;
   page: number;
   loading: boolean;
+  search: string;
+  onSearchChange: (q: string) => void;
   onPageChange: (page: number) => void;
   onDelete: (id: string) => void;
   onRefresh: () => void;
 }
 
-export function SkillTable({ skills, total, page, loading, onPageChange, onDelete, onRefresh }: Props) {
+export function SkillTable({ skills, total, page, loading, search, onSearchChange, onPageChange, onDelete, onRefresh }: Props) {
   const totalPages = Math.ceil(total / 20) || 1;
+  const [detailId, setDetailId] = useState<string | null>(null);
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
       {/* Header */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <span style={{ fontSize: "0.85rem", color: "var(--text-dim)" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12 }}>
+        <span style={{ fontSize: "0.85rem", color: "var(--text-dim)", flexShrink: 0 }}>
           共 {total} 个技能
         </span>
+        <input
+          type="text"
+          value={search}
+          onChange={(e) => onSearchChange(e.target.value)}
+          placeholder="搜索技能名称、ID、描述..."
+          style={{
+            flex: 1,
+            maxWidth: 300,
+            padding: "6px 12px",
+            background: "rgba(0,0,0,0.2)",
+            border: "1px solid var(--border)",
+            borderRadius: "var(--radius-sm)",
+            color: "var(--text-hi)",
+            fontSize: "0.82rem",
+            outline: "none",
+          }}
+        />
         <button onClick={onRefresh} className="btn btn--ghost btn--sm">
           刷新
         </button>
@@ -95,20 +118,20 @@ export function SkillTable({ skills, total, page, loading, onPageChange, onDelet
                     {new Date(s.updated_at).toLocaleDateString("zh-CN")}
                   </td>
                   <td style={{ ...tdStyle, textAlign: "right" }}>
-                    <button
-                      onClick={() => onDelete(s.id)}
-                      style={{
-                        padding: "4px 10px",
-                        fontSize: "0.78rem",
-                        background: "rgba(239,68,68,0.06)",
-                        border: "1px solid rgba(239,68,68,0.15)",
-                        borderRadius: "var(--radius-sm)",
-                        color: "#ef4444",
-                        cursor: "pointer",
-                      }}
-                    >
-                      删除
-                    </button>
+                    <div style={{ display: "flex", gap: 6, justifyContent: "flex-end" }}>
+                      <button
+                        onClick={() => setDetailId(s.id)}
+                        style={{ padding: "4px 10px", fontSize: "0.78rem", background: "rgba(59,130,246,0.06)", border: "1px solid rgba(59,130,246,0.15)", borderRadius: "var(--radius-sm)", color: "#3b82f6", cursor: "pointer" }}
+                      >
+                        查看
+                      </button>
+                      <button
+                        onClick={() => onDelete(s.id)}
+                        style={{ padding: "4px 10px", fontSize: "0.78rem", background: "rgba(239,68,68,0.06)", border: "1px solid rgba(239,68,68,0.15)", borderRadius: "var(--radius-sm)", color: "#ef4444", cursor: "pointer" }}
+                      >
+                        删除
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))
@@ -117,29 +140,11 @@ export function SkillTable({ skills, total, page, loading, onPageChange, onDelet
         </table>
       </div>
 
+      {detailId && <SkillDetail skillId={detailId} onClose={() => setDetailId(null)} />}
+
       {/* Pagination */}
       {totalPages > 1 && (
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 8 }}>
-          <button
-            onClick={() => onPageChange(page - 1)}
-            disabled={page <= 1}
-            className="btn btn--ghost btn--sm"
-            style={{ opacity: page <= 1 ? 0.3 : 1 }}
-          >
-            上一页
-          </button>
-          <span style={{ fontSize: "0.82rem", color: "var(--text-dim)", fontFamily: "var(--font-mono)" }}>
-            {page} / {totalPages}
-          </span>
-          <button
-            onClick={() => onPageChange(page + 1)}
-            disabled={page >= totalPages}
-            className="btn btn--ghost btn--sm"
-            style={{ opacity: page >= totalPages ? 0.3 : 1 }}
-          >
-            下一页
-          </button>
-        </div>
+        <PageJumper page={page} totalPages={totalPages} onPageChange={onPageChange} />
       )}
     </div>
   );

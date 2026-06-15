@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import {
   getSkills,
   getEmployees,
@@ -23,12 +23,16 @@ export default function AdminPage() {
   const [employeePage, setEmployeePage] = useState(1);
   const [skillTotal, setSkillTotal] = useState(0);
   const [employeeTotal, setEmployeeTotal] = useState(0);
+  const [skillSearch, setSkillSearch] = useState("");
+  const [employeeSearch, setEmployeeSearch] = useState("");
   const [loading, setLoading] = useState(false);
+  const skillSearchTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const employeeSearchTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const loadSkills = useCallback(async (page = 1) => {
+  const loadSkills = useCallback(async (page = 1, q?: string) => {
     setLoading(true);
     try {
-      const res = await getSkills({ page, limit: 20 });
+      const res = await getSkills({ page, limit: 20, q: q ?? undefined });
       setSkills(res.items);
       setSkillTotal(res.total);
       setSkillPage(page);
@@ -36,10 +40,10 @@ export default function AdminPage() {
     setLoading(false);
   }, []);
 
-  const loadEmployees = useCallback(async (page = 1) => {
+  const loadEmployees = useCallback(async (page = 1, q?: string) => {
     setLoading(true);
     try {
-      const res = await getEmployees({ page, limit: 20 });
+      const res = await getEmployees({ page, limit: 20, q: q ?? undefined });
       setEmployees(res.items);
       setEmployeeTotal(res.total);
       setEmployeePage(page);
@@ -73,8 +77,8 @@ export default function AdminPage() {
   };
 
   const handleImportDone = () => {
-    loadSkills();
-    loadEmployees();
+    loadSkills(1, skillSearch);
+    loadEmployees(1, employeeSearch);
   };
 
   const tabs: { key: Tab; label: string }[] = [
@@ -138,30 +142,44 @@ export default function AdminPage() {
         ))}
       </div>
 
-      {/* Content */}
-      {tab === "import" && <ImportPanel onDone={handleImportDone} />}
-      {tab === "skills" && (
+      {/* Content — use display:none to keep state alive across tab switches */}
+      <div style={{ display: tab === "import" ? "block" : "none" }}>
+        <ImportPanel onDone={handleImportDone} />
+      </div>
+      <div style={{ display: tab === "skills" ? "block" : "none" }}>
         <SkillTable
           skills={skills}
           total={skillTotal}
           page={skillPage}
           loading={loading}
-          onPageChange={loadSkills}
+          search={skillSearch}
+          onSearchChange={(q) => {
+            setSkillSearch(q);
+            if (skillSearchTimer.current) clearTimeout(skillSearchTimer.current);
+            skillSearchTimer.current = setTimeout(() => loadSkills(1, q), 300);
+          }}
+          onPageChange={(p) => loadSkills(p, skillSearch)}
           onDelete={handleDeleteSkill}
-          onRefresh={() => loadSkills(skillPage)}
+          onRefresh={() => loadSkills(skillPage, skillSearch)}
         />
-      )}
-      {tab === "employees" && (
+      </div>
+      <div style={{ display: tab === "employees" ? "block" : "none" }}>
         <EmployeeTable
           employees={employees}
           total={employeeTotal}
           page={employeePage}
           loading={loading}
-          onPageChange={loadEmployees}
+          search={employeeSearch}
+          onSearchChange={(q) => {
+            setEmployeeSearch(q);
+            if (employeeSearchTimer.current) clearTimeout(employeeSearchTimer.current);
+            employeeSearchTimer.current = setTimeout(() => loadEmployees(1, q), 300);
+          }}
+          onPageChange={(p) => loadEmployees(p, employeeSearch)}
           onDelete={handleDeleteEmployee}
-          onRefresh={() => loadEmployees(employeePage)}
+          onRefresh={() => loadEmployees(employeePage, employeeSearch)}
         />
-      )}
+      </div>
     </div>
   );
 }

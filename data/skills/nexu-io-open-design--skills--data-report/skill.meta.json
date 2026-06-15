@@ -1,0 +1,17 @@
+{
+  "id": "nexu-io-open-design--skills--data-report",
+  "name": "data-report",
+  "description_zh": "",
+  "description_en": "Turns CSV, Excel, or JSON data into a polished visual report page.",
+  "profession": "通用技能",
+  "content_hash": "ad1ce62d6b3a39eed9f13663de29440676f5e85040261747d47491cbc2ad5a04",
+  "source": {
+    "type": "github",
+    "repo": "nexu-io-open-design",
+    "path": "skills/data-report/SKILL.md",
+    "commit": "f6ce40ead54cdbeb41de7d1187e75362b092a083"
+  },
+  "tags": [],
+  "created_at": "2026-06-15T04:45:46.192Z",
+  "updated_at": "2026-06-15T04:45:46.192Z"
+}

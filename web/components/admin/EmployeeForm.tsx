@@ -97,7 +97,6 @@ export function EmployeeForm({ mode, employeeId, onSave, onCancel }: Props) {
 
   return (
     <div
-      onClick={onCancel}
       style={{
         position: "fixed",
         inset: 0,
