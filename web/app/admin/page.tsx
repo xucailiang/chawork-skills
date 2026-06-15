@@ -6,10 +6,8 @@ import {
   getEmployees,
   deleteSkill,
   deleteEmployee,
-  importFromUrl,
   type HubSkill,
   type HubEmployee,
-  type ImportGithubResponse,
 } from "@/lib/api";
 import { ImportPanel } from "@/components/admin/ImportPanel";
 import { SkillTable } from "@/components/admin/SkillTable";

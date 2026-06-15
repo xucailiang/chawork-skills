@@ -1,7 +1,28 @@
 import { readFile } from "node:fs/promises"
+import { resolve } from "node:path"
 import { parse as parseYaml } from "yaml"
 import type { AppConfig, LLMProviderName, ServerConfig, SourceConfig } from "./types.js"
-import { CONFIG_PATH } from "./utils/paths.js"
+import { CONFIG_PATH, REPO_ROOT } from "./utils/paths.js"
+
+async function loadDotenv(): Promise<void> {
+  for (const name of [".env.local", ".env"]) {
+    try {
+      const content = await readFile(resolve(REPO_ROOT, name), "utf8")
+      for (const line of content.split("\n")) {
+        const trimmed = line.trim()
+        if (!trimmed || trimmed.startsWith("#")) continue
+        const eqIdx = trimmed.indexOf("=")
+        if (eqIdx < 1) continue
+        const key = trimmed.slice(0, eqIdx).trim()
+        let val = trimmed.slice(eqIdx + 1).trim()
+        if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+          val = val.slice(1, -1)
+        }
+        if (!process.env[key]) process.env[key] = val
+      }
+    } catch {}
+  }
+}
 
 function expandEnv(input: unknown): unknown {
   if (typeof input === "string") {
@@ -69,9 +90,11 @@ function validate(raw: unknown): AppConfig {
         cwd: typeof claudeCliRaw.cwd === "string" ? claudeCliRaw.cwd : undefined,
       },
       openai: {
-        base_url: typeof openaiRaw.base_url === "string" ? openaiRaw.base_url : "https://api.openai.com/v1",
+        base_url: typeof openaiRaw.base_url === "string" ? openaiRaw.base_url
+          : (process.env.OPENAI_BASE_URL || "https://api.openai.com/v1"),
         api_key_env: typeof openaiRaw.api_key_env === "string" ? openaiRaw.api_key_env : "OPENAI_API_KEY",
-        model: typeof openaiRaw.model === "string" ? openaiRaw.model : "gpt-4o-mini",
+        model: typeof openaiRaw.model === "string" ? openaiRaw.model
+          : (process.env.OPENAI_MODEL || "gpt-4o-mini"),
       },
     },
     server,
@@ -79,6 +102,7 @@ function validate(raw: unknown): AppConfig {
 }
 
 export async function loadConfig(path: string = CONFIG_PATH): Promise<AppConfig> {
+  await loadDotenv()
   const raw = await readFile(path, "utf8")
   const parsed = parseYaml(raw)
   return validate(expandEnv(parsed))

@@ -9,7 +9,7 @@ import {
 } from "../../store/skills.js"
 import { searchSkills, findEmployeesReferencingSkill, rebuildIndex } from "../search.js"
 import { isProfession } from "../../classify/professions.js"
-import { runImportFromUrl } from "../../pipeline/runner.js"
+import { runImportFromUrl, getJob, listJobs } from "../../pipeline/runner.js"
 
 const skills = new Hono()
 
@@ -114,12 +114,21 @@ skills.post("/import/github", async (c) => {
 
   try {
     const result = await runImportFromUrl(url, ref ?? "main")
-    await rebuildIndex()
-    return c.json(result)
+    return c.json(result, 202)
   } catch (err) {
     const msg = err instanceof Error ? err.message : "Import failed"
     return c.json({ error: msg }, 500)
   }
+})
+
+skills.get("/import/jobs", (c) => {
+  return c.json(listJobs())
+})
+
+skills.get("/import/jobs/:id", (c) => {
+  const job = getJob(c.req.param("id"))
+  if (!job) return c.json({ error: "Job not found" }, 404)
+  return c.json(job)
 })
 
 export { skills }

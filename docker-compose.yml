@@ -5,6 +5,8 @@ services:
     restart: unless-stopped
     ports:
       - "8010:3100"
+    env_file:
+      - .env
     volumes:
       - ./data:/app/data
       - ./dist:/app/dist
@@ -13,11 +15,6 @@ services:
       - NODE_ENV=production
       - PORT=3100
       - HOST=0.0.0.0
-      # GitHub 导入需要 git 访问，如有代理可在此配置
-      # - HTTP_PROXY=http://proxy:port
-      # - HTTPS_PROXY=http://proxy:port
-      # 后续接入 LLM 翻译时配置
-      # - OPENAI_API_KEY=sk-xxx
 
   hub-web:
     build:

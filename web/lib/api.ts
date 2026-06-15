@@ -128,20 +128,41 @@ export async function getHealth(): Promise<{ status: string; timestamp: string }
 
 // ── Admin API Functions ────────────────────────────────────────
 
-export interface ImportGithubResponse {
-  source: string;
+export interface ImportJobResponse {
+  job_id: string;
+  status: "syncing" | "translating" | "done" | "error";
   imported: number;
   skills: { id: string; name: string; profession: string }[];
+  error?: string;
+}
+
+export interface ImportJob {
+  id: string;
+  url: string;
+  status: "syncing" | "translating" | "done" | "error";
+  imported: number;
+  skills: { id: string; name: string; profession: string }[];
+  error?: string;
+  started_at: string;
+  finished_at?: string;
 }
 
 export async function importFromUrl(
   url: string,
   ref?: string,
-): Promise<ImportGithubResponse> {
+): Promise<ImportJobResponse> {
   return fetchApi("/skills/import/github", {
     method: "POST",
     body: JSON.stringify({ url, ref: ref || "main" }),
   });
+}
+
+export async function getImportJob(jobId: string): Promise<ImportJob> {
+  return fetchApi(`/skills/import/jobs/${encodeURIComponent(jobId)}`);
+}
+
+export async function getImportJobs(): Promise<ImportJob[]> {
+  return fetchApi("/skills/import/jobs");
 }
 
 export async function createSkill(params: {

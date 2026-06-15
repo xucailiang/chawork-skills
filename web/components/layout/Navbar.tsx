@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState, useRef, useCallback } from "react";
 import { List as ListIcon, X as XIcon } from "@phosphor-icons/react";
 import { emitOpenAdminPanel } from "@/lib/admin-events";
@@ -10,7 +10,6 @@ const NAV_ITEMS = [
   { href: "/market/skills", label: "技能市场" },
   { href: "/market/employees", label: "员工市场" },
   { href: "/download", label: "下载" },
-  { href: "/admin", label: "管理" },
 ];
 
 export function Navbar() {
@@ -18,8 +17,25 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const sentinelRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
   const clickCountRef = useRef(0);
   const clickTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const ctaClickCountRef = useRef(0);
+  const ctaClickTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleCtaClick = useCallback((e: React.MouseEvent) => {
+    ctaClickCountRef.current += 1;
+    if (ctaClickTimerRef.current) clearTimeout(ctaClickTimerRef.current);
+    if (ctaClickCountRef.current >= 5) {
+      e.preventDefault();
+      ctaClickCountRef.current = 0;
+      router.push("/admin");
+      return;
+    }
+    ctaClickTimerRef.current = setTimeout(() => {
+      ctaClickCountRef.current = 0;
+    }, 1500);
+  }, [router]);
 
   const handleLogoClick = useCallback((e: React.MouseEvent) => {
     clickCountRef.current += 1;
@@ -140,6 +156,7 @@ export function Navbar() {
             ))}
             <Link
               href="/market/skills"
+              onClick={handleCtaClick}
               style={{
                 padding: "9px 22px",
                 borderRadius: 999,

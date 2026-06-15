@@ -7,6 +7,7 @@ import { employees } from "./routes/employees.js"
 import { manifest } from "./routes/manifest.js"
 import { health } from "./routes/health.js"
 import { rebuildIndex } from "./search.js"
+import { setOnTranslateDone } from "../pipeline/runner.js"
 import { log } from "../utils/logger.js"
 import type { ServerConfig } from "../types.js"
 
@@ -52,6 +53,11 @@ export function createApp(corsOrigins: string[] = ["*"]): Hono {
 export async function startServer(config: ServerConfig): Promise<void> {
   log.info("[server] building search index...")
   await rebuildIndex()
+
+  setOnTranslateDone(async () => {
+    log.info("[server] translate done, rebuilding search index...")
+    await rebuildIndex()
+  })
 
   const app = createApp(config.cors_origins)
 

@@ -94,14 +94,9 @@ sources:
     skills_glob: "**/SKILL.md"
 
 llm:
-  provider: claude-cli
-  claude_cli:
-    command: claude
-    args: ["-p"]
+  provider: openai
   openai:
-    base_url: https://api.openai.com/v1
     api_key_env: OPENAI_API_KEY
-    model: gpt-4o-mini
 
 server:
   port: 3100

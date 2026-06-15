@@ -1,6 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import type { HubEmployee } from "@/lib/api";
+import { EmployeeForm } from "./EmployeeForm";
 
 interface Props {
   employees: HubEmployee[];
@@ -14,6 +16,28 @@ interface Props {
 
 export function EmployeeTable({ employees, total, page, loading, onPageChange, onDelete, onRefresh }: Props) {
   const totalPages = Math.ceil(total / 20) || 1;
+  const [formMode, setFormMode] = useState<"create" | "edit" | null>(null);
+  const [editId, setEditId] = useState<string | undefined>();
+
+  function openCreate() {
+    setFormMode("create");
+    setEditId(undefined);
+  }
+
+  function openEdit(id: string) {
+    setFormMode("edit");
+    setEditId(id);
+  }
+
+  function closeForm() {
+    setFormMode(null);
+    setEditId(undefined);
+  }
+
+  function handleSave() {
+    closeForm();
+    onRefresh();
+  }
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
@@ -22,9 +46,14 @@ export function EmployeeTable({ employees, total, page, loading, onPageChange, o
         <span style={{ fontSize: "0.85rem", color: "var(--text-dim)" }}>
           共 {total} 个员工
         </span>
-        <button onClick={onRefresh} className="btn btn--ghost btn--sm">
-          刷新
-        </button>
+        <div style={{ display: "flex", gap: 8 }}>
+          <button onClick={openCreate} className="btn btn--primary btn--sm">
+            新增员工
+          </button>
+          <button onClick={onRefresh} className="btn btn--ghost btn--sm">
+            刷新
+          </button>
+        </div>
       </div>
 
       {/* Table */}
@@ -110,20 +139,36 @@ export function EmployeeTable({ employees, total, page, loading, onPageChange, o
                     {new Date(e.updated_at).toLocaleDateString("zh-CN")}
                   </td>
                   <td style={{ ...tdStyle, textAlign: "right" }}>
-                    <button
-                      onClick={() => onDelete(e.id)}
-                      style={{
-                        padding: "4px 10px",
-                        fontSize: "0.78rem",
-                        background: "rgba(239,68,68,0.06)",
-                        border: "1px solid rgba(239,68,68,0.15)",
-                        borderRadius: "var(--radius-sm)",
-                        color: "#ef4444",
-                        cursor: "pointer",
-                      }}
-                    >
-                      删除
-                    </button>
+                    <div style={{ display: "flex", gap: 6, justifyContent: "flex-end" }}>
+                      <button
+                        onClick={() => openEdit(e.id)}
+                        style={{
+                          padding: "4px 10px",
+                          fontSize: "0.78rem",
+                          background: "rgba(59,130,246,0.06)",
+                          border: "1px solid rgba(59,130,246,0.15)",
+                          borderRadius: "var(--radius-sm)",
+                          color: "#3b82f6",
+                          cursor: "pointer",
+                        }}
+                      >
+                        编辑
+                      </button>
+                      <button
+                        onClick={() => onDelete(e.id)}
+                        style={{
+                          padding: "4px 10px",
+                          fontSize: "0.78rem",
+                          background: "rgba(239,68,68,0.06)",
+                          border: "1px solid rgba(239,68,68,0.15)",
+                          borderRadius: "var(--radius-sm)",
+                          color: "#ef4444",
+                          cursor: "pointer",
+                        }}
+                      >
+                        删除
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))
@@ -155,6 +200,16 @@ export function EmployeeTable({ employees, total, page, loading, onPageChange, o
             下一页
           </button>
         </div>
+      )}
+
+      {/* Form Dialog */}
+      {formMode && (
+        <EmployeeForm
+          mode={formMode}
+          employeeId={editId}
+          onSave={handleSave}
+          onCancel={closeForm}
+        />
       )}
     </div>
   );
