@@ -4,6 +4,7 @@ data/sources/
 data/state.json
 data/translated/
 data/overrides/
+data/ota/
 *.log
 .DS_Store
 .env
