@@ -6,8 +6,11 @@ import { skills } from "./routes/skills.js"
 import { employees } from "./routes/employees.js"
 import { manifest } from "./routes/manifest.js"
 import { health } from "./routes/health.js"
+import { ota } from "./routes/ota.js"
+import { adminOta } from "./routes/admin-ota.js"
 import { rebuildIndex } from "./search.js"
 import { setOnTranslateDone } from "../pipeline/runner.js"
+import { initDb } from "./db/sqlite.js"
 import { log } from "../utils/logger.js"
 import type { ServerConfig } from "../types.js"
 
@@ -20,7 +23,7 @@ export function createApp(corsOrigins: string[] = ["*"]): Hono {
     cors({
       origin: corsOrigins,
       allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-      allowHeaders: ["Content-Type"],
+      allowHeaders: ["Content-Type", "Authorization"],
     }),
   )
 
@@ -31,6 +34,8 @@ export function createApp(corsOrigins: string[] = ["*"]): Hono {
   api.route("/health", health)
 
   app.route("/api/v1", api)
+  app.route("/api/ota", ota)
+  app.route("/api/admin/ota", adminOta)
 
   app.get("/", (c) => {
     return c.json({
@@ -43,6 +48,8 @@ export function createApp(corsOrigins: string[] = ["*"]): Hono {
         manifest: "/api/v1/manifest",
         professions: "/api/v1/professions",
         health: "/api/v1/health",
+        ota_check: "/api/ota/check",
+        ota_admin: "/api/admin/ota/releases",
       },
     })
   })
@@ -51,6 +58,9 @@ export function createApp(corsOrigins: string[] = ["*"]): Hono {
 }
 
 export async function startServer(config: ServerConfig): Promise<void> {
+  log.info("[server] initializing OTA database...")
+  initDb()
+
   log.info("[server] building search index...")
   await rebuildIndex()
 
@@ -70,6 +80,8 @@ export async function startServer(config: ServerConfig): Promise<void> {
     (info) => {
       log.info(`[server] ChaWork Skill Hub running at http://${config.host}:${config.port}`)
       log.info(`[server] API base: http://${config.host}:${config.port}/api/v1`)
+      log.info(`[server] OTA API: http://${config.host}:${config.port}/api/ota`)
+      log.info(`[server] OTA Admin: http://${config.host}:${config.port}/api/admin/ota`)
     },
   )
 }

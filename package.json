@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@hono/node-server": "^2.0.4",
+    "better-sqlite3": "^12.11.1",
     "cac": "^6.7.14",
     "gray-matter": "^4.0.3",
     "hono": "^4.12.23",
@@ -26,6 +27,7 @@
     "yaml": "^2.6.1"
   },
   "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^22.10.2",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2"

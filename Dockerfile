@@ -3,7 +3,7 @@ FROM node:22-slim AS base
 RUN sed -i 's|deb.debian.org|mirrors.aliyun.com|g' /etc/apt/sources.list.d/debian.sources 2>/dev/null || \
     sed -i 's|deb.debian.org|mirrors.aliyun.com|g' /etc/apt/sources.list 2>/dev/null || true
 RUN corepack enable && corepack prepare pnpm@10.32.1 --activate
-RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y git bsdiff && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
@@ -25,8 +25,9 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY --from=build /app/dist-build ./dist-build
 COPY package.json ./
 COPY config/ config/
+COPY src/server/db/migrations/ dist-build/server/db/migrations/
 
-RUN mkdir -p data/skills data/employees data/sources dist
+RUN mkdir -p data/skills data/employees data/sources data/ota/artifacts data/ota/patches dist
 
 ENV NODE_ENV=production
 ENV HOST=0.0.0.0
