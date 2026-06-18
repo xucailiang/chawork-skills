@@ -278,9 +278,6 @@ function CreateReleaseForm({ onCreated, onCancel }: { onCreated: () => void; onC
   const [forceUpdate, setForceUpdate] = useState(false);
   const [minVersion, setMinVersion] = useState("");
   const [hotFile, setHotFile] = useState<File | null>(null);
-  const [macArmFile, setMacArmFile] = useState<File | null>(null);
-  const [macX64File, setMacX64File] = useState<File | null>(null);
-  const [winFile, setWinFile] = useState<File | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -289,10 +286,6 @@ function CreateReleaseForm({ onCreated, onCancel }: { onCreated: () => void; onC
 
     if (updateType === "hot" && !hotFile) {
       alert("请选择前端 bundle 文件");
-      return;
-    }
-    if (updateType === "full" && !macArmFile && !macX64File && !winFile) {
-      alert("请至少选择一个平台的安装包");
       return;
     }
 
@@ -311,14 +304,9 @@ function CreateReleaseForm({ onCreated, onCancel }: { onCreated: () => void; onC
         const release = await createRelease({ ...baseParams, platform: "all" });
         await uploadArtifact(release.id, hotFile!, "full");
       } else {
-        const platformFiles: [string, File][] = [];
-        if (macArmFile) platformFiles.push(["darwin-aarch64", macArmFile]);
-        if (macX64File) platformFiles.push(["darwin-x86_64", macX64File]);
-        if (winFile) platformFiles.push(["windows-x86_64", winFile]);
-
-        for (const [platform, file] of platformFiles) {
-          const release = await createRelease({ ...baseParams, platform });
-          await uploadArtifact(release.id, file, "full");
+        const platforms = ["darwin-aarch64", "windows-x86_64"];
+        for (const platform of platforms) {
+          await createRelease({ ...baseParams, platform });
         }
       }
       onCreated();
@@ -379,28 +367,11 @@ function CreateReleaseForm({ onCreated, onCancel }: { onCreated: () => void; onC
             className="mt-1 w-full px-3 py-2 text-sm bg-[var(--surface-2)] border border-[var(--border)] rounded-lg text-[var(--text-hi)] file:mr-3 file:px-3 file:py-1 file:text-xs file:border-0 file:rounded file:bg-[var(--amber)] file:text-black file:cursor-pointer" />
         </label>
       ) : (
-        <div className="space-y-2">
-          <span className="text-xs text-[var(--text-dim)]">安装包文件（至少选一个平台）</span>
-          <div className="grid grid-cols-3 gap-3">
-            <label className="block p-2 border border-[var(--border)] rounded-lg">
-              <span className="text-xs font-medium text-[var(--text-hi)]">macOS (arm64)</span>
-              <input type="file" onChange={(e) => setMacArmFile(e.target.files?.[0] || null)}
-                accept=".tar.gz,.gz,.dmg"
-                className="mt-1 w-full text-xs text-[var(--text-dim)] file:mr-2 file:px-2 file:py-0.5 file:text-xs file:border-0 file:rounded file:bg-[var(--amber)] file:text-black file:cursor-pointer" />
-            </label>
-            <label className="block p-2 border border-[var(--border)] rounded-lg">
-              <span className="text-xs font-medium text-[var(--text-hi)]">macOS (x86_64)</span>
-              <input type="file" onChange={(e) => setMacX64File(e.target.files?.[0] || null)}
-                accept=".tar.gz,.gz,.dmg"
-                className="mt-1 w-full text-xs text-[var(--text-dim)] file:mr-2 file:px-2 file:py-0.5 file:text-xs file:border-0 file:rounded file:bg-[var(--amber)] file:text-black file:cursor-pointer" />
-            </label>
-            <label className="block p-2 border border-[var(--border)] rounded-lg">
-              <span className="text-xs font-medium text-[var(--text-hi)]">Windows (x64)</span>
-              <input type="file" onChange={(e) => setWinFile(e.target.files?.[0] || null)}
-                accept=".zip,.msi,.exe"
-                className="mt-1 w-full text-xs text-[var(--text-dim)] file:mr-2 file:px-2 file:py-0.5 file:text-xs file:border-0 file:rounded file:bg-[var(--amber)] file:text-black file:cursor-pointer" />
-            </label>
-          </div>
+        <div className="p-3 rounded-lg border border-[var(--border)] bg-[var(--surface-2)]">
+          <p className="text-xs text-[var(--text-dim)]">
+            全量更新的安装包通过 CI 构建并上传至官网下载页，客户端将通过 Tauri 内置 updater 从官网获取。
+            此处仅创建版本记录，无需上传文件。
+          </p>
         </div>
       )}
       <div className="flex gap-2 pt-2">

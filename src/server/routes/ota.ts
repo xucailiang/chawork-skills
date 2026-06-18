@@ -59,6 +59,17 @@ ota.get("/check", (c) => {
     const sigArtifact = artifacts.find((a) => a.type === "signature")
     if (fullArtifact) {
       response.url = `${baseUrl}/api/ota/artifacts/${fullArtifact.filename}`
+    } else {
+      // 全量更新无上传 artifact 时，指向官网下载
+      const downloadMap: Record<string, string> = {
+        "darwin-aarch64": "/api/download/ChaWork.dmg",
+        "darwin-x86_64": "/api/download/ChaWork.dmg",
+        "windows-x86_64": "/api/download/ChaWork-Setup.exe",
+      }
+      const downloadPath = downloadMap[platform]
+      if (downloadPath) {
+        response.url = `${baseUrl}${downloadPath}`
+      }
     }
     if (sigArtifact) {
       response.signature = sigArtifact.hash_sha256
