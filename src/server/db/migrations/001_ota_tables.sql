@@ -1,8 +1,8 @@
 -- OTA 自动升级系统表结构
 CREATE TABLE IF NOT EXISTS releases (
   id            INTEGER PRIMARY KEY AUTOINCREMENT,
-  version       TEXT NOT NULL UNIQUE,
-  update_type   TEXT NOT NULL CHECK(update_type IN ('full', 'hot', 'both')),
+  version       TEXT NOT NULL,
+  update_type   TEXT NOT NULL CHECK(update_type IN ('full', 'hot')),
   channel       TEXT NOT NULL DEFAULT 'stable',
   platform      TEXT NOT NULL,
   release_notes TEXT,
@@ -10,7 +10,8 @@ CREATE TABLE IF NOT EXISTS releases (
   min_compatible_version TEXT,
   status        TEXT DEFAULT 'draft' CHECK(status IN ('draft', 'active', 'rollback', 'archived')),
   created_at    TEXT DEFAULT (datetime('now')),
-  published_at  TEXT
+  published_at  TEXT,
+  UNIQUE(version, platform, channel)
 );
 
 CREATE TABLE IF NOT EXISTS artifacts (
