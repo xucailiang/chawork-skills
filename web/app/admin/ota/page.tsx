@@ -274,29 +274,53 @@ function CreateReleaseForm({ onCreated, onCancel }: { onCreated: () => void; onC
   const [version, setVersion] = useState("");
   const [updateType, setUpdateType] = useState<"full" | "hot">("full");
   const [channel, setChannel] = useState("stable");
-  const [platform, setPlatform] = useState("darwin-aarch64");
   const [notes, setNotes] = useState("");
   const [forceUpdate, setForceUpdate] = useState(false);
   const [minVersion, setMinVersion] = useState("");
-  const [file, setFile] = useState<File | null>(null);
+  const [hotFile, setHotFile] = useState<File | null>(null);
+  const [macArmFile, setMacArmFile] = useState<File | null>(null);
+  const [macX64File, setMacX64File] = useState<File | null>(null);
+  const [winFile, setWinFile] = useState<File | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!version) return;
-    if (!file) { alert("请选择要上传的安装包文件"); return; }
+
+    if (updateType === "hot" && !hotFile) {
+      alert("请选择前端 bundle 文件");
+      return;
+    }
+    if (updateType === "full" && !macArmFile && !macX64File && !winFile) {
+      alert("请至少选择一个平台的安装包");
+      return;
+    }
+
     setSubmitting(true);
     try {
-      const release = await createRelease({
+      const baseParams = {
         version,
         update_type: updateType,
         channel,
-        platform,
         release_notes: notes || undefined,
         force_update: forceUpdate,
         min_compatible_version: minVersion || undefined,
-      });
-      await uploadArtifact(release.id, file, "full");
+      };
+
+      if (updateType === "hot") {
+        const release = await createRelease({ ...baseParams, platform: "all" });
+        await uploadArtifact(release.id, hotFile!, "full");
+      } else {
+        const platformFiles: [string, File][] = [];
+        if (macArmFile) platformFiles.push(["darwin-aarch64", macArmFile]);
+        if (macX64File) platformFiles.push(["darwin-x86_64", macX64File]);
+        if (winFile) platformFiles.push(["windows-x86_64", winFile]);
+
+        for (const [platform, file] of platformFiles) {
+          const release = await createRelease({ ...baseParams, platform });
+          await uploadArtifact(release.id, file, "full");
+        }
+      }
       onCreated();
     } catch (e) {
       alert(e instanceof Error ? e.message : String(e));
@@ -306,7 +330,7 @@ function CreateReleaseForm({ onCreated, onCancel }: { onCreated: () => void; onC
 
   return (
     <form onSubmit={handleSubmit} className="mb-6 p-4 border border-[var(--border)] rounded-xl bg-[var(--surface-1)] space-y-3">
-      <div className="grid grid-cols-4 gap-3">
+      <div className="grid grid-cols-3 gap-3">
         <label className="block">
           <span className="text-xs text-[var(--text-dim)]">版本号</span>
           <input value={version} onChange={(e) => setVersion(e.target.value)} placeholder="0.2.0" required
@@ -314,15 +338,10 @@ function CreateReleaseForm({ onCreated, onCancel }: { onCreated: () => void; onC
         </label>
         <label className="block">
           <span className="text-xs text-[var(--text-dim)]">更新类型</span>
-          <select value={updateType} onChange={(e) => {
-            const val = e.target.value as typeof updateType;
-            setUpdateType(val);
-            if (val === "hot") setPlatform("all");
-            else if (platform === "all") setPlatform("darwin-aarch64");
-          }}
+          <select value={updateType} onChange={(e) => setUpdateType(e.target.value as typeof updateType)}
             className="mt-1 w-full px-3 py-2 text-sm bg-[var(--surface-2)] border border-[var(--border)] rounded-lg text-[var(--text-hi)]">
-            <option value="full">全量更新</option>
-            <option value="hot">热更新</option>
+            <option value="full">全量更新（需选平台安装包）</option>
+            <option value="hot">热更新（全平台前端 bundle）</option>
           </select>
         </label>
         <label className="block">
@@ -332,22 +351,6 @@ function CreateReleaseForm({ onCreated, onCancel }: { onCreated: () => void; onC
             <option value="stable">stable</option>
             <option value="beta">beta</option>
             <option value="canary">canary</option>
-          </select>
-        </label>
-        <label className="block">
-          <span className="text-xs text-[var(--text-dim)]">平台</span>
-          <select value={platform} onChange={(e) => setPlatform(e.target.value)}
-            disabled={updateType === "hot"}
-            className="mt-1 w-full px-3 py-2 text-sm bg-[var(--surface-2)] border border-[var(--border)] rounded-lg text-[var(--text-hi)] disabled:opacity-50">
-            {updateType === "hot" ? (
-              <option value="all">全平台</option>
-            ) : (
-              <>
-                <option value="darwin-aarch64">macOS (arm64)</option>
-                <option value="darwin-x86_64">macOS (x86_64)</option>
-                <option value="windows-x86_64">Windows (x64)</option>
-              </>
-            )}
           </select>
         </label>
       </div>
@@ -367,15 +370,39 @@ function CreateReleaseForm({ onCreated, onCancel }: { onCreated: () => void; onC
             className="mt-1 w-full px-3 py-2 text-sm bg-[var(--surface-2)] border border-[var(--border)] rounded-lg text-[var(--text-hi)]" />
         </label>
       </div>
-      <label className="block">
-        <span className="text-xs text-[var(--text-dim)]">安装包文件 *</span>
-        <input type="file" onChange={(e) => setFile(e.target.files?.[0] || null)}
-          accept=".tar.gz,.gz,.zip,.dmg,.msi,.exe"
-          className="mt-1 w-full px-3 py-2 text-sm bg-[var(--surface-2)] border border-[var(--border)] rounded-lg text-[var(--text-hi)] file:mr-3 file:px-3 file:py-1 file:text-xs file:border-0 file:rounded file:bg-[var(--amber)] file:text-black file:cursor-pointer" />
-        <span className="text-xs text-[var(--text-dim)] mt-1 block">
-          macOS: .app.tar.gz / .dmg | Windows: .nsis.zip / .msi | 热更新: 前端 bundle .tar.gz
-        </span>
-      </label>
+
+      {updateType === "hot" ? (
+        <label className="block">
+          <span className="text-xs text-[var(--text-dim)]">前端 Bundle 文件 *（全平台通用）</span>
+          <input type="file" onChange={(e) => setHotFile(e.target.files?.[0] || null)}
+            accept=".tar.gz,.gz,.zip"
+            className="mt-1 w-full px-3 py-2 text-sm bg-[var(--surface-2)] border border-[var(--border)] rounded-lg text-[var(--text-hi)] file:mr-3 file:px-3 file:py-1 file:text-xs file:border-0 file:rounded file:bg-[var(--amber)] file:text-black file:cursor-pointer" />
+        </label>
+      ) : (
+        <div className="space-y-2">
+          <span className="text-xs text-[var(--text-dim)]">安装包文件（至少选一个平台）</span>
+          <div className="grid grid-cols-3 gap-3">
+            <label className="block p-2 border border-[var(--border)] rounded-lg">
+              <span className="text-xs font-medium text-[var(--text-hi)]">macOS (arm64)</span>
+              <input type="file" onChange={(e) => setMacArmFile(e.target.files?.[0] || null)}
+                accept=".tar.gz,.gz,.dmg"
+                className="mt-1 w-full text-xs text-[var(--text-dim)] file:mr-2 file:px-2 file:py-0.5 file:text-xs file:border-0 file:rounded file:bg-[var(--amber)] file:text-black file:cursor-pointer" />
+            </label>
+            <label className="block p-2 border border-[var(--border)] rounded-lg">
+              <span className="text-xs font-medium text-[var(--text-hi)]">macOS (x86_64)</span>
+              <input type="file" onChange={(e) => setMacX64File(e.target.files?.[0] || null)}
+                accept=".tar.gz,.gz,.dmg"
+                className="mt-1 w-full text-xs text-[var(--text-dim)] file:mr-2 file:px-2 file:py-0.5 file:text-xs file:border-0 file:rounded file:bg-[var(--amber)] file:text-black file:cursor-pointer" />
+            </label>
+            <label className="block p-2 border border-[var(--border)] rounded-lg">
+              <span className="text-xs font-medium text-[var(--text-hi)]">Windows (x64)</span>
+              <input type="file" onChange={(e) => setWinFile(e.target.files?.[0] || null)}
+                accept=".zip,.msi,.exe"
+                className="mt-1 w-full text-xs text-[var(--text-dim)] file:mr-2 file:px-2 file:py-0.5 file:text-xs file:border-0 file:rounded file:bg-[var(--amber)] file:text-black file:cursor-pointer" />
+            </label>
+          </div>
+        </div>
+      )}
       <div className="flex gap-2 pt-2">
         <button type="submit" disabled={submitting}
           className="px-4 py-2 text-sm font-medium bg-[var(--amber)] text-black rounded-lg hover:opacity-90 disabled:opacity-50 cursor-pointer">
