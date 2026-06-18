@@ -3,11 +3,19 @@ function getApiBase(): string {
   return process.env.API_INTERNAL_URL || "http://hub-api:3100";
 }
 
+function getAuthHeaders(): Record<string, string> {
+  const token =
+    process.env.NEXT_PUBLIC_OTA_ADMIN_TOKEN ||
+    (typeof window !== "undefined" ? localStorage.getItem("ota_admin_token") : null);
+  if (!token) return {};
+  return { Authorization: `Bearer ${token}` };
+}
+
 async function fetchOta<T>(path: string, init?: RequestInit): Promise<T> {
   const url = `${getApiBase()}/api/admin/ota${path}`;
   const res = await fetch(url, {
     ...init,
-    headers: { "Content-Type": "application/json", ...init?.headers },
+    headers: { "Content-Type": "application/json", ...getAuthHeaders(), ...init?.headers },
   });
   if (!res.ok) {
     const body = await res.json().catch(() => ({}));
@@ -161,7 +169,7 @@ export async function uploadArtifact(
   formData.append("type", type);
 
   const url = `${typeof window !== "undefined" ? "" : (process.env.API_INTERNAL_URL || "http://hub-api:3100")}/api/admin/ota/releases/${releaseId}/upload`;
-  const res = await fetch(url, { method: "POST", body: formData });
+  const res = await fetch(url, { method: "POST", body: formData, headers: getAuthHeaders() });
   if (!res.ok) {
     const body = await res.json().catch(() => ({}));
     throw new Error(body.error || `Upload failed: ${res.status}`);

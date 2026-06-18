@@ -22,6 +22,21 @@ type Tab = "releases" | "stats" | "gray-rules";
 
 export default function OTAAdminPage() {
   const [tab, setTab] = useState<Tab>("releases");
+  const [tokenSet, setTokenSet] = useState(false);
+
+  useEffect(() => {
+    setTokenSet(!!localStorage.getItem("ota_admin_token"));
+  }, []);
+
+  const handleSaveToken = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const fd = new FormData(e.currentTarget);
+    const val = (fd.get("token") as string).trim();
+    if (val) {
+      localStorage.setItem("ota_admin_token", val);
+      setTokenSet(true);
+    }
+  };
 
   const tabs: { key: Tab; label: string }[] = [
     { key: "releases", label: "版本管理" },
@@ -37,6 +52,15 @@ export default function OTAAdminPage() {
       <p className="text-sm text-[var(--text-dim)] mb-8">
         管理应用版本发布、灰度策略和升级统计
       </p>
+
+      {!tokenSet && (
+        <form onSubmit={handleSaveToken} className="flex items-center gap-2 mb-6 p-3 rounded-lg border border-amber-500/30 bg-amber-500/5">
+          <span className="text-sm text-[var(--text-dim)]">Admin Token:</span>
+          <input name="token" type="password" placeholder="输入 OTA_ADMIN_TOKEN" className="flex-1 px-2 py-1 text-sm rounded border border-[var(--border)] bg-[var(--surface-2)] text-[var(--text-hi)]" />
+          <button type="submit" className="px-3 py-1 text-sm bg-[var(--amber)] text-black rounded cursor-pointer">保存</button>
+          <span className="text-xs text-[var(--text-dim)]">不设 token 启动 API 则无需填写</span>
+        </form>
+      )}
 
       <div className="flex gap-0 border-b border-[var(--border)] mb-6">
         {tabs.map((t) => (
