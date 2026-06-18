@@ -9,7 +9,7 @@ WORKDIR /app
 
 FROM base AS deps
 COPY package.json pnpm-lock.yaml .pnpm-approved-builds.json ./
-RUN pnpm install --frozen-lockfile --prod && pnpm rebuild better-sqlite3
+RUN pnpm install --frozen-lockfile --prod
 
 FROM base AS build
 COPY package.json pnpm-lock.yaml .pnpm-approved-builds.json ./
