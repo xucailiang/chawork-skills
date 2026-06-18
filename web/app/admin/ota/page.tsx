@@ -216,7 +216,7 @@ function ReleaseCard({
   };
 
   const statusLabel: Record<string, string> = { draft: "草稿", active: "活跃", rollback: "已回滚", archived: "已归档" };
-  const typeLabel: Record<string, string> = { full: "全量", hot: "热更新", both: "全量+热更新" };
+  const typeLabel: Record<string, string> = { full: "全量更新", hot: "热更新" };
 
   return (
     <div className="p-4 border border-[var(--border)] rounded-xl bg-[var(--surface-1)]">
@@ -272,7 +272,7 @@ function ReleaseCard({
 
 function CreateReleaseForm({ onCreated, onCancel }: { onCreated: () => void; onCancel: () => void }) {
   const [version, setVersion] = useState("");
-  const [updateType, setUpdateType] = useState<"full" | "hot" | "both">("both");
+  const [updateType, setUpdateType] = useState<"full" | "hot">("full");
   const [channel, setChannel] = useState("stable");
   const [platform, setPlatform] = useState("darwin-aarch64");
   const [notes, setNotes] = useState("");
@@ -314,11 +314,15 @@ function CreateReleaseForm({ onCreated, onCancel }: { onCreated: () => void; onC
         </label>
         <label className="block">
           <span className="text-xs text-[var(--text-dim)]">更新类型</span>
-          <select value={updateType} onChange={(e) => setUpdateType(e.target.value as typeof updateType)}
+          <select value={updateType} onChange={(e) => {
+            const val = e.target.value as typeof updateType;
+            setUpdateType(val);
+            if (val === "hot") setPlatform("all");
+            else if (platform === "all") setPlatform("darwin-aarch64");
+          }}
             className="mt-1 w-full px-3 py-2 text-sm bg-[var(--surface-2)] border border-[var(--border)] rounded-lg text-[var(--text-hi)]">
-            <option value="both">全量+热更新</option>
-            <option value="full">仅全量</option>
-            <option value="hot">仅热更新</option>
+            <option value="full">全量更新</option>
+            <option value="hot">热更新</option>
           </select>
         </label>
         <label className="block">
@@ -333,10 +337,17 @@ function CreateReleaseForm({ onCreated, onCancel }: { onCreated: () => void; onC
         <label className="block">
           <span className="text-xs text-[var(--text-dim)]">平台</span>
           <select value={platform} onChange={(e) => setPlatform(e.target.value)}
-            className="mt-1 w-full px-3 py-2 text-sm bg-[var(--surface-2)] border border-[var(--border)] rounded-lg text-[var(--text-hi)]">
-            <option value="darwin-aarch64">macOS (arm64)</option>
-            <option value="darwin-x86_64">macOS (x86_64)</option>
-            <option value="windows-x86_64">Windows (x64)</option>
+            disabled={updateType === "hot"}
+            className="mt-1 w-full px-3 py-2 text-sm bg-[var(--surface-2)] border border-[var(--border)] rounded-lg text-[var(--text-hi)] disabled:opacity-50">
+            {updateType === "hot" ? (
+              <option value="all">全平台</option>
+            ) : (
+              <>
+                <option value="darwin-aarch64">macOS (arm64)</option>
+                <option value="darwin-x86_64">macOS (x86_64)</option>
+                <option value="windows-x86_64">Windows (x64)</option>
+              </>
+            )}
           </select>
         </label>
       </div>

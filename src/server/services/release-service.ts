@@ -119,7 +119,7 @@ export function rollbackRelease(id: number): Release | undefined {
 export function getLatestActiveRelease(platform: string, channel: string): Release | undefined {
   const db = getDb()
   return db.prepare(
-    "SELECT * FROM releases WHERE platform = ? AND channel = ? AND status = 'active' ORDER BY published_at DESC LIMIT 1",
+    "SELECT * FROM releases WHERE (platform = ? OR platform = 'all') AND channel = ? AND status = 'active' ORDER BY published_at DESC LIMIT 1",
   ).get(platform, channel) as Release | undefined
 }
 
