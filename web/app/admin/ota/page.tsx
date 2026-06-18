@@ -278,14 +278,16 @@ function CreateReleaseForm({ onCreated, onCancel }: { onCreated: () => void; onC
   const [notes, setNotes] = useState("");
   const [forceUpdate, setForceUpdate] = useState(false);
   const [minVersion, setMinVersion] = useState("");
+  const [file, setFile] = useState<File | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!version) return;
+    if (!file) { alert("请选择要上传的安装包文件"); return; }
     setSubmitting(true);
     try {
-      await createRelease({
+      const release = await createRelease({
         version,
         update_type: updateType,
         channel,
@@ -294,6 +296,7 @@ function CreateReleaseForm({ onCreated, onCancel }: { onCreated: () => void; onC
         force_update: forceUpdate,
         min_compatible_version: minVersion || undefined,
       });
+      await uploadArtifact(release.id, file, "full");
       onCreated();
     } catch (e) {
       alert(e instanceof Error ? e.message : String(e));
@@ -353,10 +356,19 @@ function CreateReleaseForm({ onCreated, onCancel }: { onCreated: () => void; onC
             className="mt-1 w-full px-3 py-2 text-sm bg-[var(--surface-2)] border border-[var(--border)] rounded-lg text-[var(--text-hi)]" />
         </label>
       </div>
+      <label className="block">
+        <span className="text-xs text-[var(--text-dim)]">安装包文件 *</span>
+        <input type="file" onChange={(e) => setFile(e.target.files?.[0] || null)}
+          accept=".tar.gz,.gz,.zip,.dmg,.msi,.exe"
+          className="mt-1 w-full px-3 py-2 text-sm bg-[var(--surface-2)] border border-[var(--border)] rounded-lg text-[var(--text-hi)] file:mr-3 file:px-3 file:py-1 file:text-xs file:border-0 file:rounded file:bg-[var(--amber)] file:text-black file:cursor-pointer" />
+        <span className="text-xs text-[var(--text-dim)] mt-1 block">
+          macOS: .app.tar.gz / .dmg | Windows: .nsis.zip / .msi | 热更新: 前端 bundle .tar.gz
+        </span>
+      </label>
       <div className="flex gap-2 pt-2">
         <button type="submit" disabled={submitting}
           className="px-4 py-2 text-sm font-medium bg-[var(--amber)] text-black rounded-lg hover:opacity-90 disabled:opacity-50 cursor-pointer">
-          {submitting ? "创建中..." : "创建版本"}
+          {submitting ? "创建中..." : "创建并上传"}
         </button>
         <button type="button" onClick={onCancel}
           className="px-4 py-2 text-sm text-[var(--text-dim)] border border-[var(--border)] rounded-lg hover:bg-[var(--surface-2)] cursor-pointer">
