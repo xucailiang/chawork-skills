@@ -3,16 +3,16 @@ FROM node:22-slim AS base
 RUN sed -i 's|deb.debian.org|mirrors.aliyun.com|g' /etc/apt/sources.list.d/debian.sources 2>/dev/null || \
     sed -i 's|deb.debian.org|mirrors.aliyun.com|g' /etc/apt/sources.list 2>/dev/null || true
 RUN corepack enable && corepack prepare pnpm@10.32.1 --activate
-RUN apt-get update && apt-get install -y git bsdiff && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y git bsdiff python3 make g++ && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
 FROM base AS deps
-COPY package.json pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml .pnpm-approved-builds.json ./
 RUN pnpm install --frozen-lockfile --prod
 
 FROM base AS build
-COPY package.json pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml .pnpm-approved-builds.json ./
 RUN pnpm install --frozen-lockfile
 COPY tsconfig.json ./
 COPY src/ src/
