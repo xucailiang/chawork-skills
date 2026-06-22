@@ -14,8 +14,10 @@ import {
   createGrayRule,
   deleteGrayRule,
   type Release,
+  type Artifact,
   type StatsResponse,
   type GrayRule,
+  getReleaseDetail,
 } from "@/lib/ota-api";
 
 type Tab = "releases" | "stats" | "gray-rules";
@@ -122,13 +124,6 @@ function ReleasesPanel() {
     try { await deleteRelease(id); load(page); } catch (e) { alert(String(e)); }
   };
 
-  const handleGeneratePatches = async (id: number) => {
-    try {
-      const result = await generatePatches(id);
-      alert(`生成完成\n成功: ${result.generated.length}\n跳过: ${result.skipped.length}`);
-    } catch (e) { alert(String(e)); }
-  };
-
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
@@ -156,7 +151,6 @@ function ReleasesPanel() {
             onPublish={() => handlePublish(r.id)}
             onRollback={() => handleRollback(r.id)}
             onDelete={() => handleDelete(r.id)}
-            onGeneratePatches={() => handleGeneratePatches(r.id)}
             onUploadDone={() => load(page)}
           />
         ))}
@@ -180,17 +174,33 @@ function ReleaseCard({
   onPublish,
   onRollback,
   onDelete,
-  onGeneratePatches,
   onUploadDone,
 }: {
   release: Release;
   onPublish: () => void;
   onRollback: () => void;
   onDelete: () => void;
-  onGeneratePatches: () => void;
   onUploadDone: () => void;
 }) {
   const [uploading, setUploading] = useState(false);
+  const [artifacts, setArtifacts] = useState<Artifact[]>([]);
+
+  const loadArtifacts = useCallback(async () => {
+    try {
+      const detail = await getReleaseDetail(r.id);
+      setArtifacts(detail.artifacts);
+    } catch {
+      setArtifacts([]);
+    }
+  }, [r.id]);
+
+  useEffect(() => {
+    void loadArtifacts();
+  }, [loadArtifacts]);
+
+  const bundleArtifact = artifacts.find((a) => a.type === "full");
+  const patchArtifacts = artifacts.filter((a) => a.type === "patch");
+  const isHot = r.update_type === "hot";
 
   const statusColors: Record<string, string> = {
     draft: "bg-gray-500/20 text-gray-400",
@@ -199,17 +209,46 @@ function ReleaseCard({
     archived: "bg-gray-500/20 text-gray-500",
   };
 
+  const handleRegeneratePatches = async () => {
+    try {
+      const result = await generatePatches(r.id);
+      await loadArtifacts();
+      alert(
+        `补丁生成完成\n成功: ${result.generated.length}` +
+          (result.skipped.length ? `\n跳过: ${result.skipped.join(", ")}` : ""),
+      );
+    } catch (e) {
+      alert(e instanceof Error ? e.message : String(e));
+    }
+  };
+
   const handleUpload = async (type: "full" | "signature") => {
     const input = document.createElement("input");
     input.type = "file";
+    if (type === "full" && isHot) {
+      input.accept = ".tar.gz,.gz,.zip";
+    }
     input.onchange = async () => {
       const file = input.files?.[0];
       if (!file) return;
       setUploading(true);
       try {
-        await uploadArtifact(r.id, file, type);
+        const result = await uploadArtifact(r.id, file, type);
+        await loadArtifacts();
         onUploadDone();
-      } catch (e) { alert(String(e)); }
+        if (result.patches) {
+          alert(
+            `Bundle 已上传\n已自动生成 ${result.patches.generated.length} 个差异补丁` +
+              (result.patches.skipped.length
+                ? `\n跳过: ${result.patches.skipped.join(", ")}`
+                : ""),
+          );
+        } else if (result.patch_error) {
+          alert(`Bundle 已上传，但补丁生成失败：${result.patch_error}`);
+        }
+      } catch (e) {
+        alert(e instanceof Error ? e.message : String(e));
+      }
       setUploading(false);
     };
     input.click();
@@ -234,13 +273,25 @@ function ReleaseCard({
         <div className="flex gap-2">
           {r.status === "draft" && (
             <>
-              <button onClick={() => handleUpload("full")} disabled={uploading} className="text-xs px-2 py-1 border border-[var(--border)] rounded hover:bg-[var(--surface-2)] cursor-pointer">
-                {uploading ? "上传中..." : "上传全量包"}
-              </button>
-              <button onClick={onGeneratePatches} className="text-xs px-2 py-1 border border-[var(--border)] rounded hover:bg-[var(--surface-2)] cursor-pointer">
-                生成补丁
-              </button>
-              <button onClick={onPublish} className="text-xs px-2 py-1 bg-green-600 text-white rounded hover:bg-green-700 cursor-pointer">
+              {isHot ? (
+                <>
+                  <button onClick={() => handleUpload("full")} disabled={uploading} className="text-xs px-2 py-1 border border-[var(--border)] rounded hover:bg-[var(--surface-2)] cursor-pointer">
+                    {uploading ? "上传中..." : bundleArtifact ? "重新上传 Bundle" : "上传 Bundle"}
+                  </button>
+                  <button
+                    onClick={handleRegeneratePatches}
+                    disabled={!bundleArtifact}
+                    className="text-xs px-2 py-1 border border-[var(--border)] rounded hover:bg-[var(--surface-2)] cursor-pointer disabled:opacity-40"
+                  >
+                    重新生成补丁
+                  </button>
+                </>
+              ) : null}
+              <button
+                onClick={onPublish}
+                disabled={isHot && !bundleArtifact}
+                className="text-xs px-2 py-1 bg-green-600 text-white rounded hover:bg-green-700 cursor-pointer disabled:opacity-40"
+              >
                 发布
               </button>
               <button onClick={onDelete} className="text-xs px-2 py-1 text-red-400 border border-red-400/30 rounded hover:bg-red-400/10 cursor-pointer">
@@ -264,8 +315,29 @@ function ReleaseCard({
       {r.release_notes && (
         <p className="mt-2 text-xs text-[var(--text-dim)] line-clamp-2">{r.release_notes}</p>
       )}
+      {isHot ? (
+        <div className="mt-2 space-y-1 text-xs text-[var(--text-dim)]">
+          <p>
+            Bundle: {bundleArtifact ? `${bundleArtifact.filename} (${formatFileSize(bundleArtifact.file_size)})` : "未上传"}
+          </p>
+          <p>
+            差异补丁: {patchArtifacts.length > 0 ? `${patchArtifacts.length} 个（客户端下载补丁，非全量包）` : "未生成"}
+          </p>
+          {patchArtifacts.length > 0 ? (
+            <p className="font-mono text-[10px] text-[var(--text-dim)]/80">
+              {patchArtifacts.map((p) => `${p.from_version} → ${r.version}`).join(" · ")}
+            </p>
+          ) : null}
+        </div>
+      ) : null}
     </div>
   );
+}
+
+function formatFileSize(bytes: number): string {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
 // ─── Create Release Form ─────────────────────────────────────────
@@ -302,7 +374,17 @@ function CreateReleaseForm({ onCreated, onCancel }: { onCreated: () => void; onC
 
       if (updateType === "hot") {
         const release = await createRelease({ ...baseParams, platform: "all" });
-        await uploadArtifact(release.id, hotFile!, "full");
+        const uploadResult = await uploadArtifact(release.id, hotFile!, "full");
+        if (uploadResult.patches) {
+          alert(
+            `版本已创建，Bundle 已上传\n已自动生成 ${uploadResult.patches.generated.length} 个差异补丁` +
+              (uploadResult.patches.skipped.length
+                ? `\n跳过: ${uploadResult.patches.skipped.join(", ")}`
+                : ""),
+          );
+        } else if (uploadResult.patch_error) {
+          alert(`版本已创建，Bundle 已上传，但补丁生成失败：${uploadResult.patch_error}`);
+        }
       } else {
         const platforms = ["darwin-aarch64", "windows-x86_64"];
         for (const platform of platforms) {
@@ -329,7 +411,7 @@ function CreateReleaseForm({ onCreated, onCancel }: { onCreated: () => void; onC
           <select value={updateType} onChange={(e) => setUpdateType(e.target.value as typeof updateType)}
             className="mt-1 w-full px-3 py-2 text-sm bg-[var(--surface-2)] border border-[var(--border)] rounded-lg text-[var(--text-hi)]">
             <option value="full">全量更新（需选平台安装包）</option>
-            <option value="hot">热更新（全平台前端 bundle）</option>
+            <option value="hot">热更新（上传前端 Bundle，服务端自动生成差异补丁）</option>
           </select>
         </label>
         <label className="block">
@@ -360,12 +442,17 @@ function CreateReleaseForm({ onCreated, onCancel }: { onCreated: () => void; onC
       </div>
 
       {updateType === "hot" ? (
-        <label className="block">
-          <span className="text-xs text-[var(--text-dim)]">前端 Bundle 文件 *（全平台通用）</span>
-          <input type="file" onChange={(e) => setHotFile(e.target.files?.[0] || null)}
-            accept=".tar.gz,.gz,.zip"
-            className="mt-1 w-full px-3 py-2 text-sm bg-[var(--surface-2)] border border-[var(--border)] rounded-lg text-[var(--text-hi)] file:mr-3 file:px-3 file:py-1 file:text-xs file:border-0 file:rounded file:bg-[var(--amber)] file:text-black file:cursor-pointer" />
-        </label>
+        <div className="space-y-2">
+          <label className="block">
+            <span className="text-xs text-[var(--text-dim)]">前端 Bundle 文件 *（新版本完整包，全平台通用）</span>
+            <input type="file" onChange={(e) => setHotFile(e.target.files?.[0] || null)}
+              accept=".tar.gz,.gz,.zip"
+              className="mt-1 w-full px-3 py-2 text-sm bg-[var(--surface-2)] border border-[var(--border)] rounded-lg text-[var(--text-hi)] file:mr-3 file:px-3 file:py-1 file:text-xs file:border-0 file:rounded file:bg-[var(--amber)] file:text-black file:cursor-pointer" />
+          </label>
+          <p className="text-xs text-[var(--text-dim)]">
+            上传后服务端会用 bsdiff 对比上一版 Bundle，自动生成差异补丁；客户端热更新只下载补丁，不会拉全量包。
+          </p>
+        </div>
       ) : (
         <div className="p-3 rounded-lg border border-[var(--border)] bg-[var(--surface-2)]">
           <p className="text-xs text-[var(--text-dim)]">

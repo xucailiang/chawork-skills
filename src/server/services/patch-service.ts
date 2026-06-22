@@ -1,11 +1,19 @@
 import { execFile } from "node:child_process"
 import { promisify } from "node:util"
+import { mkdirSync } from "node:fs"
 import { stat, unlink } from "node:fs/promises"
 import { createHash } from "node:crypto"
 import { createReadStream } from "node:fs"
-import { basename, join } from "node:path"
+import { join } from "node:path"
 import { log } from "../../utils/logger.js"
-import { getRecentActiveVersions, getArtifactsForRelease, insertArtifact, getReleaseById } from "./release-service.js"
+import {
+  getRecentActiveHotReleases,
+  getRecentActiveVersions,
+  getArtifactsForRelease,
+  insertArtifact,
+  getReleaseById,
+  deleteArtifactsByType,
+} from "./release-service.js"
 import type { Release } from "./ota-types.js"
 
 const execFileAsync = promisify(execFile)
@@ -33,10 +41,24 @@ export async function generatePatches(releaseId: number, maxPrevVersions = 5): P
 
   const newArtifacts = getArtifactsForRelease(releaseId)
   const newFullArtifact = newArtifacts.find((a) => a.type === "full")
-  if (!newFullArtifact) throw new Error("No full artifact found for this release")
+  if (!newFullArtifact) throw new Error("未找到前端 bundle，请先上传 bundle 文件")
 
-  const recentVersions = getRecentActiveVersions(release.platform, maxPrevVersions)
-    .filter((r) => r.id !== releaseId)
+  mkdirSync(getPatchDir(), { recursive: true })
+
+  // 清理旧补丁，避免重复记录
+  for (const artifact of newArtifacts.filter((a) => a.type === "patch")) {
+    try {
+      await unlink(artifact.file_path)
+    } catch {
+      // ignore missing files
+    }
+  }
+  deleteArtifactsByType(releaseId, "patch")
+
+  const recentVersions =
+    release.update_type === "hot" || release.platform === "all"
+      ? getRecentActiveHotReleases(releaseId, maxPrevVersions)
+      : getRecentActiveVersions(release.platform, maxPrevVersions).filter((r) => r.id !== releaseId)
 
   const generated: string[] = []
   const skipped: string[] = []

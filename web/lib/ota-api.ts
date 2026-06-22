@@ -163,7 +163,12 @@ export async function uploadArtifact(
   releaseId: number,
   file: File,
   type: "full" | "signature",
-): Promise<Artifact> {
+): Promise<
+  Artifact & {
+    patches?: { generated: string[]; skipped: string[] }
+    patch_error?: string
+  }
+> {
   const formData = new FormData();
   formData.append("file", file);
   formData.append("type", type);

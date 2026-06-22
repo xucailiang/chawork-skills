@@ -14,6 +14,14 @@ import { initDb } from "./db/sqlite.js"
 import { log } from "../utils/logger.js"
 import type { ServerConfig } from "../types.js"
 
+/** 将配置中的 cors_origins 转为 hono/cors 可识别的 origin 规则 */
+function resolveCorsOrigin(origins: string[]): string | string[] | ((origin: string) => string | undefined) {
+  if (origins.includes("*")) {
+    return (origin) => origin
+  }
+  return origins
+}
+
 export function createApp(corsOrigins: string[] = ["*"]): Hono {
   const app = new Hono()
 
@@ -21,7 +29,7 @@ export function createApp(corsOrigins: string[] = ["*"]): Hono {
   app.use(
     "*",
     cors({
-      origin: corsOrigins,
+      origin: resolveCorsOrigin(corsOrigins),
       allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
       allowHeaders: ["Content-Type", "Authorization"],
     }),

@@ -130,6 +130,30 @@ export function getRecentActiveVersions(platform: string, limit: number): Releas
   ).all(platform, limit) as Release[]
 }
 
+/** 热更新 release（platform=all）用于生成 bsdiff 补丁的基准版本 */
+export function getRecentActiveHotReleases(excludeId: number, limit: number): Release[] {
+  const db = getDb()
+  return db.prepare(
+    `SELECT * FROM releases
+     WHERE platform = 'all'
+       AND update_type = 'hot'
+       AND status = 'active'
+       AND id != ?
+     ORDER BY published_at DESC
+     LIMIT ?`,
+  ).all(excludeId, limit) as Release[]
+}
+
+export function deleteArtifactsByType(releaseId: number, type: Artifact["type"]): Artifact[] {
+  const db = getDb()
+  const existing = db
+    .prepare("SELECT * FROM artifacts WHERE release_id = ? AND type = ?")
+    .all(releaseId, type) as Artifact[]
+  if (existing.length === 0) return []
+  db.prepare("DELETE FROM artifacts WHERE release_id = ? AND type = ?").run(releaseId, type)
+  return existing
+}
+
 export function getArtifactsForRelease(releaseId: number): Artifact[] {
   const db = getDb()
   return db.prepare("SELECT * FROM artifacts WHERE release_id = ?").all(releaseId) as Artifact[]

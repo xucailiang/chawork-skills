@@ -152,7 +152,13 @@ cli
     const serverConfig = {
       port: opts.port ? Number(opts.port) : Number(process.env.PORT || cfg.server?.port || 3100),
       host: opts.host ?? process.env.HOST ?? cfg.server?.host ?? "0.0.0.0",
-      cors_origins: cfg.server?.cors_origins ?? ["http://localhost:3000", "*"],
+      cors_origins: cfg.server?.cors_origins ?? [
+        "http://localhost:3000",
+        "http://localhost:3002",
+        "http://localhost:1420",
+        "http://127.0.0.1:1420",
+        "*",
+      ],
     }
     await startServer(serverConfig)
   })

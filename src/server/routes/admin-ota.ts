@@ -1,6 +1,6 @@
 import { Hono } from "hono"
 import { bearerAuth } from "hono/bearer-auth"
-import { mkdirSync, writeFileSync } from "node:fs"
+import { mkdirSync, writeFileSync, unlinkSync } from "node:fs"
 import { join } from "node:path"
 import {
   createRelease,
@@ -12,6 +12,7 @@ import {
   rollbackRelease,
   getArtifactsForRelease,
   insertArtifact,
+  deleteArtifactsByType,
 } from "../services/release-service.js"
 import { createGrayRule, deleteGrayRule, listGrayRules } from "../services/gray-service.js"
 import { getStatsOverview, getRecentEvents, getVersionDistribution, getStatsByRelease } from "../services/stats-service.js"
@@ -86,6 +87,17 @@ adminOta.patch("/releases/:id", async (c) => {
 
 adminOta.post("/releases/:id/publish", (c) => {
   const id = Number(c.req.param("id"))
+  const release = getReleaseById(id)
+  if (!release) return c.json({ error: "Release not found" }, 404)
+
+  if (release.update_type === "hot") {
+    const artifacts = getArtifactsForRelease(id)
+    const hasBundle = artifacts.some((a) => a.type === "full")
+    if (!hasBundle) {
+      return c.json({ error: "热更新版本必须先上传前端 Bundle" }, 400)
+    }
+  }
+
   const updated = updateReleaseStatus(id, "active")
   if (!updated) return c.json({ error: "Release not found" }, 404)
   return c.json(updated)
@@ -118,6 +130,16 @@ adminOta.post("/releases/:id/upload", async (c) => {
 
   if (!file) return c.json({ error: "file is required" }, 400)
 
+  const artifactType = type as "full" | "patch" | "signature"
+  const replaced = deleteArtifactsByType(id, artifactType)
+  for (const artifact of replaced) {
+    try {
+      unlinkSync(artifact.file_path)
+    } catch {
+      // ignore missing files
+    }
+  }
+
   const dir = getArtifactDir()
   mkdirSync(dir, { recursive: true })
 
@@ -128,7 +150,7 @@ adminOta.post("/releases/:id/upload", async (c) => {
   const hash = await computeFileHash(filePath)
   const artifact = insertArtifact({
     release_id: id,
-    type: type as "full" | "patch" | "signature",
+    type: artifactType,
     filename: file.name,
     file_size: buffer.length,
     hash_sha256: hash,
@@ -136,7 +158,17 @@ adminOta.post("/releases/:id/upload", async (c) => {
     file_path: filePath,
   })
 
-  return c.json(artifact, 201)
+  let patchResult: { generated: string[]; skipped: string[] } | undefined
+  if (release.update_type === "hot" && artifactType === "full") {
+    try {
+      patchResult = await generatePatches(id)
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err)
+      return c.json({ ...artifact, patch_error: msg }, 201)
+    }
+  }
+
+  return c.json(patchResult ? { ...artifact, patches: patchResult } : artifact, 201)
 })
 
 // ─── Patch Generation ────────────────────────────────────────
